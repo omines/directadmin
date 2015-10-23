@@ -14,12 +14,10 @@
         <ini name="memory_limit" value="-1" />
 
         <const name="DIRECTADMIN_URL" value="https://www.directadmin.com:2222" />
-        <const name="USER_USERNAME" value="demo_user" />
-        <const name="USER_PASSWORD" value="demo" />
-        <const name="RESELLER_USERNAME" value="demo_reseller" />
-        <const name="RESELLER_PASSWORD" value="demo" />
         <const name="ADMIN_USERNAME" value="demo_admin" />
         <const name="ADMIN_PASSWORD" value="demo" />
+        <const name="RESELLER_USERNAME" value="reseller_to_be_created" />
+        <const name="USER_USERNAME" value="user_to_be_created" />
     </php>
 
     <testsuites>

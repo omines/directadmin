@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Omines\DirectAdmin\Users;
+namespace Omines\DirectAdmin\UserTypes;
 
 use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\DirectAdminException;
@@ -27,7 +27,7 @@ class User extends DirectAdmin
     private function getSessionInfo($item)
     {
         if(!isset($this->session))
-            $this->session = $this->invokeGet('CMD_API_SHOW_USER_CONFIG');
+            $this->session = $this->invokeGet('SHOW_USER_CONFIG');
         if(!isset($this->session[$item]))
             throw new DirectAdminException("Session item '$item' does not exist");
         return $this->session[$item];

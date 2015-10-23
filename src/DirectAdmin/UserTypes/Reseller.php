@@ -7,14 +7,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Omines\DirectAdmin\Users;
+namespace Omines\DirectAdmin\UserTypes;
 
 /**
- * Admin
+ * Reseller
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com
  */
-class Admin extends Reseller
+class Reseller extends User
 {
+    public function getUsers()
+    {
+        return $this->invokeGet('SHOW_USERS');
+    }
 
 }
