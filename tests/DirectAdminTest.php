@@ -8,6 +8,7 @@
  */
 
 use Omines\DirectAdmin\DirectAdmin;
+use Omines\DirectAdmin\DirectAdminException;
 
 /**
  * Unit tests for DirectAdmin wrapper class.
@@ -20,5 +21,9 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
     {
         $admin = DirectAdmin::connectAdmin(DIRECTADMIN_URL, ADMIN_USERNAME, ADMIN_PASSWORD);
         $this->assertEquals('admin', $admin->getUserType());
+
+        $this->setExpectedException(DirectAdminException::class);
+        $admin->invokeGet('invalid_command');
+
     }
 }

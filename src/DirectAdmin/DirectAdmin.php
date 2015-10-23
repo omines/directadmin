@@ -16,7 +16,7 @@ use Omines\DirectAdmin\Users\Reseller;
 use Omines\DirectAdmin\Users\User;
 
 /**
- * DirectAdmin
+ * DirectAdmin API wrapper class.
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com
  */
@@ -47,11 +47,27 @@ abstract class DirectAdmin
         ]);
     }
 
+    /**
+     * Invokes the DirectAdmin API via HTTP GET.
+     *
+     * @param string $command DirectAdmin API command to invoke.
+     * @param array $query Optional query parameters.
+     * @return array The parsed and validated response.
+     */
     public function invokeGet($command, $query = [])
     {
         return self::invoke('GET', $command, ['query' => $query]);
     }
 
+    /**
+     * Invokes the DirectAdmin API with specific options.
+     *
+     * @param string $method HTTP method to use (ie. GET or POST)
+     * @param string $command DirectAdmin API command to invoke.
+     * @param array $options Guzzle options to use for the call.
+     * @return array The parsed and validated response.
+     * @throws DirectAdminException If anything went wrong.
+     */
     protected function invoke($method, $command, $options = [])
     {
         try
@@ -68,5 +84,6 @@ abstract class DirectAdmin
         }
     }
 
+    /** @var Client */
     private $connection;
 }
