@@ -1,0 +1,28 @@
+{
+  "name": "omines/directadmin",
+  "type": "library",
+  "description": "PHP interface to manage DirectAdmin control panel servers.",
+  "keywords": [
+    "library", "php", "directadmin", "control panel"
+  ],
+  "homepage": "https://github.com/omines/directadmin",
+  "authors": [
+    {
+      "name": "Niels Keurentjes",
+      "email": "niels.keurentjes@omines.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5",
+    "guzzlehttp/guzzle": "^6.1@dev"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "Omines\\DirectAdmin\\": "src/DirectAdmin/"
+    }
+  },
+  "minimum-stability": "dev"
+}

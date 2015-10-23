@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.1/phpunit.xsd"
+         backupGlobals="false"
+         colors="true"
+         bootstrap="vendor/autoload.php">
+
+    <php>
+        <ini name="date.timezone" value="UTC" />
+        <ini name="error_reporting" value="-1" />
+        <ini name="intl.default_locale" value="en" />
+        <ini name="intl.error_level" value="0" />
+        <ini name="memory_limit" value="-1" />
+
+        <const name="DIRECTADMIN_URL" value="https://www.directadmin.com:2222" />
+        <const name="USER_USERNAME" value="demo_user" />
+        <const name="USER_PASSWORD" value="demo" />
+        <const name="RESELLER_USERNAME" value="demo_reseller" />
+        <const name="RESELLER_PASSWORD" value="demo" />
+        <const name="ADMIN_USERNAME" value="demo_admin" />
+        <const name="ADMIN_PASSWORD" value="demo" />
+    </php>
+
+    <testsuites>
+        <testsuite name="DirectAdmin tests">
+            <directory>./tests/</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>./src/</directory>
+        </whitelist>
+    </filter>
+</phpunit>
