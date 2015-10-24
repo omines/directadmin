@@ -7,21 +7,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Omines\DirectAdmin\UserTypes;
-use Omines\DirectAdmin\DirectAdminException;
+namespace Omines\DirectAdmin\Context;
 
 /**
  * Admin
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com
  */
-class Admin extends Reseller
+class AdminContext extends ResellerContext
 {
     public function createReseller($options = [])
     {
+        // Check mandatory options, then merge defaults and overrides
         self::checkMandatoryOptions($options, ['username', 'passwd', 'email', 'domain']);
-
-        // Merge defaults and overrides
         $options = array_merge([
             'dns' => 'OFF',
             'serverip' => 'ON',
@@ -33,11 +31,21 @@ class Admin extends Reseller
         if(!isset($options['passwd2']))
             $options['passwd2'] = $options['passwd'];
 
-        return $this->invoke('POST', 'ACCOUNT_RESELLER', ['form_params' => $options]);
+        return $this->invokePost('ACCOUNT_RESELLER', $options);
+    }
+
+    public function deleteReseller($username)
+    {
+        return $this->deleteUser($username);
+    }
+
+    public function getReseller($username)
+    {
+        return $this->getUser()->getReseller($username);
     }
 
     public function getResellers()
     {
-        return $this->invokeGet('SHOW_RESELLERS');
+        return $this->getUser()->getResellers();
     }
 }

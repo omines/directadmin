@@ -11,9 +11,9 @@ namespace Omines\DirectAdmin;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
-use Omines\DirectAdmin\UserTypes\Admin;
-use Omines\DirectAdmin\UserTypes\Reseller;
-use Omines\DirectAdmin\UserTypes\User;
+use Omines\DirectAdmin\Context\AdminContext;
+use Omines\DirectAdmin\Context\ResellerContext;
+use Omines\DirectAdmin\Context\UserContext;
 
 /**
  * DirectAdmin API wrapper class.
@@ -28,23 +28,17 @@ class DirectAdmin
 
     public static function connectAdmin($url, $username, $password, $validate = false)
     {
-        return new Admin($url, $username, $password, $validate);
+        return new AdminContext(new self($url, $username, $password), $validate);
     }
 
     public static function connectReseller($url, $username, $password, $validate = false)
     {
-        return new Reseller($url, $username, $password, $validate);
+        return new ResellerContext(new self($url, $username, $password), $validate);
     }
 
     public static function connectUser($url, $username, $password)
     {
-        return new User($url, $username, $password);
-    }
-
-    public static function connectAuto($url, $username, $password)
-    {
-        $server = new self($url, $username, $password);
-
+        return new UserContext(new self($url, $username, $password));
     }
 
     protected function __construct($url, $username, $password)
@@ -58,18 +52,6 @@ class DirectAdmin
     }
 
     /**
-     * Invokes the DirectAdmin API via HTTP GET.
-     *
-     * @param string $command DirectAdmin API command to invoke.
-     * @param array $query Optional query parameters.
-     * @return array The parsed and validated response.
-     */
-    public function invokeGet($command, $query = [])
-    {
-        return self::invoke('GET', $command, ['query' => $query]);
-    }
-
-    /**
      * Invokes the DirectAdmin API with specific options.
      *
      * @param string $method HTTP method to use (ie. GET or POST)
@@ -78,7 +60,7 @@ class DirectAdmin
      * @return mixed The unvalidated response.
      * @throws DirectAdminException If anything went wrong on the network level.
      */
-    protected function invoke($method, $command, $options = [])
+    public function invoke($method, $command, $options = [])
     {
         try
         {
@@ -97,18 +79,6 @@ class DirectAdmin
         {
             throw new DirectAdminException("API request $command using $method failed", 0, $exception);
         }
-    }
-
-    /**
-     * Throws exception if any of the required options are not set.
-     *
-     * @param array $options Associative array of options.
-     * @param array $required Flat array of required options.
-     */
-    protected static function checkMandatoryOptions(array $options, array $required)
-    {
-        if(!empty($diff = array_diff($required, array_keys($options))))
-            throw new DirectAdminException('Missing required options: ' . implode(', ', $diff));
     }
 
     /** @var Client */
