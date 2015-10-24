@@ -8,6 +8,7 @@
  */
 
 namespace Omines\DirectAdmin\Context;
+use Omines\DirectAdmin\Objects\User;
 
 /**
  * Context for reseller functions.
@@ -25,6 +26,9 @@ class ResellerContext extends UserContext
         ]);
     }
 
+    /**
+     * @return User[] List of users for this reseller.
+     */
     public function getUsers()
     {
         return $this->getUser()->getUsers();

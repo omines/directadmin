@@ -26,6 +26,12 @@ class DirectAdmin
     const USERTYPE_RESELLER         = 'reseller';
     const USERTYPE_USER             = 'user';
 
+    /** @var string */
+    private $username;
+
+    /** @var string */
+    private $baseUrl;
+
     public static function connectAdmin($url, $username, $password, $validate = false)
     {
         return new AdminContext(new self($url, $username, $password), $validate);
@@ -43,12 +49,30 @@ class DirectAdmin
 
     protected function __construct($url, $username, $password)
     {
+        $this->username = $username;
+        $this->baseUrl = rtrim($url, '/') . '/';
         $this->connection = new Client([
-            'base_uri' => rtrim($url, '/') . '/',
+            'base_uri' => $this->baseUrl,
             'auth' => [$username, $password],
             'http_errors' => true,
             'verify' => false
         ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function getBaseUrl()
+    {
+        return $this->baseUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
     }
 
     /**

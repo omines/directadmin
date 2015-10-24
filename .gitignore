@@ -1,5 +1,6 @@
 .idea
 composer.lock
 composer.phar
+local/
 phpunit.xml
 vendor/

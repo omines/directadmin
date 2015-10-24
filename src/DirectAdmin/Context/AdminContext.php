@@ -55,7 +55,7 @@ class AdminContext extends ResellerContext
     public function getAllUsers()
     {
         $users = $this->invokeGet('SHOW_ALL_USERS');
-        $this->users = array_combine($users, array_map(function($user) { return new User($user, $this); }, $users));
+        return array_combine($users, array_map(function($user) { return new User($user, $this); }, $users));
     }
 
     /**

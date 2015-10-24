@@ -32,6 +32,6 @@ class Reseller extends User
     public function getUsers()
     {
         $users = $this->getContext()->invokeGet('SHOW_USERS');
-        $this->users = array_combine($users, array_map(function($user) { return new User($user, $this->getContext()); }, $users));
+        return array_combine($users, array_map(function($user) { return new User($user, $this->getContext()); }, $users));
     }
 }

@@ -48,6 +48,11 @@ class User extends Object
         return $this->getConfig('domain');
     }
 
+    public function getDomains()
+    {
+        return $this->getContext()->getDomains($this);
+    }
+
     /**
      * @return string The user type, as one of the USERTYPE_ constants in the DirectAdmin class.
      */
@@ -56,6 +61,12 @@ class User extends Object
         return $this->getConfig('usertype');
     }
 
+    /**
+     * Internal function to safe guard config changes and cache them.
+     *
+     * @param string $item Config item to retrieve.
+     * @return mixed The value of the config item, or NULL.
+     */
     private function getConfig($item)
     {
         if(!isset($this->config))

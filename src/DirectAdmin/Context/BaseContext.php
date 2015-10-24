@@ -20,14 +20,30 @@ use Omines\DirectAdmin\DirectAdminException;
 abstract class BaseContext
 {
     /** @var DirectAdmin */
-    private $directAdmin;
+    private $connection;
 
     /**
      * @param DirectAdmin $connection A prepared connection.
      */
     public function __construct(DirectAdmin $connection)
     {
-        $this->directAdmin = $connection;
+        $this->connection = $connection;
+    }
+
+    /**
+     * @return DirectAdmin
+     */
+    protected function getConnection()
+    {
+        return $this->connection;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getUsername()
+    {
+        return $this->connection->getUsername();
     }
 
     /**
@@ -39,7 +55,7 @@ abstract class BaseContext
      */
     public function invokeGet($command, $query = [])
     {
-        return $this->directAdmin->invoke('GET', $command, ['query' => $query]);
+        return $this->connection->invoke('GET', $command, ['query' => $query]);
     }
 
     /**
@@ -51,7 +67,7 @@ abstract class BaseContext
      */
     public function invokePost($command, $postParameters = [])
     {
-        return $this->directAdmin->invoke('POST', $command, ['form_params' => $postParameters]);
+        return $this->connection->invoke('POST', $command, ['form_params' => $postParameters]);
     }
 
     /**

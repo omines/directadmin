@@ -10,6 +10,9 @@
 namespace Omines\DirectAdmin\Context;
 
 use Omines\DirectAdmin\DirectAdmin;
+use Omines\DirectAdmin\DirectAdminException;
+use Omines\DirectAdmin\Objects\Admin;
+use Omines\DirectAdmin\Objects\Reseller;
 use Omines\DirectAdmin\Objects\User;
 
 /**
@@ -30,6 +33,16 @@ class UserContext extends BaseContext
         parent::__construct($connection);
     }
 
+    public function getDomains($user)
+    {
+        if(($user instanceof User ? $user->getName() : $user) !== $this->getUsername())
+            throw new DirectAdminException('At user level you can only request a list of your own domains');
+        return $this->invokeGet('CMD_API_SHOW_USER_DOMAINS');
+    }
+
+    /**
+     * @return Admin|Reseller|User The user object behind the context.
+     */
     public function getUser()
     {
         if(!isset($this->user))
