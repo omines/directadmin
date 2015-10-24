@@ -8,6 +8,7 @@
  */
 
 namespace Omines\DirectAdmin\Context;
+use Omines\DirectAdmin\Objects\Object;
 use Omines\DirectAdmin\Objects\Users\Reseller;
 use Omines\DirectAdmin\Objects\Users\User;
 
@@ -54,8 +55,7 @@ class AdminContext extends ResellerContext
      */
     public function getAllUsers()
     {
-        $users = $this->invokeGet('SHOW_ALL_USERS');
-        return array_combine($users, array_map(function($user) { return new User($user, $this); }, $users));
+        return Object::toObjectArray($this->invokeGet('SHOW_ALL_USERS'), User::class, $this);
     }
 
     /**

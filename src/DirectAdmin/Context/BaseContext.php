@@ -41,7 +41,7 @@ abstract class BaseContext
     /**
      * @return string
      */
-    protected function getUsername()
+    public function getUsername()
     {
         return $this->connection->getUsername();
     }

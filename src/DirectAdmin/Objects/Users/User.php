@@ -9,9 +9,11 @@
 
 namespace Omines\DirectAdmin\Objects\Users;
 
-use Omines\DirectAdmin\Context\BaseContext;
+use Omines\DirectAdmin\Context\ResellerContext;
+use Omines\DirectAdmin\Context\UserContext;
 use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\DirectAdminException;
+use Omines\DirectAdmin\Objects\Domain;
 use Omines\DirectAdmin\Objects\Object;
 
 /**
@@ -21,16 +23,12 @@ use Omines\DirectAdmin\Objects\Object;
  */
 class User extends Object
 {
-    /** @var string */
-    protected $username;
-
     /** @var array */
     protected $config;
 
-    public function __construct($name, BaseContext $context, $config = null)
+    public function __construct($name, UserContext $context, $config = null)
     {
-        parent::__construct($context);
-        $this->username = $name;
+        parent::__construct($name, $context);
         $this->config = $config;
     }
 
@@ -39,7 +37,7 @@ class User extends Object
      */
     public function getUsername()
     {
-        return $this->username;
+        return $this->getName();
     }
 
     /**
@@ -47,12 +45,23 @@ class User extends Object
      */
     public function getDefaultDomain()
     {
-        return $this->getConfig('domain');
+        return new Domain($this->getConfig('domain'), $this->getContext());
     }
 
+    /**
+     * @return Domain[]
+     */
     public function getDomains()
     {
-        return $this->getContext()->getDomains($this);
+        // Thanks to DirectAdmin curious API some hackery required here
+        $context = $this->getContext();
+        if($context instanceof ResellerContext)
+            $domains = $context->invokeGet('SHOW_USER_DOMAINS', ['user' => $this->getUsername()]);
+        elseif($context->getUsername() === $this->getUsername())
+            $domains = $context->invokeGet('SHOW_DOMAINS');
+        else
+            throw new DirectAdminException('At user level you can only request a list of your own domains');
+        return Object::toRichObjectArray($domains, Domain::class, $context);
     }
 
     /**
@@ -88,11 +97,11 @@ class User extends Object
      * Constructs the correct object from the given user config.
      *
      * @param array $config The raw config from DirectAdmin.
-     * @param BaseContext $context The context within which the config was retrieved.
+     * @param UserContext $context The context within which the config was retrieved.
      * @return Admin|Reseller|User The correct object.
      * @throws DirectAdminException If the user type could not be determined.
      */
-    public static function fromConfig($config, BaseContext $context)
+    public static function fromConfig($config, UserContext $context)
     {
         $name = $config['username'];
         switch($config['usertype'])

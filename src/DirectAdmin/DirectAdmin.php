@@ -81,7 +81,7 @@ class DirectAdmin
      * @param string $method HTTP method to use (ie. GET or POST)
      * @param string $command DirectAdmin API command to invoke.
      * @param array $options Guzzle options to use for the call.
-     * @return mixed The unvalidated response.
+     * @return array The unvalidated response.
      * @throws DirectAdminException If anything went wrong on the network level.
      */
     public function invoke($method, $command, $options = [])

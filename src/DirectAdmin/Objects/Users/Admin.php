@@ -8,6 +8,7 @@
  */
 
 namespace Omines\DirectAdmin\Objects\Users;
+use Omines\DirectAdmin\Objects\Object;
 
 /**
  * Admin
@@ -31,7 +32,6 @@ class Admin extends Reseller
      */
     public function getResellers()
     {
-        $resellers = $this->getContext()->invokeGet('SHOW_RESELLERS');
-        return array_combine($resellers, array_map(function($reseller) { return new Reseller($reseller, $this->getContext()); }, $resellers));
+        return Object::toObjectArray($this->getContext()->invokeGet('SHOW_RESELLERS'), Reseller::class, $this->getContext());
     }
 }
