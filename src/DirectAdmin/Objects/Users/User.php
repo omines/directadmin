@@ -7,10 +7,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Omines\DirectAdmin\Objects;
+namespace Omines\DirectAdmin\Objects\Users;
+
 use Omines\DirectAdmin\Context\BaseContext;
 use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\DirectAdminException;
+use Omines\DirectAdmin\Objects\Object;
 
 /**
  * User

@@ -11,9 +11,9 @@ namespace Omines\DirectAdmin\Context;
 
 use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\DirectAdminException;
-use Omines\DirectAdmin\Objects\Admin;
-use Omines\DirectAdmin\Objects\Reseller;
-use Omines\DirectAdmin\Objects\User;
+use Omines\DirectAdmin\Objects\Users\Admin;
+use Omines\DirectAdmin\Objects\Users\Reseller;
+use Omines\DirectAdmin\Objects\Users\User;
 
 /**
  * Context for user functions.

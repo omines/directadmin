@@ -8,8 +8,8 @@
  */
 
 namespace Omines\DirectAdmin\Context;
-use Omines\DirectAdmin\Objects\Reseller;
-use Omines\DirectAdmin\Objects\User;
+use Omines\DirectAdmin\Objects\Users\Reseller;
+use Omines\DirectAdmin\Objects\Users\User;
 
 /**
  * Context for administrator functions.

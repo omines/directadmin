@@ -10,7 +10,7 @@
 use Omines\DirectAdmin\Context\AdminContext;
 use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\DirectAdminException;
-use Omines\DirectAdmin\Objects\User;
+use Omines\DirectAdmin\Objects\Users\User;
 
 /**
  * Unit tests for DirectAdmin wrapper class.

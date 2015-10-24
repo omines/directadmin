@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Omines\DirectAdmin\Objects;
+namespace Omines\DirectAdmin\Objects\Users;
 
 /**
  * Admin

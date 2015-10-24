@@ -8,7 +8,7 @@
  */
 
 namespace Omines\DirectAdmin\Context;
-use Omines\DirectAdmin\Objects\User;
+use Omines\DirectAdmin\Objects\Users\User;
 
 /**
  * Context for reseller functions.
