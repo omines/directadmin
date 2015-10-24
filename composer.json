@@ -14,7 +14,7 @@
   ],
   "require": {
     "php": ">=5.5",
-    "guzzlehttp/guzzle": "^6.1@dev"
+    "guzzlehttp/guzzle": "^6.1"
   },
   "require-dev": {
     "phpunit/phpunit": "^4.8"
@@ -23,6 +23,5 @@
     "psr-4": {
       "Omines\\DirectAdmin\\": "src/DirectAdmin/"
     }
-  },
-  "minimum-stability": "dev"
+  }
 }
