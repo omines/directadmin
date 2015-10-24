@@ -8,6 +8,8 @@
  */
 
 namespace Omines\DirectAdmin\Objects\Users;
+
+use Omines\DirectAdmin\Context\UserContext;
 use Omines\DirectAdmin\Objects\Object;
 
 /**
@@ -17,6 +19,14 @@ use Omines\DirectAdmin\Objects\Object;
  */
 class Admin extends Reseller
 {
+    /**
+     * @inheritdoc
+     */
+    public function __construct($name, UserContext $context, $config = null)
+    {
+        parent::__construct($name, $context, $config);
+    }
+
     /**
      * @param string $username
      * @return null|Reseller

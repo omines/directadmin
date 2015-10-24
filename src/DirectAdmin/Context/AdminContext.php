@@ -8,6 +8,7 @@
  */
 
 namespace Omines\DirectAdmin\Context;
+
 use Omines\DirectAdmin\Objects\Object;
 use Omines\DirectAdmin\Objects\Users\Reseller;
 use Omines\DirectAdmin\Objects\Users\User;
@@ -21,7 +22,7 @@ class AdminContext extends ResellerContext
 {
     /**
      * @param array $options Options to apply to the reseller.
-     * @return array
+     * @return Reseller Newly created reseller.
      * @url http://www.directadmin.com/api.html#create for options to use.
      */
     public function createReseller($options = [])
@@ -39,7 +40,8 @@ class AdminContext extends ResellerContext
         if(!isset($options['passwd2']))
             $options['passwd2'] = $options['passwd'];
 
-        return $this->invokePost('ACCOUNT_RESELLER', $options);
+        $this->invokePost('ACCOUNT_RESELLER', $options);
+        return new Reseller($options['username'], $this);
     }
 
     /**

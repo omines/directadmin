@@ -8,6 +8,7 @@
  */
 
 namespace Omines\DirectAdmin\Context;
+
 use Omines\DirectAdmin\Objects\Users\User;
 
 /**

@@ -41,11 +41,13 @@ class User extends Object
     }
 
     /**
-     * @return string|null The default domain for the user, if any.
+     * @return Domain|null The default domain for the user, if any.
      */
     public function getDefaultDomain()
     {
-        return new Domain($this->getConfig('domain'), $this->getContext());
+        if(empty($name = $this->getConfig('domain')))
+            return null;
+        return new Domain($name, $this->getContext());
     }
 
     /**
@@ -90,7 +92,7 @@ class User extends Object
      */
     public function reload()
     {
-        $this->config = $this->getContext()->invokeGet('SHOW_USER_CONFIG', ['user' => $this->username]);
+        $this->config = $this->getContext()->invokeGet('SHOW_USER_CONFIG', ['user' => $this->getUsername()]);
     }
 
     /**
