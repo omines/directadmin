@@ -8,6 +8,7 @@
  */
 
 namespace Omines\DirectAdmin\Objects;
+
 use Omines\DirectAdmin\Context\UserContext;
 
 /**
@@ -18,21 +19,15 @@ use Omines\DirectAdmin\Context\UserContext;
 class Domain extends Object
 {
     /** @var float */
-    private $bandwidthUsed;
-
-    /** @var float */
-    private $bandwidthLimit;
-
-    /** @var float */
-    private $storageUsed;
+    private $config;
 
     public function __construct($name, UserContext $context, $config = null)
     {
         parent::__construct($name, $context);
-        $config = explode(':', $config);
-        $this->bandwidthUsed = floatval($config[0]);
-        $this->bandwidthLimit = ($config[1] === 'unlimited' ? null : floatval($config[1]));
-        $this->storageUsed = floatval($config[2]);
+        if(is_string($config))
+            $this->config = explode(':', $config);
+        else
+            $this->config = $config;
     }
 
     public function getDomainName()
@@ -45,7 +40,7 @@ class Domain extends Object
      */
     public function getBandwidthUsed()
     {
-        return $this->bandwidthUsed;
+        return floatval($this->config[0]);
     }
 
     /**
@@ -53,7 +48,7 @@ class Domain extends Object
      */
     public function getBandwidthLimit()
     {
-        return $this->bandwidthLimit;
+        return ($this->config[1] === 'unlimited' ? null : floatval($this->config[1]));
     }
 
     /**
@@ -61,6 +56,6 @@ class Domain extends Object
      */
     public function getStorageUsed()
     {
-        return $this->storageUsed;
+        return floatval($this->config[2]);
     }
 }
