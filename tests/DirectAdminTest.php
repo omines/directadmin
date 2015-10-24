@@ -29,12 +29,14 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
         $this->cleanupTestAccounts($admin);
 
         // Create the reseller
+        $before = count($admin->getResellers());
         $admin->createReseller([
             'username' => RESELLER_USERNAME,
             'passwd' => substr(sha1(__FILE__ . time()), 0, 10),
             'email' => 'support@127.0.0.1',
             'domain' => 'phpunit.example.com',
         ]);
+        $this->assertEquals($before + 1, count($admin->getResellers()));
 
         // Ensure an invalid execution throws a proper exception
         $this->setExpectedException(DirectAdminException::class);

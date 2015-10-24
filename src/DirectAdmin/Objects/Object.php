@@ -12,7 +12,7 @@ namespace Omines\DirectAdmin\Objects;
 use Omines\DirectAdmin\Context\BaseContext;
 
 /**
- * Object
+ * Basic wrapper around a DirectAdmin object as observed within a specific context.
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com
  */

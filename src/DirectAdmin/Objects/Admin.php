@@ -16,9 +16,6 @@ namespace Omines\DirectAdmin\Objects;
  */
 class Admin extends Reseller
 {
-    /** @var Reseller[] */
-    private $resellers;
-
     /**
      * @param string $username
      * @return null|Reseller
@@ -34,11 +31,7 @@ class Admin extends Reseller
      */
     public function getResellers()
     {
-        if(!isset($this->resellers))
-        {
-            $resellers = $this->getContext()->invokeGet('SHOW_RESELLERS');
-            $this->resellers = array_combine($resellers, array_map(function($reseller) { return new Reseller($reseller, $this->getContext()); }, $resellers));
-        }
-        return $this->resellers;
+        $resellers = $this->getContext()->invokeGet('SHOW_RESELLERS');
+        return array_combine($resellers, array_map(function($reseller) { return new Reseller($reseller, $this->getContext()); }, $resellers));
     }
 }
