@@ -21,7 +21,7 @@
     </php>
 
     <testsuites>
-        <testsuite name="DirectAdmin tests">
+        <testsuite name="DirectAdmin Test Suite">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>

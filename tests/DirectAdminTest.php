@@ -19,12 +19,19 @@ use Omines\DirectAdmin\Objects\User;
  */
 class DirectAdminTest extends \PHPUnit_Framework_TestCase
 {
-    public function testDirectAdmin()
+    public function testAdminLogin()
     {
         // Connect as admin and assure we have proper access
         $admin = DirectAdmin::connectAdmin(DIRECTADMIN_URL, ADMIN_USERNAME, ADMIN_PASSWORD);
         $this->assertEquals(DirectAdmin::USERTYPE_ADMIN, $admin->getUser()->getType());
+        return $admin;
+    }
 
+    /**
+     * @depends testAdminLogin
+     */
+    public function testCreateReseller(AdminContext $admin)
+    {
         // Clean up test users first in case they got stuck after a failed unit test
         $this->cleanupTestAccounts($admin);
 
@@ -37,7 +44,14 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
             'domain' => 'phpunit.example.com',
         ]);
         $this->assertEquals($before + 1, count($admin->getResellers()));
+    }
 
+    /**
+     * @depends testAdminLogin
+     * @expectedException Omines\DirectAdmin\DirectAdminException
+     */
+    public function testInvalidUser(AdminContext $admin)
+    {
         // Ensure an invalid execution throws a proper exception
         $this->setExpectedException(DirectAdminException::class);
         $user = User::fromConfig(['username' => 'test', 'usertype' => 'test'], $admin);
