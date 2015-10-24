@@ -8,14 +8,20 @@
  */
 
 namespace Omines\DirectAdmin\Context;
+use Omines\DirectAdmin\Objects\Reseller;
 
 /**
- * Admin
+ * Context for administrator functions.
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com
  */
 class AdminContext extends ResellerContext
 {
+    /**
+     * @param array $options Options to apply to the reseller.
+     * @return array
+     * @url http://www.directadmin.com/api.html#create for options to use.
+     */
     public function createReseller($options = [])
     {
         // Check mandatory options, then merge defaults and overrides
@@ -34,16 +40,26 @@ class AdminContext extends ResellerContext
         return $this->invokePost('ACCOUNT_RESELLER', $options);
     }
 
+    /**
+     * @param string $username
+     */
     public function deleteReseller($username)
     {
         return $this->deleteUser($username);
     }
 
+    /**
+     * @param string $username
+     * @return null|Reseller
+     */
     public function getReseller($username)
     {
         return $this->getUser()->getReseller($username);
     }
 
+    /**
+     * @return Reseller[]
+     */
     public function getResellers()
     {
         return $this->getUser()->getResellers();

@@ -10,7 +10,7 @@
 namespace Omines\DirectAdmin\Context;
 
 /**
- * Reseller
+ * Context for reseller functions.
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com
  */
@@ -18,7 +18,7 @@ class ResellerContext extends UserContext
 {
     public function deleteUser($username)
     {
-        $this->invokePost('SELECT_USERS', [
+        return $this->invokePost('SELECT_USERS', [
             'confirmed' => 'Confirm',
             'delete'    => 'yes',
             'select0'   => $username,
@@ -27,6 +27,6 @@ class ResellerContext extends UserContext
 
     public function getUsers()
     {
-        return $this->invokeGet('SHOW_USERS');
+        return $this->getUser()->getUsers();
     }
 }

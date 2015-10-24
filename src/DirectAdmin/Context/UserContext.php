@@ -13,7 +13,7 @@ use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\Objects\User;
 
 /**
- * User
+ * Context for user functions.
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com
  */

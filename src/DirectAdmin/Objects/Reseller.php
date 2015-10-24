@@ -17,13 +17,20 @@ namespace Omines\DirectAdmin\Objects;
 class Reseller extends User
 {
     private $users;
-    
+
+    /**
+     * @param $username
+     * @return null|User
+     */
     public function getUser($username)
     {
         $users = $this->getUsers();
         return isset($users[$username]) ? $users[$username] : null;
     }
 
+    /**
+     * @return User[]
+     */
     public function getUsers()
     {
         if(!isset($this->users))

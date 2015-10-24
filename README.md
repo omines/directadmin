@@ -7,9 +7,9 @@ PHP interface to manage DirectAdmin control panel servers.
     use Omines\DirectAdmin\DirectAdmin;
 
     $context = DirectAdmin::connectAdmin('http://myserver.tld:2222', 'admin', 'password');
-    foreach($context->getResellers() as $reseller)
-      foreach($context->getReseller($reseller)->getUsers() as $user)
-        echo sprintf("User %s has domain %s\n", $user->getUsername(), $user->getDefaultDomain());
+    foreach($context->getResellers() as $resellerName => $reseller)
+        foreach($reseller->getUsers() as $userName => $user)
+            echo sprintf("User %s has domain %s\n", $user->getName(), $user->getDefaultDomain());
 
 ## Contributions
 

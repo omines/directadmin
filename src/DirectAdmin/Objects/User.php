@@ -19,6 +19,7 @@ use Omines\DirectAdmin\DirectAdminException;
  */
 class User extends Object
 {
+    /** @var string */
     protected $name;
 
     protected $config;
@@ -30,9 +31,29 @@ class User extends Object
         $this->config = $config;
     }
 
+    /**
+     * @return string The username.
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getDefaultDomain()
+    {
+        return $this->getConfig('domain');
+    }
+
     public function getType()
     {
-        return $this->config['usertype'];
+        return $this->getConfig('usertype');
+    }
+
+    private function getConfig($item)
+    {
+        if(!isset($this->config))
+            $this->config = $this->getContext()->invokeGet('SHOW_USER_CONFIG', ['user' => $this->name]);
+        return isset($this->config[$item]) ? $this->config[$item] : null;
     }
 
     public static function fromConfig($config, BaseContext $context)

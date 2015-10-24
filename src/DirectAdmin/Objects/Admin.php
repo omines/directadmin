@@ -16,14 +16,22 @@ namespace Omines\DirectAdmin\Objects;
  */
 class Admin extends Reseller
 {
+    /** @var Reseller[] */
     private $resellers;
 
+    /**
+     * @param string $username
+     * @return null|Reseller
+     */
     public function getReseller($username)
     {
         $resellers = $this->getResellers();
         return isset($resellers[$username]) ? $resellers[$username] : null;
     }
 
+    /**
+     * @return Reseller[]
+     */
     public function getResellers()
     {
         if(!isset($this->resellers))
