@@ -1,7 +1,7 @@
 {
   "name": "omines/directadmin",
   "type": "library",
-  "description": "PHP interface to manage DirectAdmin control panel servers.",
+  "description": "PHP client library to manage DirectAdmin control panel servers.",
   "keywords": [
     "library", "php", "directadmin", "control panel"
   ],

@@ -1,8 +1,15 @@
-# DirectAdmin API interface
+# DirectAdmin API client
 
-PHP interface to manage DirectAdmin control panel servers.
+PHP client library to manage DirectAdmin control panel servers. We simply decided to develop this as we needed
+automation of our own DirectAdmin servers, and the existing implementations were unsupported and incomplete.
 
-## Usage
+## Dependencies
+
+The library uses [Guzzle 6](https://github.com/guzzle/guzzle) as its HTTP communication layer.
+
+## Examples
+
+Sample code for iterating over all resellers for an admin, and their respective users:
 
     use Omines\DirectAdmin\DirectAdmin;
 
@@ -15,6 +22,10 @@ PHP interface to manage DirectAdmin control panel servers.
 
 As the DirectAdmin API keeps expanding pull requests are welcomed, as are requests for specific functionality.
 Pull requests should in general include proper unit tests for the implemented or corrected functions.
+
+Unit tests are currently to be performed against a live server. To run them copy `phpunit.xml.dist` to
+`phpunit.xml` and change the constants to reflect your own server. The URL and admin username and pass are
+required to be valid, the other constants denote temporary objects that are created and removed during testing.
 
 ## Legal
 

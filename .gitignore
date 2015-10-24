@@ -1,5 +1,5 @@
 .idea
-vendor/
 composer.lock
-phpunit.xml
 composer.phar
+phpunit.xml
+vendor/
