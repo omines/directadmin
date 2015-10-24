@@ -10,6 +10,7 @@
 use Omines\DirectAdmin\Context\AdminContext;
 use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\DirectAdminException;
+use Omines\DirectAdmin\Objects\Domain;
 use Omines\DirectAdmin\Objects\Users\User;
 
 /**
@@ -23,7 +24,8 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
     {
         // Connect as admin and assure we have proper access
         $context = DirectAdmin::connectAdmin(DIRECTADMIN_URL, ADMIN_USERNAME, ADMIN_PASSWORD);
-        $this->assertEquals(DirectAdmin::USERTYPE_ADMIN, $context->getUser()->getType());
+        $this->assertEquals(ADMIN_USERNAME, $context->getUsername());
+        $this->assertEquals(DirectAdmin::USERTYPE_ADMIN, $context->getType());
         return $context;
     }
 
@@ -47,7 +49,15 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
 
         // Check for list of domains
         $this->assertCount(1, $domains = $reseller->getDomains());
-        $this->assertEquals(reset($domains)->getDomainName(), $reseller->getDefaultDomain()->getDomainName());
+        $this->assertNotEmpty($default = $reseller->getDefaultDomain());
+        /** @var Domain $firstDomain */
+        $firstDomain = reset($domains);
+        $this->assertEquals($firstDomain->getDomainName(), $default->getDomainName());
+
+        // Double check that all stats are at sane defaults
+        $this->assertEquals(0, $firstDomain->getBandwidthUsed());
+        $this->assertNull($firstDomain->getBandwidthLimit());
+        $this->assertEquals(0, $firstDomain->getStorageUsed());
     }
 
     /**

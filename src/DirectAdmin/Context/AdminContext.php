@@ -66,7 +66,8 @@ class AdminContext extends ResellerContext
      */
     public function getReseller($username)
     {
-        return $this->getUser()->getReseller($username);
+        $resellers = $this->getResellers();
+        return isset($resellers[$username]) ? $resellers[$username] : null;
     }
 
     /**
@@ -74,6 +75,6 @@ class AdminContext extends ResellerContext
      */
     public function getResellers()
     {
-        return $this->getUser()->getResellers();
+        return Object::toObjectArray($this->invokeGet('SHOW_RESELLERS'), Reseller::class, $this);
     }
 }

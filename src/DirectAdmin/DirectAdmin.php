@@ -62,14 +62,6 @@ class DirectAdmin
     /**
      * @return string
      */
-    public function getBaseUrl()
-    {
-        return $this->baseUrl;
-    }
-
-    /**
-     * @return string
-     */
     public function getUsername()
     {
         return $this->username;

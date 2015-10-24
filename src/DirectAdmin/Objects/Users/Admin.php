@@ -10,7 +10,6 @@
 namespace Omines\DirectAdmin\Objects\Users;
 
 use Omines\DirectAdmin\Context\UserContext;
-use Omines\DirectAdmin\Objects\Object;
 
 /**
  * Admin
@@ -25,23 +24,5 @@ class Admin extends Reseller
     public function __construct($name, UserContext $context, $config = null)
     {
         parent::__construct($name, $context, $config);
-    }
-
-    /**
-     * @param string $username
-     * @return null|Reseller
-     */
-    public function getReseller($username)
-    {
-        $resellers = $this->getResellers();
-        return isset($resellers[$username]) ? $resellers[$username] : null;
-    }
-
-    /**
-     * @return Reseller[]
-     */
-    public function getResellers()
-    {
-        return Object::toObjectArray($this->getContext()->invokeGet('SHOW_RESELLERS'), Reseller::class, $this->getContext());
     }
 }
