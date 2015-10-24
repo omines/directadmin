@@ -27,6 +27,19 @@ class ResellerContext extends UserContext
     }
 
     /**
+     * @param User|string $user
+     * @return array
+     */
+    public function getDomains($user = null)
+    {
+        if(!isset($user))
+            $user = $this->getUsername();
+        elseif($user instanceof User)
+            $user = $user->getUsername();
+        return $this->invokeGet('SHOW_USER_DOMAINS', ['user' => $user]);
+    }
+
+    /**
      * @return User[] List of users for this reseller.
      */
     public function getUsers()

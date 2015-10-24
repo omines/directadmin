@@ -33,11 +33,11 @@ class UserContext extends BaseContext
         parent::__construct($connection);
     }
 
-    public function getDomains($user)
+    public function getDomains($user = null)
     {
-        if(($user instanceof User ? $user->getName() : $user) !== $this->getUsername())
+        if(isset($user) && (($user instanceof User ? $user->getUsername() : $user) !== $this->getUsername()))
             throw new DirectAdminException('At user level you can only request a list of your own domains');
-        return $this->invokeGet('CMD_API_SHOW_USER_DOMAINS');
+        return $this->invokeGet('CMD_API_DOMAINS');
     }
 
     /**

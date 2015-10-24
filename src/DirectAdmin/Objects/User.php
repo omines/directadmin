@@ -20,7 +20,7 @@ use Omines\DirectAdmin\DirectAdminException;
 class User extends Object
 {
     /** @var string */
-    protected $name;
+    protected $username;
 
     /** @var array */
     protected $config;
@@ -28,16 +28,16 @@ class User extends Object
     public function __construct($name, BaseContext $context, $config = null)
     {
         parent::__construct($context);
-        $this->name = $name;
+        $this->username = $name;
         $this->config = $config;
     }
 
     /**
      * @return string The username.
      */
-    public function getName()
+    public function getUsername()
     {
-        return $this->name;
+        return $this->username;
     }
 
     /**
@@ -79,7 +79,7 @@ class User extends Object
      */
     public function reload()
     {
-        $this->config = $this->getContext()->invokeGet('SHOW_USER_CONFIG', ['user' => $this->name]);
+        $this->config = $this->getContext()->invokeGet('SHOW_USER_CONFIG', ['user' => $this->username]);
     }
 
     /**

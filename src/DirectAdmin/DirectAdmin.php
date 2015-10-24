@@ -90,13 +90,22 @@ class DirectAdmin
         {
             $response = $this->connection->request($method, '/CMD_API_' . $command, $options);
             $contents = $response->getBody()->getContents();
+            list($group, $type) = explode('/', $response->getHeader('Content-Type')[0]);
+            switch($type) {
+                case 'html':
+                    // Malformed DirectAdmin HTML error
+                    // TODO: Investigate why this is even happening, and if defendable reformat better
+                    throw new DirectAdminException(trim(preg_replace('#(\s+)#', ' ', strip_tags($contents))));
+            }
             $unescaped = preg_replace_callback('/&#([0-9]{2})/', function($val) {
                 return chr($val[1]); }, $contents);
-            parse_str($unescaped, $result);
+            $result = \GuzzleHttp\Psr7\parse_query($unescaped);
             if(!empty($result['error']))
                 throw new DirectAdminException("$method to $command failed: $result[details] ($result[text])");
-            if(count($result) == 1 && isset($result['list']))
-                $result = $result['list'];
+            elseif(count($result) == 1 && isset($result['list[]']))
+                $result = $result['list[]'];
+            if(!is_array($result))
+                $result = [$result];
             return $result;
         }
         catch(TransferException $exception)
