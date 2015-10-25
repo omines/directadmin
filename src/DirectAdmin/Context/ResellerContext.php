@@ -32,6 +32,6 @@ class ResellerContext extends UserContext
      */
     public function getUsers()
     {
-        return $this->getUser()->getUsers();
+        return $this->getContextUser()->getUsers();
     }
 }

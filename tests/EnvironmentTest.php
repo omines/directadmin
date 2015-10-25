@@ -22,7 +22,7 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
     public function testInvalidCredentials()
     {
         $admin = DirectAdmin::connectAdmin(DIRECTADMIN_URL, ADMIN_USERNAME, ADMIN_PASSWORD . 'invalid');
-        $admin->getUser()->getType();
+        $admin->getContextUser()->getType();
     }
 
     /**
@@ -31,7 +31,7 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
     public function testInvalidUrl()
     {
         $admin = DirectAdmin::connectAdmin('http://www.example.com/', 'username', 'password');
-        $admin->getUser()->getType();
+        $admin->getContextUser()->getType();
     }
 
 

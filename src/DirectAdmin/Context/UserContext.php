@@ -38,13 +38,13 @@ class UserContext extends BaseContext
      */
     public function getType()
     {
-        return $this->getUser()->getType();
+        return $this->getContextUser()->getType();
     }
 
     /**
      * @return Admin|Reseller|User The user object behind the context.
      */
-    public function getUser()
+    public function getContextUser()
     {
         if(!isset($this->user))
             $this->user = User::fromConfig($this->invokeGet('SHOW_USER_CONFIG'), $this);
