@@ -3,20 +3,37 @@
 PHP client library to manage DirectAdmin control panel servers. We simply decided to develop this as we needed
 automation of our own DirectAdmin servers, and the existing implementations were unsupported and incomplete.
 
+As the DirectAdmin API is messy to say the least, and wildly inconsistent at best, expect the API to change
+several times during initial development before we settle on a structure that both works and makes sense.
+
+## Installation
+
+The recommended way to install this library is through [Composer](http://getcomposer.org).
+
+```bash
+    composer require omines-directadmin:dev-master
+```
+
+The version specification is required until a stable version is released. Keep the note above in mind that the
+public interface may change several times until we settle on something to go stable with.
+
 ## Dependencies
 
-The library uses [Guzzle 6](https://github.com/guzzle/guzzle) as its HTTP communication layer.
+The library uses [Guzzle 6](https://github.com/guzzle/guzzle) as its HTTP communication layer. Minimum PHP
+version supported is 5.5.0, as older versions are also End of Life.
 
 ## Examples
 
 Sample code for iterating over all resellers for an admin, and their respective users:
 
-    use Omines\DirectAdmin\DirectAdmin;
+```php
+use Omines\DirectAdmin\DirectAdmin;
 
-    $context = DirectAdmin::connectAdmin('http://myserver.tld:2222', 'admin', 'password');
-    foreach($context->getResellers() as $resellerName => $reseller)
-        foreach($reseller->getUsers() as $userName => $user)
-            echo sprintf("User %s has domain %s\n", $user->getName(), $user->getDefaultDomain());
+$context = DirectAdmin::connectAdmin('http://myserver.tld:2222', 'admin', 'password');
+foreach($context->getResellers() as $resellerName => $reseller)
+    foreach($reseller->getUsers() as $userName => $user)
+        echo sprintf("User %s has domain %s\n", $user->getName(), $user->getDefaultDomain());
+```
 
 ## Contributions
 
