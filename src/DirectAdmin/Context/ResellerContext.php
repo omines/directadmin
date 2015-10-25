@@ -48,4 +48,13 @@ class ResellerContext extends UserContext
     {
         return Object::toObjectArray($this->invokeGet('SHOW_USERS'), User::class, $this);
     }
+
+    /**
+     * @param string $username
+     * @return UserContext
+     */
+    public function impersonateUser($username)
+    {
+        return new UserContext($this->getConnection()->loginAs($username));
+    }
 }

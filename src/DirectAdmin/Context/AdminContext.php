@@ -77,4 +77,13 @@ class AdminContext extends ResellerContext
     {
         return Object::toObjectArray($this->invokeGet('SHOW_RESELLERS'), Reseller::class, $this);
     }
+
+    /**
+     * @param string $username
+     * @return ResellerContext
+     */
+    public function impersonateReseller($username)
+    {
+        return new ResellerContext($this->getConnection()->loginAs($username));
+    }
 }

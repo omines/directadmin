@@ -30,7 +30,13 @@ class DirectAdmin
     private $username;
 
     /** @var string */
+    private $password;
+
+    /** @var string */
     private $baseUrl;
+
+    /** @var Client */
+    private $connection;
 
     public static function connectAdmin($url, $username, $password, $validate = false)
     {
@@ -42,14 +48,15 @@ class DirectAdmin
         return new ResellerContext(new self($url, $username, $password), $validate);
     }
 
-    public static function connectUser($url, $username, $password)
+    public static function connectUser($url, $username, $password, $validate = false)
     {
-        return new UserContext(new self($url, $username, $password));
+        return new UserContext(new self($url, $username, $password), $validate);
     }
 
     protected function __construct($url, $username, $password)
     {
         $this->username = $username;
+        $this->password = $password;
         $this->baseUrl = rtrim($url, '/') . '/';
         $this->connection = new Client([
             'base_uri' => $this->baseUrl,
@@ -106,6 +113,15 @@ class DirectAdmin
         }
     }
 
-    /** @var Client */
-    private $connection;
+    /**
+     * Returns a clone of the connection logged in as a managed user or reseller.
+     *
+     * @param string $username
+     * @return DirectAdmin
+     */
+    public function loginAs($username)
+    {
+        // DirectAdmin format is to just pipe the accounts together under the master password
+        return new self($this->baseUrl, $this->username . "|{$username}", $this->password);
+    }
 }
