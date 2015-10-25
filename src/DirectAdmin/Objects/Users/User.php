@@ -51,6 +51,15 @@ class User extends Object
     }
 
     /**
+     * @return Domain|null
+     */
+    public function getDomain($domainName)
+    {
+        $domains = $this->getDomains();
+        return isset($domains[$domainName]) ? $domains[$domainName] : null;
+    }
+
+    /**
      * @return Domain[]
      */
     public function getDomains()

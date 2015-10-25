@@ -9,6 +9,7 @@
 
 namespace Omines\DirectAdmin\Context;
 
+use Omines\DirectAdmin\Objects\Object;
 use Omines\DirectAdmin\Objects\Users\User;
 
 /**
@@ -18,9 +19,12 @@ use Omines\DirectAdmin\Objects\Users\User;
  */
 class ResellerContext extends UserContext
 {
+    /**
+     * @param string $username User to delete.
+     */
     public function deleteUser($username)
     {
-        return $this->invokePost('SELECT_USERS', [
+        $this->invokePost('SELECT_USERS', [
             'confirmed' => 'Confirm',
             'delete'    => 'yes',
             'select0'   => $username,
@@ -28,10 +32,20 @@ class ResellerContext extends UserContext
     }
 
     /**
-     * @return User[] List of users for this reseller.
+     * @param string $username
+     * @return User|null
+     */
+    public function getUser($username)
+    {
+        $resellers = $this->getUsers();
+        return isset($resellers[$username]) ? $resellers[$username] : null;
+    }
+
+    /**
+     * @return User[]
      */
     public function getUsers()
     {
-        return $this->getContextUser()->getUsers();
+        return Object::toObjectArray($this->invokeGet('SHOW_USERS'), User::class, $this);
     }
 }
