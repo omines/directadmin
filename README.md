@@ -24,15 +24,23 @@ version supported is 5.5.0, as older versions are also End of Life.
 
 ## Examples
 
-Sample code for iterating over all resellers for an admin, and their respective users:
+Sample code for fetching users and resellers:
 
 ```php
 use Omines\DirectAdmin\DirectAdmin;
 
+// Connect to DirectAdmin server with an admin account, returning an AdminContext instance
 $context = DirectAdmin::connectAdmin('http://myserver.tld:2222', 'admin', 'password');
+
+// Loop over all resellers under the specified admin account
 foreach($context->getResellers() as $resellerName => $reseller)
+{
+    // Loop over all users in the reseller account
     foreach($reseller->getUsers() as $userName => $user)
+    {
         echo sprintf("User %s has domain %s\n", $user->getName(), $user->getDefaultDomain());
+    }
+}
 ```
 
 ## Contributions
