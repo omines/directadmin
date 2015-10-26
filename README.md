@@ -11,11 +11,16 @@ several times during initial development before we settle on a structure that bo
 The recommended way to install this library is through [Composer](http://getcomposer.org).
 
 ```bash
-    composer require omines-directadmin:dev-master
+composer require omines-directadmin:dev-master
 ```
 
 The version specification is required until a stable version is released. Keep the note above in mind that the
 public interface may change several times until we settle on something to go stable with.
+
+If you're not familiar with `composer` follow the installation instructions for
+[Linux/Unix/Mac](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx) or
+[Windows](https://getcomposer.org/doc/00-intro.md#installation-windows), and then read the
+[basic usage introduction](https://getcomposer.org/doc/01-basic-usage.md).
 
 ## Dependencies
 

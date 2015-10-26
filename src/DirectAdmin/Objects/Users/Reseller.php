@@ -9,7 +9,10 @@
 
 namespace Omines\DirectAdmin\Objects\Users;
 
+use Omines\DirectAdmin\Context\AdminContext;
+use Omines\DirectAdmin\Context\ResellerContext;
 use Omines\DirectAdmin\Context\UserContext;
+use Omines\DirectAdmin\DirectAdminException;
 use Omines\DirectAdmin\Objects\Object;
 
 /**
@@ -43,5 +46,16 @@ class Reseller extends User
     public function getUsers()
     {
         return Object::toObjectArray($this->getContext()->invokeGet('SHOW_RESELLERS'), User::class, $this->getContext());
+    }
+
+    /**
+     * @return ResellerContext
+     */
+    public function impersonate()
+    {
+        /** @var AdminContext $context */
+        if(!($context = $this->getContext()) instanceof AdminContext)
+            throw new DirectAdminException('You need to be an admin to impersonate a reseller');
+        return $context->impersonateReseller($this->getUsername());
     }
 }

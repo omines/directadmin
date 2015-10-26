@@ -84,16 +84,14 @@ class User extends Object
     }
 
     /**
-     * Internal function to safe guard config changes and cache them.
-     *
-     * @param string $item Config item to retrieve.
-     * @return mixed The value of the config item, or NULL.
+     * @return UserContext
      */
-    private function getConfig($item)
+    public function impersonate()
     {
-        if(!isset($this->config))
-            $this->reload();
-        return isset($this->config[$item]) ? $this->config[$item] : null;
+        /** @var ResellerContext $context */
+        if(!($context = $this->getContext()) instanceof ResellerContext)
+            throw new DirectAdminException('You need to be at least a reseller to impersonate');
+        return $context->impersonateUser($this->getUsername());
     }
 
     /**
@@ -126,5 +124,18 @@ class User extends Object
             default:
                 throw new DirectAdminException("Unknown user type $config[usertype]");
         }
+    }
+
+    /**
+     * Internal function to safe guard config changes and cache them.
+     *
+     * @param string $item Config item to retrieve.
+     * @return mixed The value of the config item, or NULL.
+     */
+    private function getConfig($item)
+    {
+        if(!isset($this->config))
+            $this->reload();
+        return isset($this->config[$item]) ? $this->config[$item] : null;
     }
 }
