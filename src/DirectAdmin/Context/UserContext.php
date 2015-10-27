@@ -22,6 +22,7 @@ use Omines\DirectAdmin\Objects\Users\User;
  */
 class UserContext extends BaseContext
 {
+    /** @var User */
     private $user;
 
     /**

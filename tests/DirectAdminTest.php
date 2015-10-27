@@ -20,10 +20,37 @@ use Omines\DirectAdmin\Objects\Users\User;
  */
 class DirectAdminTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @inheritDoc
+     */
+    public static function setUpBeforeClass()
+    {
+        self::cleanupTestAccounts();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function tearDownAfterClass()
+    {
+        self::cleanupTestAccounts();
+    }
+
+    private static function cleanupTestAccounts()
+    {
+        $context = DirectAdmin::connectAdmin(DIRECTADMIN_URL, ADMIN_USERNAME, ADMIN_PASSWORD);
+        if($reseller = $context->getReseller(RESELLER_USERNAME))
+        {
+            if($user = $reseller->getUser(USER_USERNAME))
+                $reseller->deleteUser(USER_USERNAME);
+            $context->deleteReseller(RESELLER_USERNAME);
+        }
+    }
+
     public function testAdminLogin()
     {
         // Connect as admin and assure we have proper access
-        $context = DirectAdmin::connectAdmin(DIRECTADMIN_URL, ADMIN_USERNAME, ADMIN_PASSWORD);
+        $context = DirectAdmin::connectAdmin(DIRECTADMIN_URL, ADMIN_USERNAME, ADMIN_PASSWORD, true);
         $this->assertEquals(ADMIN_USERNAME, $context->getUsername());
         $this->assertEquals(DirectAdmin::USERTYPE_ADMIN, $context->getType());
         return $context;
@@ -34,9 +61,6 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateReseller(AdminContext $context)
     {
-        // Clean up test users first in case they got stuck after a failed unit test
-        $this->cleanupTestAccounts($context);
-
         // Create the reseller, and verify that afterwards there is 1 more reseller under the admin
         $before = count($context->getResellers());
         $reseller = $context->createReseller([
@@ -68,16 +92,6 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
     {
         // Ensure an invalid execution throws a proper exception
         $this->setExpectedException(DirectAdminException::class);
-        $user = User::fromConfig(['username' => 'test', 'usertype' => 'test'], $context);
-    }
-
-    private function cleanupTestAccounts(AdminContext $context)
-    {
-        if($reseller = $context->getReseller(RESELLER_USERNAME))
-        {
-            if($user = $reseller->getUser(USER_USERNAME))
-                $reseller->deleteUser(USER_USERNAME);
-            $context->deleteReseller(RESELLER_USERNAME);
-        }
+        User::fromConfig(['username' => 'test', 'usertype' => 'test'], $context);
     }
 }
