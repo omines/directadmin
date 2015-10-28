@@ -51,6 +51,16 @@ class Domain extends Object
         return ($this->config[1] === 'unlimited' ? null : floatval($this->config[1]));
     }
 
+    public function getEmailForwarders()
+    {
+        return $this->getContext()->invokeGet('EMAIL_FORWARDERS', ['domain' => $this->getDomainName()]);
+    }
+
+    public function getMailboxes()
+    {
+        return $this->getContext()->invokeGet('POP', ['domain' => $this->getDomainName(), 'action' => 'list']);
+    }
+
     /**
      * @return float
      */
