@@ -1,6 +1,6 @@
 # DirectAdmin API client
 
-PHP client library to manage DirectAdmin control panel servers. We simply decided to develop this as we needed
+This is a PHP client library to manage DirectAdmin control panel servers. We simply decided to develop this as we needed
 automation of our own DirectAdmin servers, and the existing implementations were unsupported and incomplete.
 
 As the DirectAdmin API is messy to say the least, and wildly inconsistent at best, expect the API to change
@@ -8,7 +8,8 @@ several times during initial development before we settle on a structure that bo
 
 ## Installation
 
-The recommended way to install this library is through [Composer](http://getcomposer.org).
+The recommended way to install this library is from [Packagist](https://packagist.org/packages/omines/directadmin)
+through [Composer](http://getcomposer.org).
 
 ```bash
 composer require omines-directadmin:dev-master
@@ -27,26 +28,54 @@ If you're not familiar with `composer` follow the installation instructions for
 The library uses [Guzzle 6](https://github.com/guzzle/guzzle) as its HTTP communication layer. Minimum PHP
 version supported is 5.5.0, as older versions are also End of Life.
 
-## Examples
+## Usage
 
-Sample code for fetching users and resellers:
+To set up the connection use one of the base functions:
 
 ```php
 use Omines\DirectAdmin\DirectAdmin;
 
-// Connect to DirectAdmin server with an admin account, returning an AdminContext instance
-$context = DirectAdmin::connectAdmin('http://myserver.tld:2222', 'admin', 'password');
+$adminContext = DirectAdmin::connectAdmin('http://myserver.tld:2222', 'admin', 'password');
+$resellerContext = DirectAdmin::connectReseller('http://myserver.tld:2222', 'reseller', 'password');
+$userContext = DirectAdmin::connectUser('http://myserver.tld:2222', 'user', 'password');
+```
 
-// Loop over all resellers under the specified admin account
-foreach($context->getResellers() as $resellerName => $reseller)
+These functions return an `AdminContext`, `ResellerContext` and `UserContext` respectively exposing the
+functionality available at the given level. All three extend eachother as DirectAdmin uses a strict is-a
+model. To act on behalve of a user you can use impersonation calls:
+
+```php
+$resellerContext = $adminContext->impersonateReseller($resellerName);
+$userContext = $resellerContext->impersonateUser($userName);
+```
+Both are essentially the same but mapped to the correct return type.
+
+## Examples
+
+The following examples all assume a context has been set up as described above.
+
+### Fetching all resellers and users
+
+```php
+foreach($adminContext->getResellers() as $resellerName => $reseller)
 {
     // Loop over all users in the reseller account
     foreach($reseller->getUsers() as $userName => $user)
     {
-        echo sprintf("User %s has domain %s\n", $user->getName(), $user->getDefaultDomain());
+        echo sprintf("User %s has default domain %s\n",
+                     $user->getName(), $user->getDefaultDomain());
     }
 }
 ```
+
+### Listing email forwarders and mailboxes
+
+All
+
+```php
+var_dump(array_keys($userContext->getDomain('mydomain.tld')->getEmailForwarders()));
+
+
 
 ## Contributions
 
