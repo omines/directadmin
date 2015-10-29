@@ -54,6 +54,24 @@ class UserContext extends BaseContext
 
     public function getDomain($domainName)
     {
-        return new Domain($domainName, $this);
+        return new DomainContext($this, $domainName);
+    }
+
+    /**
+     * @return DomainContext[] Associative array of owned domains of this user.
+     */
+    public function getDomains()
+    {
+        // Thanks to DirectAdmin curious API some hackery required here
+        $domains = $this->invokeGet('SHOW_DOMAINS');
+        return array_combine($domains, array_map(function($domain) { return new DomainContext($this, $domain); }, $domains));
+    }
+
+    /**
+     * @return string Username for the current context.
+     */
+    public function getUsername()
+    {
+        return $this->getConnection()->getUsername();
     }
 }

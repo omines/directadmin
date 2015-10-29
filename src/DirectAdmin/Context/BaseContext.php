@@ -39,14 +39,6 @@ abstract class BaseContext
     }
 
     /**
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->connection->getUsername();
-    }
-
-    /**
      * Invokes the DirectAdmin API via HTTP GET.
      *
      * @param string $command DirectAdmin API command to invoke.

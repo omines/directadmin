@@ -26,6 +26,9 @@ class DirectAdmin
     const USERTYPE_RESELLER         = 'reseller';
     const USERTYPE_USER             = 'user';
 
+    /** @var string Internal login name including impersonation. */
+    private $loginName;
+
     /** @var string */
     private $username;
 
@@ -55,7 +58,9 @@ class DirectAdmin
 
     protected function __construct($url, $username, $password)
     {
-        $this->username = $username;
+        $this->loginName = $username;
+        $accounts = explode('|', $username);
+        $this->username = end($accounts);
         $this->password = $password;
         $this->baseUrl = rtrim($url, '/') . '/';
         $this->connection = new Client([
@@ -122,6 +127,6 @@ class DirectAdmin
     public function loginAs($username)
     {
         // DirectAdmin format is to just pipe the accounts together under the master password
-        return new self($this->baseUrl, $this->username . "|{$username}", $this->password);
+        return new self($this->baseUrl, $this->loginName . "|{$username}", $this->password);
     }
 }
