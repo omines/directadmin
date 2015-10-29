@@ -35,14 +35,14 @@ To set up the connection use one of the base functions:
 ```php
 use Omines\DirectAdmin\DirectAdmin;
 
-$adminContext = DirectAdmin::connectAdmin('http://myserver.tld:2222', 'admin', 'password');
-$resellerContext = DirectAdmin::connectReseller('http://myserver.tld:2222', 'reseller', 'password');
-$userContext = DirectAdmin::connectUser('http://myserver.tld:2222', 'user', 'password');
+$adminContext = DirectAdmin::connectAdmin('http://hostname:2222', 'admin', 'pass');
+$resellerContext = DirectAdmin::connectReseller('http://hostname:2222', 'reseller', 'pass');
+$userContext = DirectAdmin::connectUser('http://hostname:2222', 'user', 'pass');
 ```
 
 These functions return an `AdminContext`, `ResellerContext` and `UserContext` respectively exposing the
 functionality available at the given level. All three extend eachother as DirectAdmin uses a strict is-a
-model. To act on behalve of a user you can use impersonation calls:
+model. To act on behalf of a user you can use impersonation calls:
 
 ```php
 $resellerContext = $adminContext->impersonateReseller($resellerName);
@@ -50,11 +50,11 @@ $userContext = $resellerContext->impersonateUser($userName);
 ```
 Both are essentially the same but mapped to the correct return type.
 
-## Examples
+### Examples
 
 The following examples all assume a context has been set up as described above.
 
-### Fetching all resellers and users
+#### Fetching all resellers and users
 
 ```php
 foreach($adminContext->getResellers() as $resellerName => $reseller)
@@ -68,14 +68,11 @@ foreach($adminContext->getResellers() as $resellerName => $reseller)
 }
 ```
 
-### Listing email forwarders and mailboxes
-
-All
+#### Listing email forwarders
 
 ```php
 var_dump(array_keys($userContext->getDomain('mydomain.tld')->getEmailForwarders()));
-
-
+```
 
 ## Contributions
 
