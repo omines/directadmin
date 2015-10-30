@@ -41,21 +41,47 @@ class DirectAdmin
     /** @var Client */
     private $connection;
 
+    /**
+     * @param string $url
+     * @param string $username
+     * @param string $password
+     * @param bool|false $validate
+     * @return AdminContext
+     */
     public static function connectAdmin($url, $username, $password, $validate = false)
     {
         return new AdminContext(new self($url, $username, $password), $validate);
     }
 
+    /**
+     * @param string $url
+     * @param string $username
+     * @param string $password
+     * @param bool|false $validate
+     * @return ResellerContext
+     */
     public static function connectReseller($url, $username, $password, $validate = false)
     {
         return new ResellerContext(new self($url, $username, $password), $validate);
     }
 
+    /**
+     * @param string $url
+     * @param string $username
+     * @param string $password
+     * @param string bool|false $validate
+     * @return UserContext
+     */
     public static function connectUser($url, $username, $password, $validate = false)
     {
         return new UserContext(new self($url, $username, $password), $validate);
     }
 
+    /**
+     * @param string $url
+     * @param string $username
+     * @param string $password
+     */
     protected function __construct($url, $username, $password)
     {
         $this->loginName = $username;
@@ -72,7 +98,7 @@ class DirectAdmin
     }
 
     /**
-     * @return string
+     * @return string Currently logged in user's username.
      */
     public function getUsername()
     {
@@ -94,25 +120,26 @@ class DirectAdmin
         {
             $response = $this->connection->request($method, '/CMD_API_' . $command, $options);
             $contents = $response->getBody()->getContents();
-            $elements = explode('/', $response->getHeader('Content-Type')[0]);
-            switch(end($elements)) {
-                case 'html':
-                    // Malformed DirectAdmin HTML error, can't do much here
-                    throw new DirectAdminException("DirectAdmin API returned an error");
-            }
+
+            // Check for malformed DirectAdmin HTML error
+            if($response->getHeader('Content-Type')[0] == 'text/html')
+                throw new DirectAdminException("DirectAdmin API returned an error");
+
+            // Unescape then parse the response
             $unescaped = preg_replace_callback('/&#([0-9]{2})/', function($val) {
                 return chr($val[1]); }, $contents);
             $result = \GuzzleHttp\Psr7\parse_query($unescaped);
+
+            // Check for DirectAdmin level errors, and weird array structures
             if(!empty($result['error']))
                 throw new DirectAdminException("$method to $command failed: $result[details] ($result[text])");
             elseif(count($result) == 1 && isset($result['list[]']))
                 $result = $result['list[]'];
-            if(!is_array($result))
-                $result = [$result];
-            return $result;
+            return is_array($result) ? $result : [$result];
         }
         catch(TransferException $exception)
         {
+            // Rethrow anything that causes a network issue
             throw new DirectAdminException("API request $command using $method failed", 0, $exception);
         }
     }

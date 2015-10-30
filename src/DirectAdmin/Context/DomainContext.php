@@ -10,6 +10,7 @@
 namespace Omines\DirectAdmin\Context;
 
 use Omines\DirectAdmin\DirectAdmin;
+use Omines\DirectAdmin\Objects\Domain;
 
 /**
  * DomainContext
@@ -39,9 +40,27 @@ class DomainContext extends BaseContext
     /**
      * @return string
      */
+    public function getDomain()
+    {
+        return new Domain($this->domainName, $this->userContext);
+    }
+
+    /**
+     * @return string
+     */
     public function getDomainName()
     {
         return $this->domainName;
+    }
+
+    public function getEmailForwarders()
+    {
+        return $this->invokeGet('EMAIL_FORWARDERS', ['domain' => $this->getDomainName()]);
+    }
+
+    public function getMailboxes()
+    {
+        return $this->invokeGet('POP', ['domain' => $this->getDomainName(), 'action' => 'list']);
     }
 
     /**

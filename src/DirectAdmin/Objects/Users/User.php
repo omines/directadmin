@@ -53,27 +53,11 @@ class User extends Object
     /**
      * @return Domain|null
      */
-    public function getDomain($domainName)
-    {
-        $domains = $this->getDomains();
-        return isset($domains[$domainName]) ? $domains[$domainName] : null;
-    }
-
-    /**
-     * @return Domain[]
-     */
-    public function getDomains()
-    {
-        // Thanks to DirectAdmin curious API some hackery required here
-        $context = $this->getContext();
-        if($context instanceof ResellerContext)
-            $domains = $context->invokeGet('SHOW_USER_DOMAINS', ['user' => $this->getUsername()]);
-        elseif($context->getUsername() === $this->getUsername())
-            $domains = $context->invokeGet('SHOW_DOMAINS');
-        else
-            throw new DirectAdminException('At user level you can only request a list of your own domains');
-        return Object::toRichObjectArray($domains, Domain::class, $context);
-    }
+//    public function getDomain($domainName)
+//    {
+//        $domains = $this->getDomains();
+//        return isset($domains[$domainName]) ? $domains[$domainName] : null;
+//    }
 
     /**
      * @return string The user type, as one of the USERTYPE_ constants in the DirectAdmin class.
