@@ -65,7 +65,7 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
         $before = count($context->getResellers());
         $reseller = $context->createReseller([
             'username' => RESELLER_USERNAME,
-            'passwd' => substr(sha1(__FILE__ . time()), 0, 10),
+            'passwd' => RESELLER_PASSWORD,
             'email' => 'support@127.0.0.1',
             'domain' => 'phpunit.example.com',
         ]);
@@ -82,6 +82,17 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $firstDomain->getBandwidthUsed());
         $this->assertNull($firstDomain->getBandwidthLimit());
         $this->assertEquals(0, $firstDomain->getStorageUsed());
+
+        // Check that we can log in as the new reseller via all routes
+        $resellerContext = DirectAdmin::connectReseller(DIRECTADMIN_URL, RESELLER_USERNAME, RESELLER_PASSWORD);
+        $impersonated = $context->impersonateReseller(RESELLER_USERNAME);
+        $this->assertEquals($resellerContext->getContextUser()->getDefaultDomain()->getDomainName(),
+                            $impersonated->getContextUser()->getDefaultDomain()->getDomainName());
+
+        // Manage the default domain a bit
+        $this->assertArrayHasKey('phpunit.example.com', $impersonated->getDomains());
+        $domain = $impersonated->getDomain('phpunit.example.com');
+        $this->assertEquals($domain->getUserContext()->getUsername(), RESELLER_USERNAME);
     }
 
     /**
