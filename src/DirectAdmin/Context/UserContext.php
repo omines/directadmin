@@ -62,9 +62,10 @@ class UserContext extends BaseContext
      */
     public function getDomains()
     {
-        // Thanks to DirectAdmin curious API some hackery required here
         $domains = $this->invokeGet('SHOW_DOMAINS');
-        return array_combine($domains, array_map(function($domain) { return new DomainContext($this, $domain); }, $domains));
+        return array_combine($domains, array_map(function($domain) {
+            return new DomainContext($this, $domain);
+        }, $domains));
     }
 
     /**

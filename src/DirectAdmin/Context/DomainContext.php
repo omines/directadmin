@@ -25,7 +25,7 @@ class DomainContext extends BaseContext
     private $domainName;
 
     /**
-     * @param DirectAdmin $connection
+     * @param UserContext $connection
      * @param string $domainName
      */
     public function __construct(UserContext $userContext, $domainName)
@@ -41,5 +41,13 @@ class DomainContext extends BaseContext
     public function getDomainName()
     {
         return $this->domainName;
+    }
+
+    /**
+     * @return UserContext
+     */
+    public function getUserContext()
+    {
+        return $this->userContext;
     }
 }
