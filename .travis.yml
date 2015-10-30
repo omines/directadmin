@@ -13,3 +13,6 @@ before_script:
   - curl --version
   - composer self-update
   - composer install --no-interaction --dev
+
+after_script:
+  - php vendor/bin/coveralls -v
