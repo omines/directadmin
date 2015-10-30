@@ -20,6 +20,29 @@ use Omines\DirectAdmin\Objects\Users\User;
 class ResellerContext extends UserContext
 {
     /**
+     * @param array $options Options to apply to the user.
+     * @return User Newly created user.
+     * @url http://www.directadmin.com/api.html#create for options to use.
+     */
+    public function createUser($options = [])
+    {
+        // Check mandatory options, then merge defaults and overrides
+        self::checkMandatoryOptions($options, ['username', 'passwd', 'email', 'domain', 'ip']);
+        $options = array_merge([
+            'dns' => 'OFF',
+            'serverip' => 'ON',
+        ], $options, [
+            'action' =>	'create',
+            'add' => 'Submit',
+        ]);
+        if(!isset($options['passwd2']))
+            $options['passwd2'] = $options['passwd'];
+
+        $this->invokePost('ACCOUNT_USER', $options);
+        return new User($options['username'], $this);
+    }
+
+    /**
      * @param string $username User to delete.
      */
     public function deleteUser($username)

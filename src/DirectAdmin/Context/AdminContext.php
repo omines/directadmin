@@ -49,7 +49,7 @@ class AdminContext extends ResellerContext
      */
     public function deleteReseller($username)
     {
-        return $this->deleteUser($username);
+        $this->deleteUser($username);
     }
 
     /**

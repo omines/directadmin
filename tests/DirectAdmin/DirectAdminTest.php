@@ -89,10 +89,35 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($resellerContext->getContextUser()->getDefaultDomain()->getDomainName(),
                             $impersonated->getContextUser()->getDefaultDomain()->getDomainName());
 
+        // The reseller should have no users, either via context or directly
+        $this->assertEmpty($impersonated->getUsers());
+        $this->assertNull($impersonated->getUser('anyuser'));
+        $this->assertEmpty($impersonated->getContextUser()->getUsers());
+        $this->assertNull($impersonated->getContextUser()->getUser('anyuser'));
+
         // Manage the default domain a bit
         $this->assertArrayHasKey('phpunit.example.com', $impersonated->getDomains());
         $domain = $impersonated->getDomain('phpunit.example.com');
         $this->assertEquals($domain->getUserContext()->getUsername(), RESELLER_USERNAME);
+
+        // HACK: Get IPs quick for this test
+        $ips = $resellerContext->invokeGet('SHOW_RESELLER_IPS');
+
+        // Create a user in the reseller
+        $before = count($resellerContext->getUsers());
+        $user = $resellerContext->createUser([
+            'username' => USER_USERNAME,
+            'passwd' => USER_PASSWORD,
+            'ip' => $ips[0],
+            'email' => 'support@127.0.0.1',
+            'domain' => 'phpunit.example.org',
+        ]);
+        $this->assertEquals($before + 1, count($resellerContext->getUsers()));
+
+        // Clean up
+        $resellerContext->deleteUser(USER_USERNAME);
+        $context->deleteReseller(RESELLER_USERNAME);
+
     }
 
     /**
