@@ -78,6 +78,10 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
         $firstDomain = reset($domains);
         $this->assertEquals($firstDomain->getDomainName(), $default->getDomainName());
 
+        // Fetch some global stuff
+        $allUsers = $context->getAllUsers();
+        $this->assertEquals(RESELLER_USERNAME, $context->getReseller(RESELLER_USERNAME)->getUsername());
+
         // Double check that all stats are at sane defaults
         $this->assertEquals(0, $firstDomain->getBandwidthUsed());
         $this->assertNull($firstDomain->getBandwidthLimit());
@@ -113,6 +117,10 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
             'domain' => 'phpunit.example.org',
         ]);
         $this->assertEquals($before + 1, count($resellerContext->getUsers()));
+
+        // Impersonate to check things out
+        $userContext = $user->impersonate();
+        $this->assertEquals('phpunit.example.org', $userContext->getContextUser()->getDefaultDomain()->getDomainName());
 
         // Clean up
         $resellerContext->deleteUser(USER_USERNAME);
