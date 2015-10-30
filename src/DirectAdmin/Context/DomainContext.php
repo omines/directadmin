@@ -9,6 +9,8 @@
 
 namespace Omines\DirectAdmin\Context;
 
+use Omines\DirectAdmin\DirectAdmin;
+
 /**
  * DomainContext
  *
@@ -23,12 +25,13 @@ class DomainContext extends BaseContext
     private $domainName;
 
     /**
-     * @param UserContext $connection
+     * @param UserContext $userContext
+     * @param DirectAdmin $connection
      * @param string $domainName
      */
-    public function __construct(UserContext $userContext, $domainName)
+    public function __construct(UserContext $userContext, DirectAdmin $connection, $domainName)
     {
-        parent::__construct($userContext->getConnection());
+        parent::__construct($connection);
         $this->userContext = $userContext;
         $this->domainName = $domainName;
     }

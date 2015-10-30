@@ -18,9 +18,14 @@ use Omines\DirectAdmin\Context\UserContext;
  */
 class Domain extends Object
 {
-    /** @var float */
+    /** @var array */
     private $config;
 
+    /**
+     * @param string $name
+     * @param UserContext $context
+     * @param array|string|null $config
+     */
     public function __construct($name, UserContext $context, $config = null)
     {
         parent::__construct($name, $context);

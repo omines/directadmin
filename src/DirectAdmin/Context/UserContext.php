@@ -53,7 +53,7 @@ class UserContext extends BaseContext
 
     public function getDomain($domainName)
     {
-        return new DomainContext($this, $domainName);
+        return new DomainContext($this, $this->getConnection(), $domainName);
     }
 
     /**
@@ -63,7 +63,7 @@ class UserContext extends BaseContext
     {
         $domains = $this->invokeGet('SHOW_DOMAINS');
         return array_combine($domains, array_map(function($domain) {
-            return new DomainContext($this, $domain);
+            return new DomainContext($this, $this->getConnection(), $domain);
         }, $domains));
     }
 

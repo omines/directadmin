@@ -11,6 +11,7 @@ namespace Omines\DirectAdmin\Objects\Users;
 
 use Omines\DirectAdmin\Context\AdminContext;
 use Omines\DirectAdmin\Context\ResellerContext;
+use Omines\DirectAdmin\Context\UserContext;
 use Omines\DirectAdmin\DirectAdminException;
 use Omines\DirectAdmin\Objects\Object;
 
@@ -24,7 +25,7 @@ class Reseller extends User
     /**
      * @inheritdoc
      */
-    public function __construct($name, ResellerContext $context, $config = null)
+    public function __construct($name, UserContext $context, $config = null)
     {
         parent::__construct($name, $context, $config);
     }
