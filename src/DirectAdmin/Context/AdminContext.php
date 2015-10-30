@@ -29,19 +29,9 @@ class AdminContext extends ResellerContext
     {
         // Check mandatory options, then merge defaults and overrides
         self::checkMandatoryOptions($options, ['username', 'passwd', 'email', 'domain']);
-        $options = array_merge([
-            'dns' => 'OFF',
-            'serverip' => 'ON',
-            'ip' => 'shared',
-        ], $options, [
-            'action' =>	'create',
-            'add' => 'Submit',
+        return $this->createAccount($options, 'ACCOUNT_RESELLER', Reseller::class, [
+            'ip' => 'shared'
         ]);
-        if(!isset($options['passwd2']))
-            $options['passwd2'] = $options['passwd'];
-
-        $this->invokePost('ACCOUNT_RESELLER', $options);
-        return new Reseller($options['username'], $this);
     }
 
     /**

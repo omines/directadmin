@@ -26,20 +26,26 @@ class ResellerContext extends UserContext
      */
     public function createUser($options = [])
     {
-        // Check mandatory options, then merge defaults and overrides
+        // Check mandatory options
         self::checkMandatoryOptions($options, ['username', 'passwd', 'email', 'domain', 'ip']);
+        return $this->createAccount($options, 'ACCOUNT_USER', User::class);
+    }
+
+    protected function createAccount($options, $endpoint, $returnType, $defaults = [])
+    {
+        // Merge defaults and overrides
         $options = array_merge([
             'dns' => 'OFF',
             'serverip' => 'ON',
-        ], $options, [
+        ], $defaults, $options, [
             'action' =>	'create',
             'add' => 'Submit',
         ]);
         if(!isset($options['passwd2']))
             $options['passwd2'] = $options['passwd'];
 
-        $this->invokePost('ACCOUNT_USER', $options);
-        return new User($options['username'], $this);
+        $this->invokePost($endpoint, $options);
+        return new $returnType($options['username'], $this);
     }
 
     /**
