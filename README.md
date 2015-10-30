@@ -1,5 +1,7 @@
 # DirectAdmin API client
 
+[![Build Status](https://travis-ci.org/omines/directadmin.svg?branch=master)](https://travis-ci.org/omines/directadmin)
+
 This is a PHP client library to manage DirectAdmin control panel servers. We simply decided to develop this as we needed
 automation of our own DirectAdmin servers, and the existing implementations were unsupported and incomplete.
 
