@@ -119,18 +119,13 @@ class DirectAdmin
         try
         {
             $response = $this->connection->request($method, '/CMD_API_' . $command, $options);
-            $contents = $response->getBody()->getContents();
 
             // Check for malformed DirectAdmin HTML error
             if($response->getHeader('Content-Type')[0] == 'text/html')
                 throw new DirectAdminException("DirectAdmin API returned an error");
 
-            // Unescape then parse the response
-            $unescaped = preg_replace_callback('/&#([0-9]{2})/', function($val) {
-                return chr($val[1]); }, $contents);
-            $result = \GuzzleHttp\Psr7\parse_query($unescaped);
-
             // Check for DirectAdmin level errors, and weird array structures
+            $result = self::parseResponse($response->getBody()->getContents());
             if(!empty($result['error']))
                 throw new DirectAdminException("$method to $command failed: $result[details] ($result[text])");
             elseif(count($result) == 1 && isset($result['list[]']))
@@ -142,6 +137,19 @@ class DirectAdmin
             // Rethrow anything that causes a network issue
             throw new DirectAdminException("API request $command using $method failed", 0, $exception);
         }
+    }
+
+    /**
+     * Processes DirectAdmin style responses.
+     *
+     * @param string $data
+     * @return array
+     */
+    private static function parseResponse($data)
+    {
+        $unescaped = preg_replace_callback('/&#([0-9]{2})/', function($val) {
+            return chr($val[1]); }, $data);
+        return \GuzzleHttp\Psr7\parse_query($unescaped);
     }
 
     /**
