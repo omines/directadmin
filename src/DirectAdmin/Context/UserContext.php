@@ -10,7 +10,6 @@
 namespace Omines\DirectAdmin\Context;
 
 use Omines\DirectAdmin\DirectAdmin;
-use Omines\DirectAdmin\Objects\Domain;
 use Omines\DirectAdmin\Objects\Users\Admin;
 use Omines\DirectAdmin\Objects\Users\Reseller;
 use Omines\DirectAdmin\Objects\Users\User;

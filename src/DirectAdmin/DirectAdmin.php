@@ -94,8 +94,8 @@ class DirectAdmin
         {
             $response = $this->connection->request($method, '/CMD_API_' . $command, $options);
             $contents = $response->getBody()->getContents();
-            list($group, $type) = explode('/', $response->getHeader('Content-Type')[0]);
-            switch($type) {
+            $elements = explode('/', $response->getHeader('Content-Type')[0]);
+            switch(end($elements)) {
                 case 'html':
                     // Malformed DirectAdmin HTML error
                     // TODO: Investigate why this is even happening, and if defendable reformat better

@@ -9,8 +9,6 @@
 
 namespace Omines\DirectAdmin\Context;
 
-use Omines\DirectAdmin\DirectAdmin;
-
 /**
  * DomainContext
  *
