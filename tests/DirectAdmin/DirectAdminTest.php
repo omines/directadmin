@@ -71,6 +71,10 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
         ]);
         $this->assertEquals($before + 1, count($context->getResellers()));
 
+        // Impersonate to check things out
+        $resellerContext = $reseller->impersonate();
+        $this->assertEquals('phpunit.example.com', $resellerContext->getContextUser()->getDefaultDomain()->getDomainName());
+
         // Check for list of domains
         $this->assertCount(1, $domains = $reseller->getDomains());
         $this->assertNotEmpty($default = $reseller->getDefaultDomain());
@@ -117,6 +121,12 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
             'domain' => 'phpunit.example.org',
         ]);
         $this->assertEquals($before + 1, count($resellerContext->getUsers()));
+
+        // Check that we can log in as the new user via all routes
+        $userContext = DirectAdmin::connectUser(DIRECTADMIN_URL, USER_USERNAME, USER_PASSWORD);
+        $impersonated = $context->impersonateUser(USER_USERNAME);
+        $this->assertEquals($userContext->getContextUser()->getDefaultDomain()->getDomainName(),
+                            $impersonated->getContextUser()->getDefaultDomain()->getDomainName());
 
         // Impersonate to check things out
         $userContext = $user->impersonate();
