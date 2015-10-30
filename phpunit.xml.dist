@@ -4,7 +4,7 @@
          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.1/phpunit.xsd"
          backupGlobals="false"
          colors="true"
-         bootstrap="vendor/autoload.php">
+         bootstrap="tests/phpunit-bootstrap.php">
 
     <php>
         <ini name="date.timezone" value="UTC" />
@@ -13,16 +13,21 @@
         <ini name="intl.error_level" value="0" />
         <ini name="memory_limit" value="-1" />
 
+<!-- The following settings can be provided as either constants or environment variables:
+
         <const name="DIRECTADMIN_URL" value="https://www.directadmin.com:2222" />
         <const name="ADMIN_USERNAME" value="demo_admin" />
         <const name="ADMIN_PASSWORD" value="demo" />
         <const name="RESELLER_USERNAME" value="reseller_to_be_created" />
+        <const name="RESELLER_PASSWORD" value="demo" />
         <const name="USER_USERNAME" value="user_to_be_created" />
+        <const name="USER_PASSWORD" value="demo" />
+-->
     </php>
 
     <testsuites>
         <testsuite name="DirectAdmin Test Suite">
-            <directory>./tests/</directory>
+            <directory>./tests/DirectAdmin/</directory>
         </testsuite>
     </testsuites>
 
