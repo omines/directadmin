@@ -97,9 +97,8 @@ class DirectAdmin
             $elements = explode('/', $response->getHeader('Content-Type')[0]);
             switch(end($elements)) {
                 case 'html':
-                    // Malformed DirectAdmin HTML error
-                    // TODO: Investigate why this is even happening, and if defendable reformat better
-                    throw new DirectAdminException(trim(preg_replace('#(\s+)#', ' ', strip_tags($contents))));
+                    // Malformed DirectAdmin HTML error, can't do much here
+                    throw new DirectAdminException("DirectAdmin API returned an error");
             }
             $unescaped = preg_replace_callback('/&#([0-9]{2})/', function($val) {
                 return chr($val[1]); }, $contents);

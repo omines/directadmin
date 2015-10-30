@@ -18,7 +18,7 @@ use Omines\DirectAdmin\Context\UserContext;
  */
 class Domain extends Object
 {
-    /** @var array */
+    /** @var array|null */
     private $config;
 
     /**
