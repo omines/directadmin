@@ -10,6 +10,7 @@
 namespace Omines\DirectAdmin\Context;
 
 use Omines\DirectAdmin\Objects\Object;
+use Omines\DirectAdmin\Objects\Users\Admin;
 use Omines\DirectAdmin\Objects\Users\Reseller;
 use Omines\DirectAdmin\Objects\Users\User;
 
@@ -21,25 +22,35 @@ use Omines\DirectAdmin\Objects\Users\User;
 class AdminContext extends ResellerContext
 {
     /**
-     * @param array $options Options to apply to the reseller.
-     * @return Reseller Newly created reseller.
-     * @url http://www.directadmin.com/api.html#create for options to use.
+     * Creates a new Admin level account.
+     *
+     * @param string $username
+     * @param string $password
+     * @param string $email
+     * @return Admin The newly created Admin.
      */
-    public function createReseller($options = [])
+    public function createAdmin($username, $password, $email)
     {
-        // Check mandatory options, then merge defaults and overrides
-        self::checkMandatoryOptions($options, ['username', 'passwd', 'email', 'domain']);
-        return $this->createAccount($options, 'ACCOUNT_RESELLER', Reseller::class, [
-            'ip' => 'shared'
-        ]);
+        return $this->createAccount($username, $password, $email, [], 'ACCOUNT_ADMIN', Admin::class);
     }
 
     /**
      * @param string $username
+     * @param string $password
+     * @param string $email
+     * @param string $domain
+     * @param string|array $package Either a package name or an array of options for custom.
+     * @param string $ip shared, sharedreseller or assign. Defaults to 'shared'.
+     * @return mixed
+     * @url http://www.directadmin.com/api.html#create for options to use.
      */
-    public function deleteReseller($username)
+    public function createReseller($username, $password, $email, $domain, $package = [], $ip = 'shared')
     {
-        $this->deleteUser($username);
+        $options = array_merge(
+            ['ip' => $ip, 'domain' => $domain, 'serverip' => 'ON', 'dns' => 'OFF'],
+            is_array($package) ? $package : ['package' => $package]
+        );
+        return $this->createAccount($username, $password, $email, $options, 'ACCOUNT_RESELLER', Reseller::class);
     }
 
     /**

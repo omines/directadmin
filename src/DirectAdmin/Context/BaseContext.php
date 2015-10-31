@@ -61,17 +61,4 @@ abstract class BaseContext
     {
         return $this->connection->invoke('POST', $command, ['form_params' => $postParameters]);
     }
-
-    /**
-     * Throws exception if any of the required options are not set.
-     *
-     * @param array $options Associative array of options.
-     * @param array $required Flat array of required options.
-     * @throws DirectAdminException If any of the options were missing.
-     */
-    protected static function checkMandatoryOptions(array $options, array $required)
-    {
-        if(!empty($diff = array_diff($required, array_keys($options))))
-            throw new DirectAdminException('Missing required options: ' . implode(', ', $diff));
-    }
 }

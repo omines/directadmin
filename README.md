@@ -84,9 +84,7 @@ var_dump(array_keys($userContext->getDomain('mydomain.tld')->getEmailForwarders(
 As the DirectAdmin API keeps expanding pull requests are welcomed, as are requests for specific functionality.
 Pull requests should in general include proper unit tests for the implemented or corrected functions.
 
-Unit tests are currently to be performed against a live server. To run them copy `phpunit.xml.dist` to
-`phpunit.xml` and change the constants to reflect your own server. The URL and admin username and pass are
-required to be valid, the other constants denote temporary objects that are created and removed during testing.
+For more information about unit testing see the `README.md` in the tests folder.
 
 ## Legal
 

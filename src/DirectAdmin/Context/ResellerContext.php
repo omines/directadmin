@@ -20,44 +20,73 @@ use Omines\DirectAdmin\Objects\Users\User;
 class ResellerContext extends UserContext
 {
     /**
-     * @param array $options Options to apply to the user.
+     * @param string $username
+     * @param string $password
+     * @param string $email
+     * @param string $domain
+     * @param string $ip IP for the user.
+     * @param string|array $package Either a package name or an array of options for custom.
      * @return User Newly created user.
      * @url http://www.directadmin.com/api.html#create for options to use.
      */
-    public function createUser($options = [])
+    public function createUser($username, $password, $email, $domain, $ip, $package = [])
     {
-        // Check mandatory options
-        self::checkMandatoryOptions($options, ['username', 'passwd', 'email', 'domain', 'ip']);
-        return $this->createAccount($options, 'ACCOUNT_USER', User::class);
-    }
-
-    protected function createAccount($options, $endpoint, $returnType, $defaults = [])
-    {
-        // Merge defaults and overrides
-        $options = array_merge([
-            'dns' => 'OFF',
-            'serverip' => 'ON',
-        ], $defaults, $options, [
-            'action' =>	'create',
-            'add' => 'Submit',
-        ]);
-        if(!isset($options['passwd2']))
-            $options['passwd2'] = $options['passwd'];
-
-        $this->invokePost($endpoint, $options);
-        return new $returnType($options['username'], $this);
+        $options = array_merge(
+            ['ip' => $ip, 'domain' => $domain],
+            is_array($package) ? $package : ['package' => $package]
+        );
+        return $this->createAccount($username, $password, $email, $options, 'ACCOUNT_USER', User::class);
     }
 
     /**
-     * @param string $username User to delete.
+     * Internal helper function for creating new accounts.
+     *
+     * @param string $username
+     * @param string $password
+     * @param string $email
+     * @param array $options
+     * @param string $endpoint
+     * @param string $returnType
+     * @return mixed An instance of the type specified in $returnType
      */
-    public function deleteUser($username)
+    protected function createAccount($username, $password, $email, $options, $endpoint, $returnType)
     {
-        $this->invokePost('SELECT_USERS', [
-            'confirmed' => 'Confirm',
-            'delete'    => 'yes',
-            'select0'   => $username,
-        ]);
+        $this->invokePost($endpoint, array_merge($options, [
+            'action' =>	'create',
+            'add' => 'Submit',
+            'email' => $email,
+            'passwd' => $password,
+            'passwd2' => $password,
+            'username' => $username,
+        ]));
+        return new $returnType($username, $this);
+    }
+
+    /**
+     * @param string $username Account to delete.
+     */
+    public function deleteAccount($username)
+    {
+        $this->deleteAccounts([$username]);
+    }
+
+    /**
+     * @param string[] $usernames Accounts to delete.
+     */
+    public function deleteAccounts(array $usernames)
+    {
+        $options = ['confirmed' => 'Confirm', 'delete' => 'yes'];
+        for($idx = 0; $idx < count($usernames); $idx++)
+            $options["select{$idx}"] = $usernames[$idx];
+        $this->invokePost('SELECT_USERS', $options);
+    }
+
+    /**
+     * @return array List of IPs owned by this reseller.
+     */
+    public function getIPs()
+    {
+        return $this->invokeGet('SHOW_RESELLER_IPS');
     }
 
     /**

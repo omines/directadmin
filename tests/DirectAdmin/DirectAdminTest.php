@@ -63,12 +63,7 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
     {
         // Create the reseller, and verify that afterwards there is 1 more reseller under the admin
         $before = count($context->getResellers());
-        $reseller = $context->createReseller([
-            'username' => RESELLER_USERNAME,
-            'passwd' => RESELLER_PASSWORD,
-            'email' => 'support@127.0.0.1',
-            'domain' => 'phpunit.example.com',
-        ]);
+        $reseller = $context->createReseller(RESELLER_USERNAME, RESELLER_PASSWORD, 'support@127.0.0.1', 'phpunit.example.com');
         $this->assertEquals($before + 1, count($context->getResellers()));
 
         // Impersonate to check things out
@@ -116,13 +111,7 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
 
         // Create a user in the reseller
         $before = count($resellerContext->getUsers());
-        $user = $resellerContext->createUser([
-            'username' => USER_USERNAME,
-            'passwd' => USER_PASSWORD,
-            'ip' => $ips[0],
-            'email' => 'support@127.0.0.1',
-            'domain' => 'phpunit.example.org',
-        ]);
+        $user = $resellerContext->createUser(USER_USERNAME, USER_PASSWORD, 'support@127.0.0.1', 'phpunit.example.org', $ips[0]);
         $this->assertEquals($before + 1, count($resellerContext->getUsers()));
 
         // Check that we can log in as the new user via all routes
@@ -136,8 +125,8 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('phpunit.example.org', $userContext->getContextUser()->getDefaultDomain()->getDomainName());
 
         // Clean up
-        $resellerContext->deleteUser(USER_USERNAME);
-        $context->deleteReseller(RESELLER_USERNAME);
+        $resellerContext->deleteAccount(USER_USERNAME);
+        $context->deleteAccount(RESELLER_USERNAME);
 
     }
 

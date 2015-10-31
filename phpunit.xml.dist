@@ -17,11 +17,6 @@
         <env name="DIRECTADMIN_URL" value="https://www.directadmin.com:2222" />
         <env name="MASTER_ADMIN_USERNAME" value="admin" />
         <env name="MASTER_ADMIN_PASSWORD" value="demo" />
-
-        <!-- Following section denotes defaults for accounts created during test -->
-        <env name="ADMIN_USERNAME" value="testadmin" />
-        <env name="RESELLER_USERNAME" value="testresell" />
-        <env name="USER_USERNAME" value="testuser" />
     </php>
 
     <testsuites>
