@@ -60,7 +60,7 @@ class User extends Object
 //    }
 
     /**
-     * @return string The user type, as one of the USERTYPE_ constants in the DirectAdmin class.
+     * @return string The user type, as one of the ACCOUNT_TYPE_ constants in the DirectAdmin class.
      */
     public function getType()
     {
@@ -99,11 +99,11 @@ class User extends Object
         $name = $config['username'];
         switch($config['usertype'])
         {
-            case DirectAdmin::USERTYPE_USER:
+            case DirectAdmin::ACCOUNT_TYPE_USER:
                 return new User($name, $context, $config);
-            case DirectAdmin::USERTYPE_RESELLER:
+            case DirectAdmin::ACCOUNT_TYPE_RESELLER:
                 return new Reseller($name, $context, $config);
-            case DirectAdmin::USERTYPE_ADMIN:
+            case DirectAdmin::ACCOUNT_TYPE_ADMIN:
                 return new Admin($name, $context, $config);
             default:
                 throw new DirectAdminException("Unknown user type $config[usertype]");

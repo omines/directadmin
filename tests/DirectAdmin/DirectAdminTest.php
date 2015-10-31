@@ -38,7 +38,7 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
 
     private static function cleanupTestAccounts()
     {
-        $context = DirectAdmin::connectAdmin(DIRECTADMIN_URL, ADMIN_USERNAME, ADMIN_PASSWORD);
+        $context = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD);
         if($reseller = $context->getReseller(RESELLER_USERNAME))
         {
             if($user = $reseller->getUser(USER_USERNAME))
@@ -50,9 +50,9 @@ class DirectAdminTest extends \PHPUnit_Framework_TestCase
     public function testAdminLogin()
     {
         // Connect as admin and assure we have proper access
-        $context = DirectAdmin::connectAdmin(DIRECTADMIN_URL, ADMIN_USERNAME, ADMIN_PASSWORD, true);
-        $this->assertEquals(ADMIN_USERNAME, $context->getUsername());
-        $this->assertEquals(DirectAdmin::USERTYPE_ADMIN, $context->getType());
+        $context = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD, true);
+        $this->assertEquals(MASTER_ADMIN_USERNAME, $context->getUsername());
+        $this->assertEquals(DirectAdmin::ACCOUNT_TYPE_ADMIN, $context->getType());
         return $context;
     }
 

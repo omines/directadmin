@@ -9,24 +9,36 @@
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 
-$required = [
-    'DIRECTADMIN_URL',
-    'ADMIN_USERNAME',
-    'ADMIN_PASSWORD',
-    'RESELLER_USERNAME',
-    'RESELLER_PASSWORD',
-    'USER_USERNAME',
-    'USER_PASSWORD',
-];
-foreach($required as $entry)
+define('PASSWORD_LENGTH', 16);
+
+function generateTemporaryPassword()
 {
-    if(!defined($entry))
-    {
-        if(empty($value = getenv($entry)))
-            throw new RuntimeException("Required setting $entry was neither set as a constant or an environment variable");
-        define($entry, $value);
-    }
+    static $base = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    $result = '';
+    for($i = 0; $i != PASSWORD_LENGTH; $i++)
+        $result .= $base[mt_rand(0, strlen($base)-1)];
+    for($i = 0; $i != 100; $i++)
+        $result = str_shuffle($result);
+    return $result;
+}
+
+$parameters = [
+    'DIRECTADMIN_URL'       => null,
+    'MASTER_ADMIN_USERNAME' => null,
+    'MASTER_ADMIN_PASSWORD' => null,
+    'ADMIN_USERNAME'        => 'testadmin',
+    'ADMIN_PASSWORD'        => generateTemporaryPassword(),
+    'RESELLER_USERNAME'     => 'testresell',
+    'RESELLER_PASSWORD'     => generateTemporaryPassword(),
+    'USER_USERNAME'         => 'testuser',
+    'USER_PASSWORD'         => generateTemporaryPassword(),
+];
+foreach($parameters as $parameter => &$value)
+{
+    if(!isset($value) && empty($value = getenv($parameter)))
+        throw new RuntimeException("Required setting $parameter was neither set as a constant or an environment variable");
+    define($parameter, $value);
 }
 
 // Include composer autoload
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . str_replace('/', DIRECTORY_SEPARATOR, '/../vendor/autoload.php');

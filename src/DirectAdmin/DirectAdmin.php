@@ -22,9 +22,9 @@ use Omines\DirectAdmin\Context\UserContext;
  */
 class DirectAdmin
 {
-    const USERTYPE_ADMIN            = 'admin';
-    const USERTYPE_RESELLER         = 'reseller';
-    const USERTYPE_USER             = 'user';
+    const ACCOUNT_TYPE_ADMIN            = 'admin';
+    const ACCOUNT_TYPE_RESELLER         = 'reseller';
+    const ACCOUNT_TYPE_USER             = 'user';
 
     /** @var string Internal login name including impersonation. */
     private $loginName;

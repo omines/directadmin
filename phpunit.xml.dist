@@ -13,20 +13,19 @@
         <ini name="intl.error_level" value="0" />
         <ini name="memory_limit" value="-1" />
 
-<!-- The following settings can be provided as either constants or environment variables:
+        <!-- Override the following variables by environment or edit here -->
+        <env name="DIRECTADMIN_URL" value="https://www.directadmin.com:2222" />
+        <env name="MASTER_ADMIN_USERNAME" value="admin" />
+        <env name="MASTER_ADMIN_PASSWORD" value="demo" />
 
-        <const name="DIRECTADMIN_URL" value="https://www.directadmin.com:2222" />
-        <const name="ADMIN_USERNAME" value="demo_admin" />
-        <const name="ADMIN_PASSWORD" value="demo" />
-        <const name="RESELLER_USERNAME" value="reseller_to_be_created" />
-        <const name="RESELLER_PASSWORD" value="demo" />
-        <const name="USER_USERNAME" value="user_to_be_created" />
-        <const name="USER_PASSWORD" value="demo" />
--->
+        <!-- Following section denotes defaults for accounts created during test -->
+        <env name="ADMIN_USERNAME" value="testadmin" />
+        <env name="RESELLER_USERNAME" value="testresell" />
+        <env name="USER_USERNAME" value="testuser" />
     </php>
 
     <testsuites>
-        <testsuite name="DirectAdmin Test Suite">
+        <testsuite name="DirectAdmin">
             <directory>./tests/DirectAdmin/</directory>
         </testsuite>
     </testsuites>

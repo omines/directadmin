@@ -34,7 +34,7 @@ class UserContext extends BaseContext
     }
 
     /**
-     * @return string One of the DirectAdmin::USERTYPE_ constants describing the type of underlying user.
+     * @return string One of the DirectAdmin::ACCOUNT_TYPE_ constants describing the type of underlying account.
      */
     public function getType()
     {
