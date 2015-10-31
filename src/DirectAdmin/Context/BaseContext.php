@@ -10,7 +10,6 @@
 namespace Omines\DirectAdmin\Context;
 
 use Omines\DirectAdmin\DirectAdmin;
-use Omines\DirectAdmin\DirectAdminException;
 
 /**
  * Encapsulates a contextual connection to a DirectAdmin server.

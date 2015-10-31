@@ -26,8 +26,8 @@ class DirectAdmin
     const ACCOUNT_TYPE_RESELLER         = 'reseller';
     const ACCOUNT_TYPE_USER             = 'user';
 
-    /** @var string Internal login name including impersonation. */
-    private $loginName;
+    /** @var string */
+    private $authenticatedUser;
 
     /** @var string */
     private $username;
@@ -84,8 +84,8 @@ class DirectAdmin
      */
     protected function __construct($url, $username, $password)
     {
-        $this->loginName = $username;
         $accounts = explode('|', $username);
+        $this->authenticatedUser = current($accounts);
         $this->username = end($accounts);
         $this->password = $password;
         $this->baseUrl = rtrim($url, '/') . '/';
@@ -133,7 +133,7 @@ class DirectAdmin
     public function loginAs($username)
     {
         // DirectAdmin format is to just pipe the accounts together under the master password
-        return new self($this->baseUrl, $this->loginName . "|{$username}", $this->password);
+        return new self($this->baseUrl, $this->authenticatedUser . "|{$username}", $this->password);
     }
 
     /**
@@ -150,7 +150,7 @@ class DirectAdmin
         {
             $response = $this->connection->request($method, $uri, $options);
             if($response->getHeader('Content-Type')[0] == 'text/html')
-                throw new DirectAdminException("DirectAdmin API returned an error");
+                throw new DirectAdminException("DirectAdmin API returned an error: ".strip_tags($response->getBody()->getContents()));
             return self::parseResponse($response->getBody()->getContents());
         }
         catch(TransferException $exception)

@@ -49,7 +49,7 @@ class AccountManagementTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateReseller()
     {
-        $adminContext = DirectAdmin::connectAdmin(DIRECTADMIN_URL, ADMIN_USERNAME, ADMIN_PASSWORD);
+        $adminContext = DirectAdmin::connectAdmin(DIRECTADMIN_URL, ADMIN_USERNAME, ADMIN_PASSWORD, true);
         $reseller = $adminContext->createReseller(RESELLER_USERNAME, RESELLER_PASSWORD,
                         self::TEST_EMAIL, 'reseller.test.example.org');
         $this->assertEquals(RESELLER_USERNAME, $reseller->getUsername());
@@ -61,7 +61,7 @@ class AccountManagementTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateUser()
     {
-        $resellerContext = DirectAdmin::connectReseller(DIRECTADMIN_URL, RESELLER_USERNAME, RESELLER_PASSWORD);
+        $resellerContext = DirectAdmin::connectReseller(DIRECTADMIN_URL, RESELLER_USERNAME, RESELLER_PASSWORD, true);
         $this->assertNotEmpty($ips = $resellerContext->getIPs());
         $user = $resellerContext->createUser(USER_USERNAME, USER_PASSWORD,
                         self::TEST_EMAIL, 'user.test.example.org', $ips[0]);
@@ -69,10 +69,32 @@ class AccountManagementTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(DirectAdmin::ACCOUNT_TYPE_USER, $user->getType());
     }
 
+    /**
+     * @depends testCreateUser
+     */
+    public function testLoginUser()
+    {
+        $userContext = DirectAdmin::connectUser(DIRECTADMIN_URL, USER_USERNAME, USER_PASSWORD, true);
+        $this->assertEquals(USER_USERNAME, $userContext->getUsername());
+        $this->assertEquals(USER_USERNAME, $userContext->getContextUser()->getUsername());
+    }
+
+    /**
+     * @depends testCreateUser
+     */
+    public function testImpersonation()
+    {
+        $adminContext = DirectAdmin::connectAdmin(DIRECTADMIN_URL, ADMIN_USERNAME, ADMIN_PASSWORD, true);
+        $resellerContext = $adminContext->impersonateReseller(RESELLER_USERNAME);
+        $userContext = $resellerContext->impersonateUser(USER_USERNAME);
+        $this->assertEquals(DirectAdmin::ACCOUNT_TYPE_USER, $userContext->getType());
+        $this->assertEquals(USER_USERNAME, $userContext->getContextUser()->getUsername());
+    }
+
     public function testDeleteAccounts()
     {
         // Have to separately delete the user as otherwise the order is not determined whether it's containing
-        // reseller is removed first
+        // reseller is removed first. Also - it implicitly tests both calls like this
         $adminContext = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD);
         $adminContext->deleteAccount(USER_USERNAME);
         $adminContext->deleteAccounts([RESELLER_USERNAME, ADMIN_USERNAME]);
