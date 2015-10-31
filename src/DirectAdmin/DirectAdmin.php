@@ -116,26 +116,47 @@ class DirectAdmin
      */
     public function invoke($method, $command, $options = [])
     {
+        $result = $this->rawRequest($method, '/CMD_API_' . $command, $options);
+        if(!empty($result['error']))
+            throw new DirectAdminException("$method to $command failed: $result[details] ($result[text])");
+        elseif(count($result) == 1 && isset($result['list[]']))
+            $result = $result['list[]'];
+        return is_array($result) ? $result : [$result];
+    }
+
+    /**
+     * Returns a clone of the connection logged in as a managed user or reseller.
+     *
+     * @param string $username
+     * @return DirectAdmin
+     */
+    public function loginAs($username)
+    {
+        // DirectAdmin format is to just pipe the accounts together under the master password
+        return new self($this->baseUrl, $this->loginName . "|{$username}", $this->password);
+    }
+
+    /**
+     * Sends a raw request to DirectAdmin.
+     *
+     * @param string $method
+     * @param string $uri
+     * @param array $options
+     * @return array
+     */
+    private function rawRequest($method, $uri, $options)
+    {
         try
         {
-            $response = $this->connection->request($method, '/CMD_API_' . $command, $options);
-
-            // Check for malformed DirectAdmin HTML error
+            $response = $this->connection->request($method, $uri, $options);
             if($response->getHeader('Content-Type')[0] == 'text/html')
                 throw new DirectAdminException("DirectAdmin API returned an error");
-
-            // Check for DirectAdmin level errors, and weird array structures
-            $result = self::parseResponse($response->getBody()->getContents());
-            if(!empty($result['error']))
-                throw new DirectAdminException("$method to $command failed: $result[details] ($result[text])");
-            elseif(count($result) == 1 && isset($result['list[]']))
-                $result = $result['list[]'];
-            return is_array($result) ? $result : [$result];
+            return self::parseResponse($response->getBody()->getContents());
         }
         catch(TransferException $exception)
         {
             // Rethrow anything that causes a network issue
-            throw new DirectAdminException("API request $command using $method failed", 0, $exception);
+            throw new DirectAdminException("Request to $uri using $method failed", 0, $exception);
         }
     }
 
@@ -150,17 +171,5 @@ class DirectAdmin
         $unescaped = preg_replace_callback('/&#([0-9]{2})/', function($val) {
             return chr($val[1]); }, $data);
         return \GuzzleHttp\Psr7\parse_query($unescaped);
-    }
-
-    /**
-     * Returns a clone of the connection logged in as a managed user or reseller.
-     *
-     * @param string $username
-     * @return DirectAdmin
-     */
-    public function loginAs($username)
-    {
-        // DirectAdmin format is to just pipe the accounts together under the master password
-        return new self($this->baseUrl, $this->loginName . "|{$username}", $this->password);
     }
 }

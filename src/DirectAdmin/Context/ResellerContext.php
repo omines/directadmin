@@ -76,8 +76,8 @@ class ResellerContext extends UserContext
     public function deleteAccounts(array $usernames)
     {
         $options = ['confirmed' => 'Confirm', 'delete' => 'yes'];
-        for($idx = 0; $idx < count($usernames); $idx++)
-            $options["select{$idx}"] = $usernames[$idx];
+        foreach(array_values($usernames) as $idx => $username)
+            $options["select{$idx}"] = $username;
         $this->invokePost('SELECT_USERS', $options);
     }
 
@@ -109,10 +109,11 @@ class ResellerContext extends UserContext
 
     /**
      * @param string $username
+     * @param bool $validate Whether to check the user exists and is a user.
      * @return UserContext
      */
-    public function impersonateUser($username)
+    public function impersonateUser($username, $validate = false)
     {
-        return new UserContext($this->getConnection()->loginAs($username));
+        return new UserContext($this->getConnection()->loginAs($username), $validate);
     }
 }

@@ -81,10 +81,11 @@ class AdminContext extends ResellerContext
 
     /**
      * @param string $username
+     * @param bool $validate Whether to check the reseller exists and is a reseller.
      * @return ResellerContext
      */
-    public function impersonateReseller($username)
+    public function impersonateReseller($username, $validate = false)
     {
-        return new ResellerContext($this->getConnection()->loginAs($username));
+        return new ResellerContext($this->getConnection()->loginAs($username), $validate);
     }
 }
