@@ -18,49 +18,17 @@ use Omines\DirectAdmin\Context\UserContext;
  */
 class Domain extends Object
 {
-    /** @var array|null */
-    private $config;
-
     /**
      * @param string $name
      * @param UserContext $context
-     * @param array|string|null $config
      */
-    public function __construct($name, UserContext $context, $config = null)
+    public function __construct($name, UserContext $context)
     {
         parent::__construct($name, $context);
-        if(is_string($config))
-            $this->config = explode(':', $config);
-        else
-            $this->config = $config;
     }
 
     public function getDomainName()
     {
         return $this->getName();
     }
-
-    /**
-     * @return float
-     */
-//    public function getBandwidthUsed()
-//    {
-//        return floatval($this->config[0]);
-//    }
-
-    /**
-     * @return float|null
-     */
-//    public function getBandwidthLimit()
-//    {
-//        return ($this->config[1] === 'unlimited' ? null : floatval($this->config[1]));
-//    }
-
-    /**
-     * @return float
-     */
-//    public function getStorageUsed()
-//    {
-//        return floatval($this->config[2]);
-//    }
 }

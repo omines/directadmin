@@ -41,7 +41,7 @@ class AdminContext extends ResellerContext
      * @param string $domain
      * @param string|array $package Either a package name or an array of options for custom.
      * @param string $ip shared, sharedreseller or assign. Defaults to 'shared'.
-     * @return mixed
+     * @return Reseller
      * @url http://www.directadmin.com/api.html#create for options to use.
      */
     public function createReseller($username, $password, $email, $domain, $package = [], $ip = 'shared')

@@ -17,6 +17,8 @@ use Omines\DirectAdmin\DirectAdmin;
 class AccountManagementTest extends \PHPUnit_Framework_TestCase
 {
     const TEST_EMAIL = 'test@127.0.0.1';
+    const RESELLER_DOMAIN = 'reseller.test.example.org';
+    const USER_DOMAIN = 'user.test.example.org';
 
     /**
      * This function is explicitly implemented as setup, not teardown, so in case of failed tests you may investigate
@@ -51,9 +53,11 @@ class AccountManagementTest extends \PHPUnit_Framework_TestCase
     {
         $adminContext = DirectAdmin::connectAdmin(DIRECTADMIN_URL, ADMIN_USERNAME, ADMIN_PASSWORD, true);
         $reseller = $adminContext->createReseller(RESELLER_USERNAME, RESELLER_PASSWORD,
-                        self::TEST_EMAIL, 'reseller.test.example.org');
+                        self::TEST_EMAIL, self::RESELLER_DOMAIN);
+
         $this->assertEquals(RESELLER_USERNAME, $reseller->getUsername());
         $this->assertEquals(DirectAdmin::ACCOUNT_TYPE_RESELLER, $reseller->getType());
+        $this->assertEquals($reseller->getDefaultDomain()->getDomainName(), self::RESELLER_DOMAIN);
     }
 
     /**
@@ -63,10 +67,13 @@ class AccountManagementTest extends \PHPUnit_Framework_TestCase
     {
         $resellerContext = DirectAdmin::connectReseller(DIRECTADMIN_URL, RESELLER_USERNAME, RESELLER_PASSWORD, true);
         $this->assertNotEmpty($ips = $resellerContext->getIPs());
+
         $user = $resellerContext->createUser(USER_USERNAME, USER_PASSWORD,
-                        self::TEST_EMAIL, 'user.test.example.org', $ips[0]);
+                        self::TEST_EMAIL, self::USER_DOMAIN, $ips[0]);
+
         $this->assertEquals(USER_USERNAME, $user->getUsername());
         $this->assertEquals(DirectAdmin::ACCOUNT_TYPE_USER, $user->getType());
+        $this->assertEquals($user->getDefaultDomain()->getDomainName(), self::USER_DOMAIN);
     }
 
     /**

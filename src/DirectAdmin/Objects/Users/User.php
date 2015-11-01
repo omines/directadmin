@@ -51,15 +51,6 @@ class User extends Object
     }
 
     /**
-     * @return Domain|null
-     */
-//    public function getDomain($domainName)
-//    {
-//        $domains = $this->getDomains();
-//        return isset($domains[$domainName]) ? $domains[$domainName] : null;
-//    }
-
-    /**
      * @return string The user type, as one of the ACCOUNT_TYPE_ constants in the DirectAdmin class.
      */
     public function getType()
