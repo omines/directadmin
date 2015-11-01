@@ -54,6 +54,24 @@ class AdminContext extends ResellerContext
     }
 
     /**
+     * @return Admin[]
+     */
+    public function getAdmins()
+    {
+        return Object::toObjectArray($this->invokeGet('SHOW_ADMINS'), Admin::class, $this);
+    }
+
+    /**
+     * @return User[]
+     */
+    public function getAllAccounts()
+    {
+        $accounts = array_merge($this->getAllUsers(), $this->getResellers(), $this->getAdmins());
+        ksort($accounts);
+        return $accounts;
+    }
+
+    /**
      * @return User[]
      */
     public function getAllUsers()
