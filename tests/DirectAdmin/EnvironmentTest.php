@@ -19,9 +19,27 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException Omines\DirectAdmin\DirectAdminException
      */
-    public function testInvalidCredentials()
+    public function testCorruptedUrl()
     {
-        $admin = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD . 'invalid');
+        $admin = DirectAdmin::connectAdmin('noproto://www.google.com/', 'username', 'password');
+        $admin->getContextUser()->getType();
+    }
+
+    /**
+     * @expectedException Omines\DirectAdmin\DirectAdminException
+     */
+    public function testInvalidUsername()
+    {
+        $admin = DirectAdmin::connectAdmin(DIRECTADMIN_URL, '_invalid', MASTER_ADMIN_PASSWORD);
+        $admin->getContextUser()->getType();
+    }
+
+    /**
+     * @expectedException Omines\DirectAdmin\DirectAdminException
+     */
+    public function testInvalidPassword()
+    {
+        $admin = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD . '_invalid');
         $admin->getContextUser()->getType();
     }
 
@@ -30,9 +48,7 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidUrl()
     {
-        $admin = DirectAdmin::connectAdmin('http://www.example.com/', 'username', 'password');
+        $admin = DirectAdmin::connectAdmin('http://www.google.com/', 'username', 'password');
         $admin->getContextUser()->getType();
     }
-
-
 }
