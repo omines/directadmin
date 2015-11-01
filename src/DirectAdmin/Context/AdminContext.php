@@ -99,6 +99,16 @@ class AdminContext extends ResellerContext
 
     /**
      * @param string $username
+     * @param bool $validate Whether to check the admin exists and is an admin.
+     * @return AdminContext
+     */
+    public function impersonateAdmin($username, $validate = false)
+    {
+        return new AdminContext($this->getConnection()->loginAs($username), $validate);
+    }
+
+    /**
+     * @param string $username
      * @param bool $validate Whether to check the reseller exists and is a reseller.
      * @return ResellerContext
      */

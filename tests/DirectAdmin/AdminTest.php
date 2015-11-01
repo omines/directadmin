@@ -7,7 +7,9 @@
  * file that was distributed with this source code.
  */
 
+use Omines\DirectAdmin\Context\AdminContext;
 use Omines\DirectAdmin\DirectAdmin;
+use Omines\DirectAdmin\Objects\Users\Admin;
 
 /**
  * Tests admin level functionality
@@ -16,14 +18,34 @@ use Omines\DirectAdmin\DirectAdmin;
  */
 class AdminTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var AdminContext */
+    private static $master;
+
+    /** @var Admin */
+    private static $admin;
+
+    public static function setUpBeforeClass()
+    {
+        self::$master = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD);
+        self::$admin = self::$master->createAdmin(ADMIN_USERNAME, ADMIN_PASSWORD, TEST_EMAIL);
+    }
+
+    public static function tearDownAfterClass()
+    {
+        self::$master->deleteAccount(self::$admin->getUsername());
+    }
+
     public function testAccountListings()
     {
-        $context = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD);
+        $context = self::$admin->impersonate();
         $users = $context->getAllUsers();
         $resellers = $context->getResellers();
         $admins = $context->getAdmins();
-        $account = $context->getAllAccounts();
-        $this->assertEquals(count($account), count($users) + count($resellers) + count($admins));
+        $accounts = $context->getAllAccounts();
+
+        $this->assertArrayHasKey(ADMIN_USERNAME, $admins);
+        $this->assertArrayHasKey(MASTER_ADMIN_USERNAME, $accounts);
+        $this->assertEquals(count($accounts), count($users) + count($resellers) + count($admins));
     }
 
 }

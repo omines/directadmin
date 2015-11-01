@@ -32,6 +32,9 @@ $parameters = [
     'RESELLER_PASSWORD'     => generateTemporaryPassword(),
     'USER_USERNAME'         => 'testuser',
     'USER_PASSWORD'         => generateTemporaryPassword(),
+    'TEST_EMAIL'            => 'example@127.0.0.1',
+    'TEST_RESELLER_DOMAIN'  => 'reseller.test.org',
+    'TEST_USER_DOMAIN'      => 'user.test.org',
 ];
 foreach($parameters as $parameter => &$value)
 {
