@@ -45,7 +45,9 @@ class Reseller extends User
      */
     public function getUsers()
     {
-        return Object::toObjectArray($this->getContext()->invokeGet('SHOW_USERS'), User::class, $this->getContext());
+        return Object::toObjectArray($this->getContext()->invokeGet('SHOW_USERS', ['reseller' => $this->getUsername()]),
+                                     User::class, $this->getContext());
+
     }
 
     /**
