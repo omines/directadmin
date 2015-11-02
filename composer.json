@@ -4,7 +4,7 @@
   "description": "PHP client library to manage DirectAdmin control panel servers.",
   "license": "MIT",
   "keywords": [
-    "library", "php", "directadmin", "control panel"
+    "library", "php", "directadmin", "control panel", "api", "direct admin"
   ],
   "homepage": "https://github.com/omines/directadmin",
   "authors": [

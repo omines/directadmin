@@ -35,9 +35,18 @@ class AdminTest extends \PHPUnit_Framework_TestCase
         self::$master->deleteAccount(self::$admin->getUsername());
     }
 
-    public function testAccountListings()
+    public function testImpersonate()
     {
         $context = self::$admin->impersonate();
+        $this->assertEquals(self::$admin->getUsername(), $context->getUsername());
+        return $context;
+    }
+
+    /**
+     * @depends testImpersonate
+     */
+    public function testAccountListings(AdminContext $context)
+    {
         $users = $context->getAllUsers();
         $resellers = $context->getResellers();
         $admins = $context->getAdmins();
