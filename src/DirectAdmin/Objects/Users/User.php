@@ -45,7 +45,7 @@ class User extends Object
     }
 
     /**
-     * @return Domain|null The default domain for the user, if any.
+     * @return Domain|DomainContext|null The default domain for the user, if any.
      */
     public function getDefaultDomain()
     {

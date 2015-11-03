@@ -10,7 +10,6 @@
 namespace Omines\DirectAdmin\Context;
 
 use Omines\DirectAdmin\DirectAdmin;
-use Omines\DirectAdmin\Objects\Domain;
 
 /**
  * DomainContext
@@ -43,7 +42,6 @@ class DomainContext extends BaseContext
     /**
      * @param UserContext $userContext
      * @param DirectAdmin $connection
-     * @param string $domainName
      * @param string $data
      */
     public function __construct(UserContext $userContext, DirectAdmin $connection, $data)
@@ -65,19 +63,11 @@ class DomainContext extends BaseContext
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getAliases()
     {
         return $this->aliases;
-    }
-
-    /**
-     * @return array
-     */
-    public function getPointers()
-    {
-        return $this->pointers;
     }
 
     /**
@@ -120,6 +110,14 @@ class DomainContext extends BaseContext
     public function getMailboxes()
     {
         return $this->invokeGet('POP', ['domain' => $this->getDomainName(), 'action' => 'list']);
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getPointers()
+    {
+        return $this->pointers;
     }
 
     /**

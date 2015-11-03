@@ -84,7 +84,7 @@ class UserContext extends BaseContext
         if(!isset($this->domains))
         {
             $this->domains = $this->invokeGet('ADDITIONAL_DOMAINS');
-            array_walk($this->domains, function(&$value, $name) {
+            array_walk($this->domains, function(&$value) {
                 $value = new DomainContext($this, $this->getConnection(), $value);
             });
         }
