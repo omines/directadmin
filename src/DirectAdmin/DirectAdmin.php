@@ -150,7 +150,7 @@ class DirectAdmin
         {
             $response = $this->connection->request($method, $uri, $options);
             if($response->getHeader('Content-Type')[0] == 'text/html')
-                throw new DirectAdminException("DirectAdmin API returned an error: ".strip_tags($response->getBody()->getContents()));
+                throw new DirectAdminException('DirectAdmin API returned an error: ' . strip_tags($response->getBody()->getContents()));
             return self::parseResponse($response->getBody()->getContents());
         }
         catch(TransferException $exception)

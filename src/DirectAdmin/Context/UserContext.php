@@ -11,7 +11,6 @@ namespace Omines\DirectAdmin\Context;
 
 use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\DirectAdminException;
-use Omines\DirectAdmin\Objects\Domain;
 use Omines\DirectAdmin\Objects\Users\Admin;
 use Omines\DirectAdmin\Objects\Users\Reseller;
 use Omines\DirectAdmin\Objects\Users\User;
@@ -44,7 +43,7 @@ class UserContext extends BaseContext
                 DirectAdmin::ACCOUNT_TYPE_USER => UserContext::class,
             ];
             if($classMap[$this->getType()] != get_class($this))
-                throw new DirectAdminException("Validation mismatch on context construction");
+                throw new DirectAdminException('Validation mismatch on context construction');
         }
     }
 

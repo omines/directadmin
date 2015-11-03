@@ -9,4 +9,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fetching reseller and user lists under their parents
 - Fetching user info
 - Fetching domain lists
+- Retrieving basic domain stats as admin/reseller
+- Retrieving advanced stats as owner, including pointers and aliases
+
+
 

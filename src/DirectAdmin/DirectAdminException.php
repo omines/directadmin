@@ -17,11 +17,11 @@ namespace Omines\DirectAdmin;
 class DirectAdminException extends \RuntimeException
 {
     /**
-     * @param string $message [optional] The Exception message to throw.
-     * @param int $code [optional] The Exception code.
-     * @param \Exception $previous [optional] The previous exception used for the exception chaining. Since 5.3.0
+     * @param string $message The Exception message to throw.
+     * @param int $code The Exception code.
+     * @param \Exception|null $previous The previous exception used for the exception chaining. Since 5.3.0
      */
-    public function __construct($message = "", $code = 0, \Exception $previous = null)
+    public function __construct($message = '', $code = 0, \Exception $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }
