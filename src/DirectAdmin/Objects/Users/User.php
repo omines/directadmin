@@ -9,6 +9,7 @@
 
 namespace Omines\DirectAdmin\Objects\Users;
 
+use Omines\DirectAdmin\Context\DomainContext;
 use Omines\DirectAdmin\Context\ResellerContext;
 use Omines\DirectAdmin\Context\UserContext;
 use Omines\DirectAdmin\DirectAdmin;
@@ -25,6 +26,9 @@ class User extends Object
 {
     /** @var array */
     protected $config;
+
+    /** @var Domain[] **/
+    private $domains;
 
     public function __construct($name, UserContext $context, $config = null)
     {
@@ -47,7 +51,35 @@ class User extends Object
     {
         if(empty($name = $this->getConfig('domain')))
             return null;
-        return new Domain($name, $this->getContext());
+        return $this->getDomain($name);
+    }
+
+    /**
+     * @param string $domainName
+     * @return null|Domain|DomainContext
+     */
+    public function getDomain($domainName)
+    {
+        if($this->isSelfManaged())
+            return $this->getContext()->getDomain($domainName);
+        if(!isset($this->domains))
+            $this->getDomains();
+        return isset($this->domains[$domainName]) ? $this->domains[$domainName] : null;
+    }
+
+    /**
+     * @return Domain[]|DomainContext[]
+     */
+    public function getDomains()
+    {
+        if($this->isSelfManaged())
+            return $this->getContext()->getDomains();
+        if(!isset($this->domains))
+        {
+            $domains = $this->getContext()->invokeGet('SHOW_USER_DOMAINS', ['user' => $this->getUsername()]);
+            $this->domains = Object::toRichObjectArray($domains, Domain::class, $this->getContext());
+        }
+        return $this->domains;
     }
 
     /**
@@ -97,7 +129,7 @@ class User extends Object
             case DirectAdmin::ACCOUNT_TYPE_ADMIN:
                 return new Admin($name, $context, $config);
             default:
-                throw new DirectAdminException("Unknown user type $config[usertype]");
+                throw new DirectAdminException("Unknown user type '$config[usertype]'");
         }
     }
 
@@ -112,5 +144,13 @@ class User extends Object
         if(!isset($this->config))
             $this->reload();
         return isset($this->config[$item]) ? $this->config[$item] : null;
+    }
+
+    /**
+     * @return bool Whether the account is managing itself.
+     */
+    protected function isSelfManaged()
+    {
+        return ($this->getUsername() === $this->getContext()->getUsername());
     }
 }

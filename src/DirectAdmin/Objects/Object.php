@@ -66,4 +66,20 @@ abstract class Object
             return new $class($item, $context);
         }, $items));
     }
+
+    /**
+     * Converts an associative array of descriptors to objects of the specified type.
+     *
+     * @param array $items
+     * @param string $class
+     * @param UserContext $context
+     * @return array
+     */
+    public static function toRichObjectArray(array $items, $class, UserContext $context)
+    {
+        array_walk($items, function(&$value, $name) use ($class, $context) {
+            $value = new $class($name, $context, $value);
+        });
+        return $items;
+    }
 }

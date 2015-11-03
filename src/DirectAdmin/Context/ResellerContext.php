@@ -47,7 +47,7 @@ class ResellerContext extends UserContext
      * @param array $options
      * @param string $endpoint
      * @param string $returnType
-     * @return mixed An instance of the type specified in $returnType
+     * @return object An instance of the type specified in $returnType
      */
     protected function createAccount($username, $password, $email, $options, $endpoint, $returnType)
     {

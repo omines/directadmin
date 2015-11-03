@@ -25,24 +25,83 @@ class DomainContext extends BaseContext
     /** @var string */
     private $domainName;
 
+    /** @var string[] */
+    private $aliases;
+
+    /** @var string[] */
+    private $pointers;
+
+    /** @var float */
+    private $bandwidthUsed;
+
+    /** @var float|null */
+    private $bandwidthLimit;
+
+    /** @var float */
+    private $diskUsage;
+
     /**
      * @param UserContext $userContext
      * @param DirectAdmin $connection
      * @param string $domainName
+     * @param string $data
      */
-    public function __construct(UserContext $userContext, DirectAdmin $connection, $domainName)
+    public function __construct(UserContext $userContext, DirectAdmin $connection, $data)
     {
         parent::__construct($connection);
         $this->userContext = $userContext;
-        $this->domainName = $domainName;
+
+        // Unpack domain data
+        $data = \GuzzleHttp\Psr7\parse_query($data);
+        $this->domainName = $data['domain'];
+
+        $bandwidths = array_map('trim', explode('/', $data['bandwidth']));
+        $this->bandwidthUsed = floatval($bandwidths[0]);
+        $this->bandwidthLimit = ctype_alpha($bandwidths[1]) ? null : floatval($bandwidths[1]);
+        $this->diskUsage = floatval($data['quota']);
+
+        $this->aliases = array_filter(explode('|', $data['alias_pointers']));
+        $this->pointers = array_filter(explode('|', $data['pointers']));
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function getDomain()
+    public function getAliases()
     {
-        return new Domain($this->domainName, $this->userContext);
+        return $this->aliases;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPointers()
+    {
+        return $this->pointers;
+    }
+
+    /**
+     * @return float
+     */
+    public function getBandwidthUsed()
+    {
+        return $this->bandwidthUsed;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getBandwidthLimit()
+    {
+        return $this->bandwidthLimit;
+    }
+
+    /**
+     * @return float
+     */
+    public function getDiskUsage()
+    {
+        return $this->diskUsage;
     }
 
     /**

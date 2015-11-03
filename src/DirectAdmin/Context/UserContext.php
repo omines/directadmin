@@ -11,6 +11,7 @@ namespace Omines\DirectAdmin\Context;
 
 use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\DirectAdminException;
+use Omines\DirectAdmin\Objects\Domain;
 use Omines\DirectAdmin\Objects\Users\Admin;
 use Omines\DirectAdmin\Objects\Users\Reseller;
 use Omines\DirectAdmin\Objects\Users\User;
@@ -24,6 +25,9 @@ class UserContext extends BaseContext
 {
     /** @var User */
     private $user;
+
+    /** @var DomainContext[] */
+    private $domains;
 
     /**
      * @param DirectAdmin $connection A prepared connection.
@@ -62,9 +66,15 @@ class UserContext extends BaseContext
         return $this->user;
     }
 
+    /**
+     * @param string $domainName
+     * @return null|DomainContext
+     */
     public function getDomain($domainName)
     {
-        return new DomainContext($this, $this->getConnection(), $domainName);
+        if(!isset($this->domains))
+            $this->getDomains();
+        return isset($this->domains[$domainName]) ? $this->domains[$domainName] : null;
     }
 
     /**
@@ -72,10 +82,14 @@ class UserContext extends BaseContext
      */
     public function getDomains()
     {
-        $domains = $this->invokeGet('SHOW_DOMAINS');
-        return array_combine($domains, array_map(function($domain) {
-            return new DomainContext($this, $this->getConnection(), $domain);
-        }, $domains));
+        if(!isset($this->domains))
+        {
+            $this->domains = $this->invokeGet('ADDITIONAL_DOMAINS');
+            array_walk($this->domains, function(&$value, $name) {
+                $value = new DomainContext($this, $this->getConnection(), $value);
+            });
+        }
+        return $this->domains;
     }
 
     /**

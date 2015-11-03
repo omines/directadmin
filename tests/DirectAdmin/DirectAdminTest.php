@@ -17,6 +17,7 @@ use Omines\DirectAdmin\Objects\Users\User;
  * Unit tests for DirectAdmin wrapper class.
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @requires PHP 8
  */
 class DirectAdminTest extends \PHPUnit_Framework_TestCase
 {
