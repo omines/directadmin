@@ -29,5 +29,10 @@
     "psr-4": {
       "Omines\\DirectAdmin\\": "src/DirectAdmin/"
     }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.1.x-dev"
+    }
   }
 }
