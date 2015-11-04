@@ -103,7 +103,7 @@
 
 
 	<div class="description">
-	<p>DirectAdmin API wrapper class.</p>
+	<p>DirectAdmin API main class, encapsulating a specific account connection to a single server.</p>
 	</div>
 
 
@@ -122,7 +122,7 @@
 
 				<b>Author:</b>
 				Niels Keurentjes <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m">&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m</a><br>
-			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.DirectAdmin.html#18-175" title="Go to source code">DirectAdmin/DirectAdmin.php</a>
+			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.DirectAdmin.html#18-179" title="Go to source code">DirectAdmin/DirectAdmin.php</a>
 		<br>
 	</div>
 
@@ -142,26 +142,26 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_connectAdmin">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.DirectAdmin.html#44-54" title="Go to source code">connectAdmin</a>( <span>string <var>$url</var></span>, <span>string <var>$username</var></span>, <span>string <var>$password</var></span>, <span>boolean|false <var>$validate</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.DirectAdmin.html#44-56" title="Go to source code">connectAdmin</a>( <span>string <var>$url</var></span>, <span>string <var>$username</var></span>, <span>string <var>$password</var></span>, <span>boolean <var>$validate</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Connects to DirectAdmin with an admin account.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Connects to DirectAdmin with an admin account.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$url</var></dt>
-						<dd></dd>
+						<dd>The base URL of the DirectAdmin server.</dd>
 						<dt><var>$username</var></dt>
-						<dd></dd>
+						<dd>The username of the account.</dd>
 						<dt><var>$password</var></dt>
-						<dd></dd>
+						<dd>The password of the account.</dd>
 						<dt><var>$validate</var></dt>
-						<dd></dd>
+						<dd>Whether to ensure the account exists and is of the correct type.</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -186,7 +186,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_connectReseller">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.DirectAdmin.html#56-66" title="Go to source code">connectReseller</a>( <span>string <var>$url</var></span>, <span>string <var>$username</var></span>, <span>string <var>$password</var></span>, <span>boolean|false <var>$validate</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.DirectAdmin.html#58-68" title="Go to source code">connectReseller</a>( <span>string <var>$url</var></span>, <span>string <var>$username</var></span>, <span>string <var>$password</var></span>, <span>boolean <var>$validate</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
 				
@@ -199,13 +199,13 @@
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$url</var></dt>
-						<dd></dd>
+						<dd>The base URL of the DirectAdmin server.</dd>
 						<dt><var>$username</var></dt>
-						<dd></dd>
+						<dd>The username of the account.</dd>
 						<dt><var>$password</var></dt>
-						<dd></dd>
+						<dd>The password of the account.</dd>
 						<dt><var>$validate</var></dt>
-						<dd></dd>
+						<dd>Whether to ensure the account exists and is of the correct type.</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -230,7 +230,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_connectUser">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.DirectAdmin.html#68-78" title="Go to source code">connectUser</a>( <span>string <var>$url</var></span>, <span>string <var>$username</var></span>, <span>string <var>$password</var></span>, <span>string <var>$validate</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.DirectAdmin.html#70-80" title="Go to source code">connectUser</a>( <span>string <var>$url</var></span>, <span>string <var>$username</var></span>, <span>string <var>$password</var></span>, <span>boolean <var>$validate</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
 				
@@ -243,13 +243,13 @@
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$url</var></dt>
-						<dd></dd>
+						<dd>The base URL of the DirectAdmin server.</dd>
 						<dt><var>$username</var></dt>
-						<dd></dd>
+						<dd>The username of the account.</dd>
 						<dt><var>$password</var></dt>
-						<dd></dd>
+						<dd>The password of the account.</dd>
 						<dt><var>$validate</var></dt>
-						<dd>$validate</dd>
+						<dd>Whether to ensure the account exists and is of the correct type.</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -274,24 +274,24 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.DirectAdmin.html#80-98" title="Go to source code">__construct</a>( <span>string <var>$url</var></span>, <span>string <var>$username</var></span>, <span>string <var>$password</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.DirectAdmin.html#82-102" title="Go to source code">__construct</a>( <span>string <var>$url</var></span>, <span>string <var>$username</var></span>, <span>string <var>$password</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Creates a connection wrapper to DirectAdmin as the specified account.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Creates a connection wrapper to DirectAdmin as the specified account.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$url</var></dt>
-						<dd></dd>
+						<dd>The base URL of the DirectAdmin server.</dd>
 						<dt><var>$username</var></dt>
-						<dd></dd>
+						<dd>The username of the account.</dd>
 						<dt><var>$password</var></dt>
-						<dd></dd>
+						<dd>The password of the account.</dd>
 					</dl></div>
 
 
@@ -312,7 +312,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getUsername">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.DirectAdmin.html#100-106" title="Go to source code">getUsername</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.DirectAdmin.html#104-110" title="Go to source code">getUsername</a>( )</code>
 
 			<div class="description short">
 				
@@ -345,7 +345,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_invoke">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.DirectAdmin.html#108-125" title="Go to source code">invoke</a>( <span>string <var>$method</var></span>, <span>string <var>$command</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.DirectAdmin.html#112-129" title="Go to source code">invoke</a>( <span>string <var>$method</var></span>, <span>string <var>$command</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Invokes the DirectAdmin API with specific options.</p>
@@ -391,7 +391,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_loginAs">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.DirectAdmin.html#127-137" title="Go to source code">loginAs</a>( <span>string <var>$username</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.DirectAdmin.html#131-141" title="Go to source code">loginAs</a>( <span>string <var>$username</var></span> )</code>
 
 			<div class="description short">
 				<p>Returns a clone of the connection logged in as a managed user or reseller.</p>
