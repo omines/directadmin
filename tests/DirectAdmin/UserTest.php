@@ -64,6 +64,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     {
         $domainAsAdmin = self::$user->getDomain(TEST_USER_DOMAIN);
         $domainAsUser = $context->getDomain(TEST_USER_DOMAIN);
+        $this->assertEquals($domainAsAdmin->getBandwidthUsed(), self::$user->getDefaultDomain()->getBandwidthUsed());
         $this->assertEquals($domainAsAdmin->getBandwidthUsed(), $domainAsUser->getBandwidthUsed());
         $this->assertEquals($domainAsAdmin->getDiskUsage(), $domainAsUser->getDiskUsage());
         $this->assertEquals($context, $domainAsUser->getContext());
@@ -74,5 +75,19 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertEmpty($domainAsUser->getPointers());
         $this->assertEmpty($domainAsUser->getEmailForwarders());
         $this->assertEmpty($domainAsUser->getMailboxes());
+    }
+
+    public function testUserStats()
+    {
+        $user = self::$user;
+        $user->flushCache();
+        $this->assertFalse($user->isSuspended());
+        $this->assertEquals(DirectAdmin::ACCOUNT_TYPE_USER, $user->getType());
+        $this->assertEquals(0, $user->getBandwidthUsage());
+        $this->assertNull($user->getBandwidthLimit());
+        $this->assertEquals(1, $user->getDomainUsage());
+        $this->assertNull($user->getDomainLimit());
+        $this->assertEquals(0, $user->getDiskUsage());
+        $this->assertNull($user->getDiskLimit());
     }
 }

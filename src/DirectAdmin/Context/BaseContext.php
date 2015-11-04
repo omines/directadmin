@@ -22,6 +22,8 @@ abstract class BaseContext
     private $connection;
 
     /**
+     * Constructs the object.
+     *
      * @param DirectAdmin $connection A prepared connection.
      */
     public function __construct(DirectAdmin $connection)
@@ -30,6 +32,8 @@ abstract class BaseContext
     }
 
     /**
+     * Returns the internal connection wrapper.
+     *
      * @return DirectAdmin
      */
     protected function getConnection()

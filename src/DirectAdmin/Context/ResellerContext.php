@@ -20,10 +20,12 @@ use Omines\DirectAdmin\Objects\Users\User;
 class ResellerContext extends UserContext
 {
     /**
-     * @param string $username
-     * @param string $password
-     * @param string $email
-     * @param string $domain
+     * Creates a new user on the server.
+     *
+     * @param string $username Login for the new user.
+     * @param string $password Password for the new user.
+     * @param string $email Email for the new user.
+     * @param string $domain Default domain for the new user.
      * @param string $ip IP for the user.
      * @param string|array $package Either a package name or an array of options for custom.
      * @return User Newly created user.
@@ -41,12 +43,12 @@ class ResellerContext extends UserContext
     /**
      * Internal helper function for creating new accounts.
      *
-     * @param string $username
-     * @param string $password
-     * @param string $email
-     * @param array $options
-     * @param string $endpoint
-     * @param string $returnType
+     * @param string $username Login for the new user.
+     * @param string $password Password for the new user.
+     * @param string $email Email for the new user.
+     * @param array $options List of DA account options to apply.
+     * @param string $endpoint API endpoint to invoke.
+     * @param string $returnType Class name that should wrap the resulting account.
      * @return object An instance of the type specified in $returnType
      */
     protected function createAccount($username, $password, $email, $options, $endpoint, $returnType)
@@ -63,6 +65,8 @@ class ResellerContext extends UserContext
     }
 
     /**
+     * Deletes a single account.
+     *
      * @param string $username Account to delete.
      */
     public function deleteAccount($username)
@@ -71,6 +75,8 @@ class ResellerContext extends UserContext
     }
 
     /**
+     * Deletes multiple accounts.
+     *
      * @param string[] $usernames Accounts to delete.
      */
     public function deleteAccounts(array $usernames)
@@ -82,7 +88,9 @@ class ResellerContext extends UserContext
     }
 
     /**
-     * @return array List of IPs owned by this reseller.
+     * Returns all IPs available to this reseller.
+     *
+     * @return array List of IPs as strings.
      */
     public function getIPs()
     {
@@ -90,6 +98,8 @@ class ResellerContext extends UserContext
     }
 
     /**
+     * Returns a single user by name.
+     *
      * @param string $username
      * @return User|null
      */
@@ -100,7 +110,9 @@ class ResellerContext extends UserContext
     }
 
     /**
-     * @return User[]
+     * Returns all users for this reseller.
+     *
+     * @return User[] Associative array of users.
      */
     public function getUsers()
     {
@@ -108,7 +120,9 @@ class ResellerContext extends UserContext
     }
 
     /**
-     * @param string $username
+     * Impersonates a user, allowing the reseller/admin to act on their behalf.
+     *
+     * @param string $username Login of the account to impersonate.
      * @param bool $validate Whether to check the user exists and is a user.
      * @return UserContext
      */

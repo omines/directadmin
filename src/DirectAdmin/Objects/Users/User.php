@@ -26,6 +26,9 @@ class User extends Object
     /** @var array */
     protected $config;
 
+    /** @var array */
+    protected $usage;
+
     /** @var Domain[] **/
     private $domains;
 
@@ -43,6 +46,26 @@ class User extends Object
         return $this->getName();
     }
 
+    public function getBandwidthLimit()
+    {
+        return floatval($this->getConfig('bandwidth')) ?: null;
+    }
+
+    public function getBandwidthUsage()
+    {
+        return floatval($this->getUsage('bandwidth'));
+    }
+
+    public function getDiskLimit()
+    {
+        return floatval($this->getConfig('quota')) ?: null;
+    }
+
+    public function getDiskUsage()
+    {
+        return floatval($this->getUsage('quota'));
+    }
+
     /**
      * @return Domain|null The default domain for the user, if any.
      */
@@ -51,6 +74,36 @@ class User extends Object
         if(empty($name = $this->getConfig('domain')))
             return null;
         return $this->getDomain($name);
+    }
+
+    /**
+     * Returns maximum number of domains allowed to this user, or NULL for unlimited.
+     *
+     * @return int|null
+     */
+    public function getDomainLimit()
+    {
+        return intval($this->getConfig('vdomains')) ?: null;
+    }
+
+    /**
+     * Returns number of domains owned by this user.
+     *
+     * @return int
+     */
+    public function getDomainUsage()
+    {
+        return intval($this->getUsage('vdomains'));
+    }
+
+    /**
+     * Returns whether the user is currently suspended.
+     *
+     * @return bool
+     */
+    public function isSuspended()
+    {
+        return ($this->getConfig('suspended') === 'ON');
     }
 
     /**
@@ -88,6 +141,15 @@ class User extends Object
     }
 
     /**
+     * Ensures config and usage data are reloaded from server on next request.
+     */
+    public function flushCache()
+    {
+        $this->config = null;
+        $this->usage = null;
+    }
+
+    /**
      * @return UserContext
      */
     public function impersonate()
@@ -96,14 +158,6 @@ class User extends Object
         if(!($context = $this->getContext()) instanceof ResellerContext)
             throw new DirectAdminException('You need to be at least a reseller to impersonate');
         return $context->impersonateUser($this->getUsername());
-    }
-
-    /**
-     * Reloads the current user config from the server, if it has been changed since last retrieved.
-     */
-    public function reload()
-    {
-        $this->config = $this->getContext()->invokeGet('SHOW_USER_CONFIG', ['user' => $this->getUsername()]);
     }
 
     /**
@@ -139,8 +193,21 @@ class User extends Object
     private function getConfig($item)
     {
         if(!isset($this->config))
-            $this->reload();
+            $this->config = $this->getContext()->invokeGet('SHOW_USER_CONFIG', ['user' => $this->getUsername()]);
         return isset($this->config[$item]) ? $this->config[$item] : null;
+    }
+
+    /**
+     * Internal function to safe guard usage changes and cache them.
+     *
+     * @param string $item Usage item to retrieve.
+     * @return mixed The value of the stats item, or NULL.
+     */
+    private function getUsage($item)
+    {
+        if(!isset($this->usage))
+            $this->usage = $this->getContext()->invokeGet('SHOW_USER_USAGE', ['user' => $this->getUsername()]);
+        return isset($this->usage[$item]) ? $this->usage[$item] : null;
     }
 
     /**
