@@ -12,9 +12,9 @@ namespace Omines\DirectAdmin\Context;
 use Omines\DirectAdmin\DirectAdmin;
 
 /**
- * DomainContext
+ * Context for domain-specific user functions, acting on a specific domain.
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class DomainContext extends BaseContext
 {

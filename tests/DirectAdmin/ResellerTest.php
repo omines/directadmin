@@ -15,7 +15,7 @@ use Omines\DirectAdmin\Objects\Users\Reseller;
 /**
  * ResellerTest
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class ResellerTest extends \PHPUnit_Framework_TestCase
 {

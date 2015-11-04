@@ -20,7 +20,7 @@ use Omines\DirectAdmin\Objects\Object;
 /**
  * User
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class User extends Object
 {

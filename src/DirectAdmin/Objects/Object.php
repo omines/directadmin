@@ -14,7 +14,7 @@ use Omines\DirectAdmin\Context\UserContext;
 /**
  * Basic wrapper around a DirectAdmin object as observed within a specific context.
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 abstract class Object
 {

@@ -12,7 +12,7 @@ use Omines\DirectAdmin\DirectAdmin;
 /**
  * AccountManagementTest
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class AccountManagementTest extends \PHPUnit_Framework_TestCase
 {

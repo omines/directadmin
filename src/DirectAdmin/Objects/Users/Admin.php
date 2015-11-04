@@ -16,7 +16,7 @@ use Omines\DirectAdmin\DirectAdminException;
 /**
  * Admin
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class Admin extends Reseller
 {

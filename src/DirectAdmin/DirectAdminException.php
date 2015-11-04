@@ -10,13 +10,15 @@
 namespace Omines\DirectAdmin;
 
 /**
- * DirectAdminException
+ * Basic exception for issues arising in the client API.
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class DirectAdminException extends \RuntimeException
 {
     /**
+     * Construct the exception object.
+     *
      * @param string $message The Exception message to throw.
      * @param int $code The Exception code.
      * @param \Exception|null $previous The previous exception used for the exception chaining. Since 5.3.0

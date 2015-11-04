@@ -12,7 +12,7 @@ use Omines\DirectAdmin\DirectAdmin;
 /**
  * Tests for responses to invalid environment configuration.
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class EnvironmentTest extends \PHPUnit_Framework_TestCase
 {

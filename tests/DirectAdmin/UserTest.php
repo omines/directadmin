@@ -15,7 +15,7 @@ use Omines\DirectAdmin\Objects\Users\User;
 /**
  * UserTest
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class UserTest extends \PHPUnit_Framework_TestCase
 {

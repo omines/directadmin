@@ -18,7 +18,7 @@ use Omines\DirectAdmin\Context\UserContext;
 /**
  * DirectAdmin API wrapper class.
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class DirectAdmin
 {

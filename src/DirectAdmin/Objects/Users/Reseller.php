@@ -18,7 +18,7 @@ use Omines\DirectAdmin\Objects\Object;
 /**
  * Reseller
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class Reseller extends User
 {

@@ -15,7 +15,7 @@ use Omines\DirectAdmin\Objects\Users\User;
 /**
  * Context for reseller functions.
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class ResellerContext extends UserContext
 {

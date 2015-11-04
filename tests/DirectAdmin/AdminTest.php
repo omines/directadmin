@@ -14,7 +14,7 @@ use Omines\DirectAdmin\Objects\Users\Admin;
 /**
  * Tests admin level functionality
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class AdminTest extends \PHPUnit_Framework_TestCase
 {

@@ -12,6 +12,7 @@ rm apigen.phar
 # Set identity
 git config --global user.email "travis@travis-ci.org"
 git config --global user.name "Travis"
+git config --global push.default "simple"
 
 # Push generated files
 git add .

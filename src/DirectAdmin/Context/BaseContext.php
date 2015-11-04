@@ -14,7 +14,7 @@ use Omines\DirectAdmin\DirectAdmin;
 /**
  * Encapsulates a contextual connection to a DirectAdmin server.
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 abstract class BaseContext
 {

@@ -18,7 +18,7 @@ use Omines\DirectAdmin\Objects\Users\User;
 /**
  * Context for user functions.
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class UserContext extends BaseContext
 {

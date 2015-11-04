@@ -14,7 +14,7 @@ use Omines\DirectAdmin\Context\UserContext;
 /**
  * Domain
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class Domain extends Object
 {

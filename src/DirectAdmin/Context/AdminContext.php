@@ -17,7 +17,7 @@ use Omines\DirectAdmin\Objects\Users\User;
 /**
  * Context for administrator functions.
  *
- * @author Niels Keurentjes <niels.keurentjes@omines.com
+ * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class AdminContext extends ResellerContext
 {
@@ -35,6 +35,8 @@ class AdminContext extends ResellerContext
     }
 
     /**
+     * Creates a new Reseller level account.
+     *
      * @param string $username
      * @param string $password
      * @param string $email
@@ -54,6 +56,8 @@ class AdminContext extends ResellerContext
     }
 
     /**
+     * Returns a list of known admins on the server.
+     *
      * @return Admin[]
      */
     public function getAdmins()
@@ -62,6 +66,8 @@ class AdminContext extends ResellerContext
     }
 
     /**
+     * Returns a full list of all accounts of any type on the server.
+     *
      * @return User[]
      */
     public function getAllAccounts()
@@ -72,6 +78,8 @@ class AdminContext extends ResellerContext
     }
 
     /**
+     * Returns a full list of all users on the server, so no resellers or admins.
+     *
      * @return User[]
      */
     public function getAllUsers()
@@ -80,6 +88,8 @@ class AdminContext extends ResellerContext
     }
 
     /**
+     * Returns a specific reseller by name, or NULL if there is no reseller by this name.
+     *
      * @param string $username
      * @return null|Reseller
      */
@@ -90,6 +100,8 @@ class AdminContext extends ResellerContext
     }
 
     /**
+     * Returns the list of known resellers.
+     *
      * @return Reseller[]
      */
     public function getResellers()
@@ -98,6 +110,8 @@ class AdminContext extends ResellerContext
     }
 
     /**
+     * Returns a new AdminContext acting as the specified admin.
+     *
      * @param string $username
      * @param bool $validate Whether to check the admin exists and is an admin.
      * @return AdminContext
@@ -108,6 +122,8 @@ class AdminContext extends ResellerContext
     }
 
     /**
+     * Returns a new ResellerContext acting as the specified reseller.
+     *
      * @param string $username
      * @param bool $validate Whether to check the reseller exists and is a reseller.
      * @return ResellerContext
