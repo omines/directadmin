@@ -23,10 +23,10 @@ use Omines\DirectAdmin\Objects\Object;
  */
 class User extends Object
 {
-    /** @var array */
+    /** @var array|null Lazy cache of config options. */
     protected $config;
 
-    /** @var array */
+    /** @var array|null Lazy cache of usage data. */
     protected $usage;
 
     /** @var Domain[] **/
@@ -145,8 +145,8 @@ class User extends Object
      */
     public function flushCache()
     {
-        $this->config = null;
-        $this->usage = null;
+        unset($this->config);
+        unset($this->usage);
     }
 
     /**

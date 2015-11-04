@@ -15,7 +15,7 @@ git config --global user.name "Travis"
 git config --global push.default "simple"
 
 # Push generated files
-git add .
+git add --all .
 git commit -m "API documentation auto-updated"
 git push origin -fq > /dev/null
 
