@@ -5,7 +5,6 @@
 [![Scrutinizer](https://img.shields.io/scrutinizer/g/omines/directadmin.svg)](https://scrutinizer-ci.com/g/omines/directadmin/?branch=master)
 [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/47a71204-f274-4416-9db1-9773d65845ca.svg)](https://insight.sensiolabs.com/projects/47a71204-f274-4416-9db1-9773d65845ca)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/omines/directadmin/master/LICENSE)
-[![PHP Compatibility](https://img.shields.io/badge/php-5.5%20%7C%205.6%20%7C%207.0%20%7C%20hhvm-lightgrey.svg)](https://travis-ci.org/omines/directadmin)
 
 This is a PHP client library to manage DirectAdmin control panel servers. We simply decided to develop this as we needed
 automation of our own DirectAdmin servers, and the existing implementations were unsupported and incomplete.
@@ -13,13 +12,15 @@ automation of our own DirectAdmin servers, and the existing implementations were
 As the DirectAdmin API is messy to say the least, and wildly inconsistent at best, expect the API to change
 several times during initial development before we settle on a structure that both works and makes sense.
 
+[Fully up to date API documentation is generated on each push](https://omines.github.io/directadmin/api/).
+
 ## Installation
 
 The recommended way to install this library is from [Packagist](https://packagist.org/packages/omines/directadmin)
 through [Composer](http://getcomposer.org).
 
 ```bash
-composer require omines-directadmin:dev-master
+composer require omines/directadmin:dev-master
 ```
 
 The version specification is required until a stable version is released. Keep the note above in mind that the
@@ -32,10 +33,10 @@ If you're not familiar with `composer` follow the installation instructions for
 
 ## Dependencies
 
-The library uses [Guzzle 6](https://github.com/guzzle/guzzle) as its HTTP communication layer. Minimum PHP
-version supported is 5.5.0, as older versions are also End of Life.
+The library uses [Guzzle 6](https://github.com/guzzle/guzzle) as its HTTP communication layer. PHP versions supported
+are 5.5, 5.6, 7.0 and hhvm.
 
-## Usage
+## Basic usage
 
 To set up the connection use one of the base functions:
 
@@ -47,39 +48,25 @@ $resellerContext = DirectAdmin::connectReseller('http://hostname:2222', 'reselle
 $userContext = DirectAdmin::connectUser('http://hostname:2222', 'user', 'pass');
 ```
 
-These functions return an `AdminContext`, `ResellerContext` and `UserContext` respectively exposing the
-functionality available at the given level. All three extend eachother as DirectAdmin uses a strict is-a
-model. To act on behalf of a user you can use impersonation calls:
+These functions return an
+[`AdminContext`](https://omines.github.io/directadmin/api/class-Omines.DirectAdmin.Context.AdminContext.html),
+[`ResellerContext`](https://omines.github.io/directadmin/api/class-Omines.DirectAdmin.Context.ResellerContext.html), and
+[`UserContext`](https://omines.github.io/directadmin/api/class-Omines.DirectAdmin.Context.UserContext.html)
+respectively exposing the functionality available at the given level. All three extend eachother as DirectAdmin uses a
+strict is-a model. To act on behalf of a user you can use impersonation calls:
 
 ```php
 $resellerContext = $adminContext->impersonateReseller($resellerName);
 $userContext = $resellerContext->impersonateUser($userName);
 ```
-Both are essentially the same but mapped to the correct return type.
-
-### Examples
-
-The following examples all assume a context has been set up as described above.
-
-#### Fetching all resellers and users
+Both are essentially the same but mapped to the correct return type. Impersonation is also done implicitly
+when managing a user's domains:
 
 ```php
-foreach($adminContext->getResellers() as $resellerName => $reseller)
-{
-    // Loop over all users in the reseller account
-    foreach($reseller->getUsers() as $userName => $user)
-    {
-        echo sprintf("User %s has default domain %s\n",
-                     $user->getName(), $user->getDefaultDomain());
-    }
-}
+$domain = $adminContext->getUser('user')->getDomain('example.tld');
 ```
-
-#### Listing email forwarders
-
-```php
-var_dump(array_keys($userContext->getDomain('mydomain.tld')->getEmailForwarders()));
-```
+This returns, if the domain exists, a [`Domain`](https://omines.github.io/directadmin/api/class-Omines.DirectAdmin.Objects.Domain.html)
+instance in the context of its owning user, allowing you to manage its email accounts et al transparently.
 
 ## Contributions
 
