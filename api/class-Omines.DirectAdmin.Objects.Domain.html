@@ -100,7 +100,7 @@
 
 
 	<div class="description">
-	<p>Domain</p>
+	<p>Encapsulates a domain and its derived objects, like aliases, pointers and mailboxes.</p>
 	</div>
 
 	<dl class="tree well">
@@ -133,7 +133,7 @@
 
 				<b>Author:</b>
 				Niels Keurentjes <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m">&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m</a><br>
-			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.Domain.html#14-48" title="Go to source code">DirectAdmin/Objects/Domain.php</a>
+			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.Domain.html#14-120" title="Go to source code">DirectAdmin/Objects/Domain.php</a>
 		<br>
 	</div>
 
@@ -153,24 +153,24 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#23-32" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span>, <span>array <var>$stats</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#39-61" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span>, <span>string <var>$config</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Construct the object.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Construct the object.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$name</var></dt>
-						<dd></dd>
+						<dd>The domain name.</dd>
 						<dt><var>$context</var></dt>
-						<dd></dd>
-						<dt><var>$stats</var></dt>
-						<dd></dd>
+						<dd>The owning user context.</dd>
+						<dt><var>$config</var></dt>
+						<dd>The basic config string as returned by CMD_API_ADDITIONAL_DOMAINS.</dd>
 					</dl></div>
 
 
@@ -182,18 +182,18 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getBandwidthUsed" id="_getBandwidthUsed">
+		<tr data-order="getAliases" id="_getAliases">
 
 			<td class="attributes"><code>
 				 public 
-				
+				string[]
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getBandwidthUsed">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#34-37" title="Go to source code">getBandwidthUsed</a>( )</code>
+			<a class="anchor" href="#_getAliases">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#63-69" title="Go to source code">getAliases</a>( )</code>
 
 			<div class="description short">
 				
@@ -204,6 +204,76 @@
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						string[]<br>List of aliases for this domain.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getBandwidthUsed" id="_getBandwidthUsed">
+
+			<td class="attributes"><code>
+				 public 
+				float
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getBandwidthUsed">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#71-77" title="Go to source code">getBandwidthUsed</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						float<br>Bandwidth used in megabytes.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getBandwidthLimit" id="_getBandwidthLimit">
+
+			<td class="attributes"><code>
+				 public 
+				float|null
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getBandwidthLimit">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#79-85" title="Go to source code">getBandwidthLimit</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						float|null<br>Bandwidth quotum in megabytes, or NULL for unlimited.
+					</div>
 
 
 
@@ -215,14 +285,80 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				float
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDiskUsage">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#39-42" title="Go to source code">getDiskUsage</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#87-93" title="Go to source code">getDiskUsage</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						float<br>Disk usage in megabytes.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getDomainName" id="_getDomainName">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getDomainName">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#95-101" title="Go to source code">getDomainName</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>The real domain name.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getEmailForwarders" id="_getEmailForwarders">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getEmailForwarders">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#103-106" title="Go to source code">getEmailForwarders</a>( )</code>
 
 			<div class="description short">
 				
@@ -240,7 +376,7 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getDomainName" id="_getDomainName">
+		<tr data-order="getMailboxes" id="_getMailboxes">
 
 			<td class="attributes"><code>
 				 public 
@@ -250,8 +386,8 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getDomainName">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#44-47" title="Go to source code">getDomainName</a>( )</code>
+			<a class="anchor" href="#_getMailboxes">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#108-111" title="Go to source code">getMailboxes</a>( )</code>
 
 			<div class="description short">
 				
@@ -262,6 +398,39 @@
 
 
 
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getPointers" id="_getPointers">
+
+			<td class="attributes"><code>
+				 public 
+				string[]
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getPointers">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#113-119" title="Go to source code">getPointers</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string[]<br>List of domain pointers for this domain.
+					</div>
 
 
 
