@@ -11,6 +11,7 @@ namespace Omines\DirectAdmin\Context;
 
 use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\DirectAdminException;
+use Omines\DirectAdmin\Objects\Domain;
 use Omines\DirectAdmin\Objects\Users\Admin;
 use Omines\DirectAdmin\Objects\Users\Reseller;
 use Omines\DirectAdmin\Objects\Users\User;
@@ -67,28 +68,19 @@ class UserContext extends BaseContext
 
     /**
      * @param string $domainName
-     * @return null|DomainContext
+     * @return null|Domain
      */
     public function getDomain($domainName)
     {
-        if(!isset($this->domains))
-            $this->getDomains();
-        return isset($this->domains[$domainName]) ? $this->domains[$domainName] : null;
+        return $this->getContextUser()->getDomain($domainName);
     }
 
     /**
-     * @return DomainContext[] Associative array of owned domains of this user.
+     * @return Domain[]
      */
     public function getDomains()
     {
-        if(!isset($this->domains))
-        {
-            $this->domains = $this->invokeGet('ADDITIONAL_DOMAINS');
-            array_walk($this->domains, function(&$value) {
-                $value = new DomainContext($this, $this->getConnection(), $value);
-            });
-        }
-        return $this->domains;
+        return $this->getContextUser()->getDomains();
     }
 
     /**

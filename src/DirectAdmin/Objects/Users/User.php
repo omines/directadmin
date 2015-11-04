@@ -56,28 +56,26 @@ class User extends Object
 
     /**
      * @param string $domainName
-     * @return null|Domain|DomainContext
+     * @return null|Domain
      */
     public function getDomain($domainName)
     {
-        if($this->isSelfManaged())
-            return $this->getContext()->getDomain($domainName);
         if(!isset($this->domains))
             $this->getDomains();
         return isset($this->domains[$domainName]) ? $this->domains[$domainName] : null;
     }
 
     /**
-     * @return Domain[]|DomainContext[]
+     * @return Domain[]
      */
     public function getDomains()
     {
-        if($this->isSelfManaged())
-            return $this->getContext()->getDomains();
         if(!isset($this->domains))
         {
-            $domains = $this->getContext()->invokeGet('SHOW_USER_DOMAINS', ['user' => $this->getUsername()]);
-            $this->domains = Object::toRichObjectArray($domains, Domain::class, $this->getContext());
+            if(!$this->isSelfManaged())
+                $this->domains = $this->impersonate()->getDomains();
+            else
+                $this->domains = Object::toRichObjectArray($this->getContext()->invokeGet('ADDITIONAL_DOMAINS'), Domain::class, $this->getContext());
         }
         return $this->domains;
     }

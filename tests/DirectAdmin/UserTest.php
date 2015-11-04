@@ -66,7 +66,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $domainAsUser = $context->getDomain(TEST_USER_DOMAIN);
         $this->assertEquals($domainAsAdmin->getBandwidthUsed(), $domainAsUser->getBandwidthUsed());
         $this->assertEquals($domainAsAdmin->getDiskUsage(), $domainAsUser->getDiskUsage());
-        $this->assertEquals($context, $domainAsUser->getUserContext());
+        $this->assertEquals($context, $domainAsUser->getContext());
 
         // Should be no further objects or settings yet
         $this->assertEmpty($domainAsUser->getAliases());

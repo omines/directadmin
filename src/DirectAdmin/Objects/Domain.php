@@ -12,37 +12,109 @@ namespace Omines\DirectAdmin\Objects;
 use Omines\DirectAdmin\Context\UserContext;
 
 /**
- * Domain
+ * Encapsulates a domain and its derived objects, like aliases, pointers and mailboxes.
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class Domain extends Object
 {
-    private $stats;
+    /** @var string */
+    private $domainName;
+
+    /** @var string[] */
+    private $aliases;
+
+    /** @var string[] */
+    private $pointers;
+
+    /** @var float */
+    private $bandwidthUsed;
+
+    /** @var float|null */
+    private $bandwidthLimit;
+
+    /** @var float */
+    private $diskUsage;
 
     /**
-     * @param string $name
-     * @param UserContext $context
-     * @param array
+     * Construct the object.
+     *
+     * @param string $name The domain name.
+     * @param UserContext $context The owning user context.
+     * @param string $config The basic config string as returned by CMD_API_ADDITIONAL_DOMAINS.
      */
-    public function __construct($name, UserContext $context, $stats)
+    public function __construct($name, UserContext $context, $config)
     {
         parent::__construct($name, $context);
-        $this->stats = explode(':', $stats);
+
+        // Unpack domain config
+        $data = \GuzzleHttp\Psr7\parse_query($config);
+        $this->domainName = $data['domain'];
+
+        $bandwidths = array_map('trim', explode('/', $data['bandwidth']));
+        $this->bandwidthUsed = floatval($bandwidths[0]);
+        $this->bandwidthLimit = ctype_alpha($bandwidths[1]) ? null : floatval($bandwidths[1]);
+        $this->diskUsage = floatval($data['quota']);
+
+        $this->aliases = array_filter(explode('|', $data['alias_pointers']));
+        $this->pointers = array_filter(explode('|', $data['pointers']));
     }
 
+    /**
+     * @return string[] List of aliases for this domain.
+     */
+    public function getAliases()
+    {
+        return $this->aliases;
+    }
+
+    /**
+     * @return float Bandwidth used in megabytes.
+     */
     public function getBandwidthUsed()
     {
-        return floatval($this->stats[0]);
+        return $this->bandwidthUsed;
     }
 
+    /**
+     * @return float|null Bandwidth quotum in megabytes, or NULL for unlimited.
+     */
+    public function getBandwidthLimit()
+    {
+        return $this->bandwidthLimit;
+    }
+
+    /**
+     * @return float Disk usage in megabytes.
+     */
     public function getDiskUsage()
     {
-        return floatval($this->stats[2]);
+        return $this->diskUsage;
     }
 
+    /**
+     * @return string The real domain name.
+     */
     public function getDomainName()
     {
-        return $this->getName();
+        return $this->domainName;
+    }
+
+    public function getEmailForwarders()
+    {
+        return $this->getContext()->invokeGet('EMAIL_FORWARDERS', ['domain' => $this->getDomainName()]);
+    }
+
+    public function getMailboxes()
+    {
+        return $this->getContext()->invokeGet('POP', ['domain' => $this->getDomainName(), 'action' => 'list']);
+    }
+
+    /**
+     * @return string[] List of domain pointers for this domain.
+     */
+    public function getPointers()
+    {
+        return $this->pointers;
     }
 }

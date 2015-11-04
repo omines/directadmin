@@ -4,9 +4,8 @@
 [![Coverage Status](https://coveralls.io/repos/omines/directadmin/badge.svg?branch=master&service=github)](https://coveralls.io/github/omines/directadmin?branch=master)
 [![Scrutinizer](https://img.shields.io/scrutinizer/g/omines/directadmin.svg)](https://scrutinizer-ci.com/g/omines/directadmin/?branch=master)
 [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/47a71204-f274-4416-9db1-9773d65845ca.svg)](https://insight.sensiolabs.com/projects/47a71204-f274-4416-9db1-9773d65845ca)
-
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/omines/directadmin/master/LICENSE)
-[![PHP Compatibility](https://img.shields.io/badge/php-5.5%20%7C%205.6%20%7C%207.0%20%7C%20hhvm-blue.svg)](https://travis-ci.org/omines/directadmin)
+[![PHP Compatibility](https://img.shields.io/badge/php-5.5%20%7C%205.6%20%7C%207.0%20%7C%20hhvm-lightgrey.svg)](https://travis-ci.org/omines/directadmin)
 
 This is a PHP client library to manage DirectAdmin control panel servers. We simply decided to develop this as we needed
 automation of our own DirectAdmin servers, and the existing implementations were unsupported and incomplete.
