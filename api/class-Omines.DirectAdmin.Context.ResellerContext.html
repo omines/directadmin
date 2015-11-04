@@ -148,7 +148,7 @@
 
 				<b>Author:</b>
 				Niels Keurentjes <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m">&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m</a><br>
-			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#15-119" title="Go to source code">DirectAdmin/Context/ResellerContext.php</a>
+			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#15-133" title="Go to source code">DirectAdmin/Context/ResellerContext.php</a>
 		<br>
 	</div>
 
@@ -168,26 +168,26 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_createUser">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#22-39" title="Go to source code">createUser</a>( <span>string <var>$username</var></span>, <span>string <var>$password</var></span>, <span>string <var>$email</var></span>, <span>string <var>$domain</var></span>, <span>string <var>$ip</var></span>, <span>string|array <var>$package</var> = []</span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#22-41" title="Go to source code">createUser</a>( <span>string <var>$username</var></span>, <span>string <var>$password</var></span>, <span>string <var>$email</var></span>, <span>string <var>$domain</var></span>, <span>string <var>$ip</var></span>, <span>string|array <var>$package</var> = []</span> )</code>
 
 			<div class="description short">
-				
+				<p>Creates a new user on the server.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Creates a new user on the server.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$username</var></dt>
-						<dd></dd>
+						<dd>Login for the new user.</dd>
 						<dt><var>$password</var></dt>
-						<dd></dd>
+						<dd>Password for the new user.</dd>
 						<dt><var>$email</var></dt>
-						<dd></dd>
+						<dd>Email for the new user.</dd>
 						<dt><var>$domain</var></dt>
-						<dd></dd>
+						<dd>Default domain for the new user.</dd>
 						<dt><var>$ip</var></dt>
 						<dd>IP for the user.</dd>
 						<dt><var>$package</var></dt>
@@ -220,7 +220,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_createAccount">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#41-63" title="Go to source code">createAccount</a>( <span>string <var>$username</var></span>, <span>string <var>$password</var></span>, <span>string <var>$email</var></span>, <span>array <var>$options</var></span>, <span>string <var>$endpoint</var></span>, <span>string <var>$returnType</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#43-65" title="Go to source code">createAccount</a>( <span>string <var>$username</var></span>, <span>string <var>$password</var></span>, <span>string <var>$email</var></span>, <span>array <var>$options</var></span>, <span>string <var>$endpoint</var></span>, <span>string <var>$returnType</var></span> )</code>
 
 			<div class="description short">
 				<p>Internal helper function for creating new accounts.</p>
@@ -233,17 +233,17 @@
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$username</var></dt>
-						<dd></dd>
+						<dd>Login for the new user.</dd>
 						<dt><var>$password</var></dt>
-						<dd></dd>
+						<dd>Password for the new user.</dd>
 						<dt><var>$email</var></dt>
-						<dd></dd>
+						<dd>Email for the new user.</dd>
 						<dt><var>$options</var></dt>
-						<dd></dd>
+						<dd>List of DA account options to apply.</dd>
 						<dt><var>$endpoint</var></dt>
-						<dd></dd>
+						<dd>API endpoint to invoke.</dd>
 						<dt><var>$returnType</var></dt>
-						<dd></dd>
+						<dd>Class name that should wrap the resulting account.</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -268,14 +268,14 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_deleteAccount">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#65-71" title="Go to source code">deleteAccount</a>( <span>string <var>$username</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#67-75" title="Go to source code">deleteAccount</a>( <span>string <var>$username</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Deletes a single account.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Deletes a single account.</p>
 
 
 					<h4>Parameters</h4>
@@ -302,14 +302,14 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_deleteAccounts">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#73-82" title="Go to source code">deleteAccounts</a>( <span>array <var>$usernames</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#77-88" title="Go to source code">deleteAccounts</a>( <span>array <var>$usernames</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Deletes multiple accounts.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Deletes multiple accounts.</p>
 
 
 					<h4>Parameters</h4>
@@ -336,20 +336,20 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getIPs">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#84-90" title="Go to source code">getIPs</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#90-98" title="Go to source code">getIPs</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Returns all IPs available to this reseller.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns all IPs available to this reseller.</p>
 
 
 
 					<h4>Returns</h4>
 					<div class="list">
-						array<br>List of IPs owned by this reseller.
+						array<br>List of IPs as strings.
 					</div>
 
 
@@ -369,14 +369,14 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getUser">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#92-100" title="Go to source code">getUser</a>( <span>string <var>$username</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#100-110" title="Go to source code">getUser</a>( <span>string <var>$username</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Returns a single user by name.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns a single user by name.</p>
 
 
 					<h4>Parameters</h4>
@@ -407,20 +407,20 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getUsers">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#102-108" title="Go to source code">getUsers</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#112-120" title="Go to source code">getUsers</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Returns all users for this reseller.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns all users for this reseller.</p>
 
 
 
 					<h4>Returns</h4>
 					<div class="list">
-						<code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a>[]</code>
+						<code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a>[]</code><br>Associative array of users.
 					</div>
 
 
@@ -440,20 +440,20 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_impersonateUser">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#110-118" title="Go to source code">impersonateUser</a>( <span>string <var>$username</var></span>, <span>boolean <var>$validate</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#122-132" title="Go to source code">impersonateUser</a>( <span>string <var>$username</var></span>, <span>boolean <var>$validate</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Impersonates a user, allowing the reseller/admin to act on their behalf.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Impersonates a user, allowing the reseller/admin to act on their behalf.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$username</var></dt>
-						<dd></dd>
+						<dd>Login of the account to impersonate.</dd>
 						<dt><var>$validate</var></dt>
 						<dd>Whether to check the user exists and is a user.</dd>
 					</dl></div>
