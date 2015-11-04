@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Omines\DirectAdmin\Context\AdminContext</title>
+
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
+
+</head>
+
+<body>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
+
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="namespace-Omines.DirectAdmin.Context.html" title="Summary of Omines\DirectAdmin\Context"><span>Namespace</span></a>
+					</li>
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+					<li class="active">
+						<a href="namespace-Omines.html">
+							Omines<span></span>
+						</a>
+							<ul>
+					<li class="active">
+						<a href="namespace-Omines.DirectAdmin.html">
+							DirectAdmin<span></span>
+						</a>
+							<ul>
+					<li class="active">
+						<a href="namespace-Omines.DirectAdmin.Context.html">
+							Context						</a>
+							</li>
+					<li>
+						<a href="namespace-Omines.DirectAdmin.Objects.html">
+							Objects<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-Omines.DirectAdmin.Objects.Users.html">
+							Users						</a>
+							</li>
+								</ul></li></ul></li></ul></li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Omines.DirectAdmin.Context.AdminContext.html">AdminContext</a></li>
+				<li><a href="class-Omines.DirectAdmin.Context.BaseContext.html">BaseContext</a></li>
+				<li><a href="class-Omines.DirectAdmin.Context.DomainContext.html">DomainContext</a></li>
+				<li><a href="class-Omines.DirectAdmin.Context.ResellerContext.html">ResellerContext</a></li>
+				<li><a href="class-Omines.DirectAdmin.Context.UserContext.html">UserContext</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Class AdminContext</h1>
+
+
+	<div class="description">
+	<p>Context for administrator functions.</p>
+	</div>
+
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+			<a href="class-Omines.DirectAdmin.Context.BaseContext.html"><span>Omines\DirectAdmin\Context\BaseContext</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-Omines.DirectAdmin.Context.UserContext.html"><span>Omines\DirectAdmin\Context\UserContext</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-Omines.DirectAdmin.Context.ResellerContext.html"><span>Omines\DirectAdmin\Context\ResellerContext</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:90px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Omines\DirectAdmin\Context\AdminContext</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Omines.html">Omines</a>\<a href="namespace-Omines.DirectAdmin.html">DirectAdmin</a>\<a href="namespace-Omines.DirectAdmin.Context.html">Context</a><br>
+		
+
+				<b>Author:</b>
+				Niels Keurentjes &lt;niels.keurentjes@omines.com<br>
+			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Context.AdminContext.html#17-119" title="Go to source code">DirectAdmin/Context/AdminContext.php</a>
+		<br>
+	</div>
+
+
+
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="createAdmin" id="_createAdmin">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Omines.DirectAdmin.Objects.Users.Admin.html">Omines\DirectAdmin\Objects\Users\Admin</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_createAdmin">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Context.AdminContext.html#24-35" title="Go to source code">createAdmin</a>( <span>string <var>$username</var></span>, <span>string <var>$password</var></span>, <span>string <var>$email</var></span> )</code>
+
+			<div class="description short">
+				<p>Creates a new Admin level account.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Creates a new Admin level account.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$username</var></dt>
+						<dd></dd>
+						<dt><var>$password</var></dt>
+						<dd></dd>
+						<dt><var>$email</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Omines.DirectAdmin.Objects.Users.Admin.html">Omines\DirectAdmin\Objects\Users\Admin</a></code><br>The newly created Admin.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="createReseller" id="_createReseller">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Omines.DirectAdmin.Objects.Users.Reseller.html">Omines\DirectAdmin\Objects\Users\Reseller</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_createReseller">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Context.AdminContext.html#37-54" title="Go to source code">createReseller</a>( <span>string <var>$username</var></span>, <span>string <var>$password</var></span>, <span>string <var>$email</var></span>, <span>string <var>$domain</var></span>, <span>string|array <var>$package</var> = []</span>, <span>string <var>$ip</var> = <span class="php-quote">'shared'</span></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$username</var></dt>
+						<dd></dd>
+						<dt><var>$password</var></dt>
+						<dd></dd>
+						<dt><var>$email</var></dt>
+						<dd></dd>
+						<dt><var>$domain</var></dt>
+						<dd></dd>
+						<dt><var>$package</var></dt>
+						<dd>Either a package name or an array of options for custom.</dd>
+						<dt><var>$ip</var></dt>
+						<dd>shared, sharedreseller or assign. Defaults to 'shared'.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Omines.DirectAdmin.Objects.Users.Reseller.html">Omines\DirectAdmin\Objects\Users\Reseller</a></code>
+					</div>
+
+
+					<h4>Url</h4>
+					<div class="list">
+							http://www.directadmin.com/api.html#create for options to use.<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getAdmins" id="_getAdmins">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Omines.DirectAdmin.Objects.Users.Admin.html">Omines\DirectAdmin\Objects\Users\Admin</a>[]</code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getAdmins">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Context.AdminContext.html#56-62" title="Go to source code">getAdmins</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Omines.DirectAdmin.Objects.Users.Admin.html">Omines\DirectAdmin\Objects\Users\Admin</a>[]</code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getAllAccounts" id="_getAllAccounts">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a>[]</code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getAllAccounts">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Context.AdminContext.html#64-72" title="Go to source code">getAllAccounts</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a>[]</code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getAllUsers" id="_getAllUsers">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a>[]</code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getAllUsers">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Context.AdminContext.html#74-80" title="Go to source code">getAllUsers</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a>[]</code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getReseller" id="_getReseller">
+
+			<td class="attributes"><code>
+				 public 
+				null|<code><a href="class-Omines.DirectAdmin.Objects.Users.Reseller.html">Omines\DirectAdmin\Objects\Users\Reseller</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getReseller">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Context.AdminContext.html#82-90" title="Go to source code">getReseller</a>( <span>string <var>$username</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$username</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						null|<code><a href="class-Omines.DirectAdmin.Objects.Users.Reseller.html">Omines\DirectAdmin\Objects\Users\Reseller</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getResellers" id="_getResellers">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Omines.DirectAdmin.Objects.Users.Reseller.html">Omines\DirectAdmin\Objects\Users\Reseller</a>[]</code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getResellers">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Context.AdminContext.html#92-98" title="Go to source code">getResellers</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Omines.DirectAdmin.Objects.Users.Reseller.html">Omines\DirectAdmin\Objects\Users\Reseller</a>[]</code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="impersonateAdmin" id="_impersonateAdmin">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Omines.DirectAdmin.Context.AdminContext.html">Omines\DirectAdmin\Context\AdminContext</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_impersonateAdmin">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Context.AdminContext.html#100-108" title="Go to source code">impersonateAdmin</a>( <span>string <var>$username</var></span>, <span>boolean <var>$validate</var> = <span class="php-keyword1">false</span></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$username</var></dt>
+						<dd></dd>
+						<dt><var>$validate</var></dt>
+						<dd>Whether to check the admin exists and is an admin.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Omines.DirectAdmin.Context.AdminContext.html">Omines\DirectAdmin\Context\AdminContext</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="impersonateReseller" id="_impersonateReseller">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Omines.DirectAdmin.Context.ResellerContext.html">Omines\DirectAdmin\Context\ResellerContext</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_impersonateReseller">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Context.AdminContext.html#110-118" title="Go to source code">impersonateReseller</a>( <span>string <var>$username</var></span>, <span>boolean <var>$validate</var> = <span class="php-keyword1">false</span></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$username</var></dt>
+						<dd></dd>
+						<dt><var>$validate</var></dt>
+						<dd>Whether to check the reseller exists and is a reseller.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Omines.DirectAdmin.Context.ResellerContext.html">Omines\DirectAdmin\Context\ResellerContext</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
+		</div>
+
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Omines.DirectAdmin.Context.ResellerContext.html#methods">Omines\DirectAdmin\Context\ResellerContext</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-Omines.DirectAdmin.Context.ResellerContext.html#_createAccount">createAccount()</a></code>, 
+				<code><a href="class-Omines.DirectAdmin.Context.ResellerContext.html#_createUser">createUser()</a></code>, 
+				<code><a href="class-Omines.DirectAdmin.Context.ResellerContext.html#_deleteAccount">deleteAccount()</a></code>, 
+				<code><a href="class-Omines.DirectAdmin.Context.ResellerContext.html#_deleteAccounts">deleteAccounts()</a></code>, 
+				<code><a href="class-Omines.DirectAdmin.Context.ResellerContext.html#_getIPs">getIPs()</a></code>, 
+				<code><a href="class-Omines.DirectAdmin.Context.ResellerContext.html#_getUser">getUser()</a></code>, 
+				<code><a href="class-Omines.DirectAdmin.Context.ResellerContext.html#_getUsers">getUsers()</a></code>, 
+				<code><a href="class-Omines.DirectAdmin.Context.ResellerContext.html#_impersonateUser">impersonateUser()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Omines.DirectAdmin.Context.UserContext.html#methods">Omines\DirectAdmin\Context\UserContext</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-Omines.DirectAdmin.Context.UserContext.html#___construct">__construct()</a></code>, 
+				<code><a href="class-Omines.DirectAdmin.Context.UserContext.html#_getContextUser">getContextUser()</a></code>, 
+				<code><a href="class-Omines.DirectAdmin.Context.UserContext.html#_getDomain">getDomain()</a></code>, 
+				<code><a href="class-Omines.DirectAdmin.Context.UserContext.html#_getDomains">getDomains()</a></code>, 
+				<code><a href="class-Omines.DirectAdmin.Context.UserContext.html#_getType">getType()</a></code>, 
+				<code><a href="class-Omines.DirectAdmin.Context.UserContext.html#_getUsername">getUsername()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Omines.DirectAdmin.Context.BaseContext.html#methods">Omines\DirectAdmin\Context\BaseContext</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-Omines.DirectAdmin.Context.BaseContext.html#_getConnection">getConnection()</a></code>, 
+				<code><a href="class-Omines.DirectAdmin.Context.BaseContext.html#_invokeGet">invokeGet()</a></code>, 
+				<code><a href="class-Omines.DirectAdmin.Context.BaseContext.html#_invokePost">invokePost()</a></code>
+			</p>
+		</div>
+
+
+
+
+
+
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
