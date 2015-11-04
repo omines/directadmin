@@ -2,8 +2,8 @@
 wget http://www.apigen.org/apigen.phar
 
 # Generate Api
-php apigen.phar generate -s ../src -d ../../gh-pages/api
-cd ../../gh-pages
+php apigen.phar generate -s src -d ../gh-pages/api
+cd ../gh-pages
 
 # Set identity
 git config --global user.email "travis@travis-ci.org"
