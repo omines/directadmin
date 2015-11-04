@@ -26,9 +26,6 @@ class UserContext extends BaseContext
     /** @var User */
     private $user;
 
-    /** @var DomainContext[] */
-    private $domains;
-
     /**
      * @param DirectAdmin $connection A prepared connection.
      * @param bool $validate Whether to check if the connection matches the context.

@@ -9,7 +9,6 @@
 
 namespace Omines\DirectAdmin\Objects\Users;
 
-use Omines\DirectAdmin\Context\DomainContext;
 use Omines\DirectAdmin\Context\ResellerContext;
 use Omines\DirectAdmin\Context\UserContext;
 use Omines\DirectAdmin\DirectAdmin;
@@ -45,7 +44,7 @@ class User extends Object
     }
 
     /**
-     * @return Domain|DomainContext|null The default domain for the user, if any.
+     * @return Domain|null The default domain for the user, if any.
      */
     public function getDefaultDomain()
     {

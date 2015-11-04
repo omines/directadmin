@@ -16,7 +16,7 @@ use Omines\DirectAdmin\Context\ResellerContext;
 use Omines\DirectAdmin\Context\UserContext;
 
 /**
- * DirectAdmin API wrapper class.
+ * DirectAdmin API main class, encapsulating a specific account connection to a single server.
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
@@ -42,10 +42,12 @@ class DirectAdmin
     private $connection;
 
     /**
-     * @param string $url
-     * @param string $username
-     * @param string $password
-     * @param bool|false $validate
+     * Connects to DirectAdmin with an admin account.
+     *
+     * @param string $url The base URL of the DirectAdmin server.
+     * @param string $username The username of the account.
+     * @param string $password The password of the account.
+     * @param bool $validate Whether to ensure the account exists and is of the correct type.
      * @return AdminContext
      */
     public static function connectAdmin($url, $username, $password, $validate = false)
@@ -54,10 +56,10 @@ class DirectAdmin
     }
 
     /**
-     * @param string $url
-     * @param string $username
-     * @param string $password
-     * @param bool|false $validate
+     * @param string $url The base URL of the DirectAdmin server.
+     * @param string $username The username of the account.
+     * @param string $password The password of the account.
+     * @param bool $validate Whether to ensure the account exists and is of the correct type.
      * @return ResellerContext
      */
     public static function connectReseller($url, $username, $password, $validate = false)
@@ -66,10 +68,10 @@ class DirectAdmin
     }
 
     /**
-     * @param string $url
-     * @param string $username
-     * @param string $password
-     * @param string bool|false $validate
+     * @param string $url The base URL of the DirectAdmin server.
+     * @param string $username The username of the account.
+     * @param string $password The password of the account.
+     * @param bool $validate Whether to ensure the account exists and is of the correct type.
      * @return UserContext
      */
     public static function connectUser($url, $username, $password, $validate = false)
@@ -78,9 +80,11 @@ class DirectAdmin
     }
 
     /**
-     * @param string $url
-     * @param string $username
-     * @param string $password
+     * Creates a connection wrapper to DirectAdmin as the specified account.
+     *
+     * @param string $url The base URL of the DirectAdmin server.
+     * @param string $username The username of the account.
+     * @param string $password The password of the account.
      */
     protected function __construct($url, $username, $password)
     {
