@@ -31,9 +31,6 @@ class Domain extends Object
     /** @var string[] */
     private $aliasesAndPointers;
 
-    /** @var Forwarder[]  */
-    private $forwarders;
-
     /** @var float */
     private $bandwidthUsed;
 
@@ -68,6 +65,18 @@ class Domain extends Object
     }
 
     /**
+     * Creates a new email forwarder.
+     *
+     * @param string $prefix Part of the email address before the @.
+     * @param string|string[] $recipients One or more recipients.
+     * @return Forwarder The newly created forwarder.
+     */
+    public function createForwarder($prefix, $recipients)
+    {
+        return Forwarder::create($this, $prefix, $recipients);
+    }
+
+    /**
      * @return string[] List of aliases for this domain.
      */
     public function getAliases()
@@ -76,18 +85,17 @@ class Domain extends Object
     }
 
     /**
-     * Returns unified list of aliases and pointers.
+     * Returns unified sorted list of main domain name, aliases and pointers.
      *
      * @return string[]
      */
-    public function getAliasesAndPointers()
+    public function getDomainNames()
     {
-        if(!isset($this->aliasesAndPointers))
-        {
-            $this->aliasesAndPointers = array_merge($this->aliases, $this->pointers);
-            sort($this->aliasesAndPointers);
-        }
-        return $this->aliasesAndPointers;
+        return $this->getCache('domainNames', function() {
+            $list = array_merge($this->aliases, $this->pointers, [$this->getDomainName()]);
+            sort($list);
+            return $list;
+        });
     }
 
     /**
@@ -122,14 +130,15 @@ class Domain extends Object
         return $this->domainName;
     }
 
+    /**
+     * @return Forwarder[] Associative array of forwarders.
+     */
     public function getForwarders()
     {
-        if(!isset($this->forwarders))
-        {
+        return $this->getCache('forwarders', function() {
             $forwarders = $this->getContext()->invokeGet('EMAIL_FORWARDERS', ['domain' => $this->getDomainName()]);
-            $this->forwarders = DomainObject::toDomainObjectArray($forwarders, Forwarder::class, $this->getContext(), $this);
-        }
-        return $this->forwarders;
+            return DomainObject::toDomainObjectArray($forwarders, Forwarder::class, $this);
+        });
     }
 
     public function getMailboxes()
@@ -143,5 +152,15 @@ class Domain extends Object
     public function getPointers()
     {
         return $this->pointers;
+    }
+
+    /**
+     * Allows Domain object to be passed as a string with its domain name.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getDomainName();
     }
 }

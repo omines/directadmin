@@ -23,12 +23,20 @@ abstract class DomainObject extends Object
 
     /**
      * @param string $name Canonical name for the object.
-     * @param UserContext $context Context within which the object is valid.
+     * @param Domain $domain Domain to which the object belongs.
      */
-    protected function __construct($name, UserContext $context, Domain $domain)
+    protected function __construct($name, Domain $domain)
     {
-        parent::__construct($name, $context);
+        parent::__construct($name, $domain->getContext());
         $this->domain = $domain;
+    }
+
+    /**
+     * Clears the domain's cache.
+     */
+    protected function clearDomainCache()
+    {
+        $this->domain->clearCache();
     }
 
     /**
@@ -40,18 +48,25 @@ abstract class DomainObject extends Object
     }
 
     /**
+     * @return string
+     */
+    public function getDomainName()
+    {
+        return $this->domain->getDomainName();
+    }
+
+    /**
      * Converts an associative array of descriptors to objects of the specified type.
      *
      * @param array $items
      * @param string $class
-     * @param UserContext $context
      * @param Domain $domain
      * @return array
      */
-    public static function toDomainObjectArray(array $items, $class, UserContext $context, Domain $domain)
+    public static function toDomainObjectArray(array $items, $class, Domain $domain)
     {
-        array_walk($items, function(&$value, $name) use ($class, $context, $domain) {
-            $value = new $class($name, $context, $domain, $value);
+        array_walk($items, function(&$value, $name) use ($class, $domain) {
+            $value = new $class($name, $domain, $value);
         });
         return $items;
     }

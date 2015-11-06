@@ -72,6 +72,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     {
         $domainAsAdmin = self::$user->getDomain(TEST_USER_DOMAIN);
         $domainAsUser = $context->getDomain(TEST_USER_DOMAIN);
+        $this->assertEquals(strval($domainAsAdmin), strval($domainAsUser));
         $this->assertEquals($domainAsAdmin->getBandwidthUsed(), $domainAsUser->getBandwidthUsed());
         $this->assertEquals($domainAsAdmin->getDiskUsage(), $domainAsUser->getDiskUsage());
         $this->assertEquals($context, $domainAsUser->getContext());
@@ -95,5 +96,23 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($user->getDomainLimit());
         $this->assertEquals(0, $user->getDiskUsage());
         $this->assertNull($user->getDiskLimit());
+    }
+
+    /**
+     * @depends testDefaultDomain
+     */
+    public function testForwarders(Domain $domain)
+    {
+        $this->assertEmpty($domain->getForwarders());
+        $domain->createForwarder('single', 'single@example.org');
+        $domain->createForwarder('multiple', ['recipient@example.org', 'recipient@gmail.com']);
+        $this->assertCount(2, $forwarders = $domain->getForwarders());
+        $forwarder = $forwarders['single'];
+        $this->assertEquals('single', $forwarder->getPrefix());
+        $this->assertContains('single@example.org', $forwarder->getRecipients());
+        $aliases = $forwarder->getAliases();
+        $this->assertContains('single@' . TEST_USER_DOMAIN, $forwarder->getAliases());
+        $forwarders['single']->delete();
+        $this->assertCount(1, $forwarders = $domain->getForwarders());
     }
 }
