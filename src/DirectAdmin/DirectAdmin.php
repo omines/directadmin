@@ -56,6 +56,8 @@ class DirectAdmin
     }
 
     /**
+     * Connects to DirectAdmin with a reseller account.
+     *
      * @param string $url The base URL of the DirectAdmin server.
      * @param string $username The username of the account.
      * @param string $password The password of the account.
@@ -68,6 +70,8 @@ class DirectAdmin
     }
 
     /**
+     * Connects to DirectAdmin with a user account.
+     *
      * @param string $url The base URL of the DirectAdmin server.
      * @param string $username The username of the account.
      * @param string $password The password of the account.
@@ -102,6 +106,8 @@ class DirectAdmin
     }
 
     /**
+     * Returns the username behind the current connection.
+     *
      * @return string Currently logged in user's username.
      */
     public function getUsername()

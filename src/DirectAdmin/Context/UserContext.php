@@ -12,8 +12,6 @@ namespace Omines\DirectAdmin\Context;
 use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\DirectAdminException;
 use Omines\DirectAdmin\Objects\Domain;
-use Omines\DirectAdmin\Objects\Users\Admin;
-use Omines\DirectAdmin\Objects\Users\Reseller;
 use Omines\DirectAdmin\Objects\Users\User;
 
 /**
@@ -27,6 +25,8 @@ class UserContext extends BaseContext
     private $user;
 
     /**
+     * Constructs the object.
+     *
      * @param DirectAdmin $connection A prepared connection.
      * @param bool $validate Whether to check if the connection matches the context.
      */
@@ -46,6 +46,8 @@ class UserContext extends BaseContext
     }
 
     /**
+     * Returns the type of the account (user/reseller/admin).
+     *
      * @return string One of the DirectAdmin::ACCOUNT_TYPE_ constants describing the type of underlying account.
      */
     public function getType()
@@ -54,7 +56,9 @@ class UserContext extends BaseContext
     }
 
     /**
-     * @return Admin|Reseller|User The user object behind the context.
+     * Returns the actual user object behind the context.
+     *
+     * @return User The user object behind the context.
      */
     public function getContextUser()
     {
@@ -64,8 +68,10 @@ class UserContext extends BaseContext
     }
 
     /**
-     * @param string $domainName
-     * @return null|Domain
+     * Returns a domain managed by the current user.
+     *
+     * @param string $domainName The requested domain name.
+     * @return null|Domain The domain if found, or NULL if it does not exist.
      */
     public function getDomain($domainName)
     {
@@ -73,6 +79,8 @@ class UserContext extends BaseContext
     }
 
     /**
+     * Returns a full list of the domains managed by the current user.
+     *
      * @return Domain[]
      */
     public function getDomains()
@@ -81,6 +89,8 @@ class UserContext extends BaseContext
     }
 
     /**
+     * Returns the username of the current context.
+     *
      * @return string Username for the current context.
      */
     public function getUsername()

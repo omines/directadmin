@@ -26,6 +26,13 @@ class User extends Object
     /** @var Domain[] **/
     private $domains;
 
+    /**
+     * Construct the object.
+     *
+     * @param string $name Username of the account.
+     * @param UserContext $context The context managing this object.
+     * @param mixed|null $config An optional preloaded configuration.
+     */
     public function __construct($name, UserContext $context, $config = null)
     {
         parent::__construct($name, $context);

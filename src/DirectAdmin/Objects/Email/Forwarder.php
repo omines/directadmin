@@ -63,6 +63,8 @@ class Forwarder extends MailObject
     }
 
     /**
+     * Returns a list of the recipients of this forwarder.
+     *
      * @return string[]
      */
     public function getRecipients()

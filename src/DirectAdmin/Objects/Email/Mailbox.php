@@ -84,6 +84,8 @@ class Mailbox extends MailObject
     }
 
     /**
+     * Returns the disk quota in megabytes.
+     *
      * @return float|null
      */
     public function getDiskLimit()
@@ -92,6 +94,8 @@ class Mailbox extends MailObject
     }
 
     /**
+     * Returns the disk usage in megabytes.
+     *
      * @return float
      */
     public function getDiskUsage()
@@ -100,6 +104,8 @@ class Mailbox extends MailObject
     }
 
     /**
+     * Return the amount of mails sent in the current period.
+     *
      * @return int
      */
     public function getMailsSent()
