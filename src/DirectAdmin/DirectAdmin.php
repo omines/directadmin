@@ -123,9 +123,7 @@ class DirectAdmin
         $result = $this->rawRequest($method, '/CMD_API_' . $command, $options);
         if(!empty($result['error']))
             throw new DirectAdminException("$method to $command failed: $result[details] ($result[text])");
-        elseif(count($result) == 1 && isset($result['list[]']))
-            $result = $result['list[]'];
-        return is_array($result) ? $result : [$result];
+        return self::toArray($result);
     }
 
     /**
@@ -175,5 +173,19 @@ class DirectAdmin
         $unescaped = preg_replace_callback('/&#([0-9]{2})/', function($val) {
             return chr($val[1]); }, $data);
         return \GuzzleHttp\Psr7\parse_query($unescaped);
+    }
+
+    /**
+     * Ensures a DA-style response is wrapped properly as an array.
+     *
+     * @param mixed $result Messy input.
+     * @return array Sane output.
+     */
+    private static function toArray($result)
+    {
+        if(count($result) == 1 && isset($result['list[]']))
+            $result = $result['list[]'];
+        return is_array($result) ? $result : [$result];
+
     }
 }

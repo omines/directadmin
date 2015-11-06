@@ -64,7 +64,7 @@ class Mailbox extends MailObject
      */
     public function delete()
     {
-        parent::invokeDelete('POP', 'user');
+        $this->invokeDelete('POP', 'user');
     }
 
     /**

@@ -59,7 +59,7 @@ class Forwarder extends MailObject
      */
     public function delete()
     {
-        parent::invokeDelete('EMAIL_FORWARDERS', 'select0');
+        $this->invokeDelete('EMAIL_FORWARDERS', 'select0');
     }
 
     /**
