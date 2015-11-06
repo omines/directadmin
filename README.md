@@ -10,10 +10,7 @@
 This is a PHP client library to manage DirectAdmin control panel servers. We simply decided to develop this as we needed
 automation of our own DirectAdmin servers, and the existing implementations were unsupported and incomplete.
 
-As the DirectAdmin API is messy to say the least, and wildly inconsistent at best, expect the API to change
-several times during initial development before we settle on a structure that both works and makes sense.
-
-[Fully up to date API documentation is generated on each push](https://omines.github.io/directadmin/api/).
+[API documentation for this project is automatically generated on each push](https://omines.github.io/directadmin/api/).
 
 ## Installation
 

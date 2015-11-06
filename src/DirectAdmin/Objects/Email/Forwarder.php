@@ -10,14 +10,13 @@
 namespace Omines\DirectAdmin\Objects\Email;
 
 use Omines\DirectAdmin\Objects\Domain;
-use Omines\DirectAdmin\Objects\DomainObject;
 
 /**
  * Encapsulates an email forwarder.
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
-class Forwarder extends DomainObject
+class Forwarder extends MailObject
 {
     /** @var string[] */
     private $recipients;
@@ -36,6 +35,8 @@ class Forwarder extends DomainObject
     }
 
     /**
+     * Creates a new forwarder.
+     *
      * @param Domain $domain
      * @param string $prefix
      * @param string|string[] $recipients
@@ -50,7 +51,7 @@ class Forwarder extends DomainObject
             'email' => is_array($recipients) ? implode(',', $recipients) : $recipients,
         ]);
         $domain->clearCache();
-        return new Forwarder($prefix, $domain, $recipients);
+        return new self($prefix, $domain, $recipients);
     }
 
     /**
@@ -67,16 +68,6 @@ class Forwarder extends DomainObject
     }
 
     /**
-     * Returns the domain-agnostic part before the @ in the forwarder.
-     *
-     * @return string
-     */
-    public function getPrefix()
-    {
-        return $this->getName();
-    }
-
-    /**
      * @return string[]
      */
     public function getRecipients()
@@ -85,7 +76,7 @@ class Forwarder extends DomainObject
     }
 
     /**
-     * Returns the domain-agnostic part before the @ in the forwarder.
+     * Returns the list of valid aliases for this account.
      *
      * @return string
      */

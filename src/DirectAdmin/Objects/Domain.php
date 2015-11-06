@@ -11,6 +11,7 @@ namespace Omines\DirectAdmin\Objects;
 
 use Omines\DirectAdmin\Context\UserContext;
 use Omines\DirectAdmin\Objects\Email\Forwarder;
+use Omines\DirectAdmin\Objects\Email\Mailbox;
 
 /**
  * Encapsulates a domain and its derived objects, like aliases, pointers and mailboxes.
@@ -19,6 +20,9 @@ use Omines\DirectAdmin\Objects\Email\Forwarder;
  */
 class Domain extends Object
 {
+    const CACHE_FORWARDERS      = 'forwarders';
+    const CACHE_MAILBOXES       = 'mailboxes';
+
     /** @var string */
     private $domainName;
 
@@ -71,6 +75,19 @@ class Domain extends Object
     public function createForwarder($prefix, $recipients)
     {
         return Forwarder::create($this, $prefix, $recipients);
+    }
+
+    /**
+     * Creates a new mailbox.
+     *
+     * @param string $prefix Prefix for the account
+     * @param string $password Password for the account.
+     * @param int|null $quota Quota in megabytes, or zero/null for unlimited.
+     * @param int|null $sendLimit Send limit, or 0 for unlimited, or null for system default.
+     */
+    public function createMailbox($prefix, $password, $quota = null, $sendLimit = null)
+    {
+        return Mailbox::create($this, $prefix, $password, $quota, $sendLimit);
     }
 
     /**
@@ -132,15 +149,26 @@ class Domain extends Object
      */
     public function getForwarders()
     {
-        return $this->getCache('forwarders', function() {
-            $forwarders = $this->getContext()->invokeGet('EMAIL_FORWARDERS', ['domain' => $this->getDomainName()]);
+        return $this->getCache(self::CACHE_FORWARDERS, function() {
+            $forwarders = $this->getContext()->invokeGet('EMAIL_FORWARDERS', [
+                'domain' => $this->getDomainName()
+            ]);
             return DomainObject::toDomainObjectArray($forwarders, Forwarder::class, $this);
         });
     }
 
+    /**
+     * @return Mailbox[] Associate array of mailboxes.
+     */
     public function getMailboxes()
     {
-        return $this->getContext()->invokeGet('POP', ['domain' => $this->getDomainName(), 'action' => 'list']);
+        return $this->getCache(self::CACHE_MAILBOXES, function() {
+            $boxes = $this->getContext()->invokeGet('POP', [
+                'domain' => $this->getDomainName(),
+                'action' => 'full_list',
+            ]);
+            return DomainObject::toDomainObjectArray($boxes, Mailbox::class, $this);
+        });
     }
 
     /**

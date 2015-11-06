@@ -4,13 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- Admin/reseller/user contexts and logins, including "log in as" (impersonation)
+- Admin/reseller/user contexts and logins
+- Impersonation of other users ("log in as")
 - Creating and deleting all account types
-- Fetching reseller and user lists under their parents
+- Fetching admin, reseller and user lists
 - Fetching user info
 - Fetching domain lists
-- Retrieving basic domain stats as admin/reseller
-- Retrieving advanced stats as owner, including pointers and aliases
-
-
+- Retrieving domain stats and configuration
+- Retrieving, creating and deleting email forwarders
+- Retrieving, creating and deleting mailboxes
 

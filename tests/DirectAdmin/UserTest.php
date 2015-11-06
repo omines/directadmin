@@ -121,6 +121,34 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
         // Delete a forwarder and ensure domain stats are updated
         $forwarders['single']->delete();
-        $this->assertCount(1, $forwarders = $domain->getForwarders());
+        $this->assertCount(1, $domain->getForwarders());
+    }
+
+    /**
+     * @depends testDefaultDomain
+     */
+    public function testMailboxes(Domain $domain)
+    {
+        // Create 2 forwarders after asserting they are the first
+        $this->assertEmpty($domain->getMailboxes());
+        $mail1 = $domain->createMailbox('mail1', generateTemporaryPassword());
+        $mail2 = $domain->createMailbox('mail2', generateTemporaryPassword(), 500, 500);
+        $this->assertCount(2, $boxes = $domain->getMailboxes());
+
+        // Check mailbox statistics
+        $this->assertEquals('mail1@' . TEST_USER_DOMAIN, $boxes['mail1']->getEmailAddress());
+        $this->assertNull($mail1->getDiskLimit());
+        $this->assertEquals(500, $mail2->getDiskLimit());
+        $this->assertEquals(0, $mail1->getDiskUsage(), 'Disk usage should be near empty', 0.1);
+        $this->assertEquals(0, $mail2->getMailsSent());
+
+        // Changing password should not throw any errors
+        $mail1->setPassword(generateTemporaryPassword());
+
+        // Delete the mailbox and ensure domain stats are updated
+        $boxes['mail2']->delete();
+        $this->assertCount(1, $domain->getMailboxes());
+        $mail1->delete();
+        $this->assertEmpty($domain->getMailboxes());
     }
 }
