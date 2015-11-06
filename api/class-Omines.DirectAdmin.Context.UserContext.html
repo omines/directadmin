@@ -151,7 +151,7 @@
 
 				<b>Author:</b>
 				Niels Keurentjes <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m">&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m</a><br>
-			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Context.UserContext.html#19-90" title="Go to source code">DirectAdmin/Context/UserContext.php</a>
+			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Context.UserContext.html#17-100" title="Go to source code">DirectAdmin/Context/UserContext.php</a>
 		<br>
 	</div>
 
@@ -171,14 +171,14 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.UserContext.html#29-46" title="Go to source code">__construct</a>( <span><code><a href="class-Omines.DirectAdmin.DirectAdmin.html">Omines\DirectAdmin\DirectAdmin</a></code> <var>$connection</var></span>, <span>boolean <var>$validate</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.UserContext.html#27-46" title="Go to source code">__construct</a>( <span><code><a href="class-Omines.DirectAdmin.DirectAdmin.html">Omines\DirectAdmin\DirectAdmin</a></code> <var>$connection</var></span>, <span>boolean <var>$validate</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Constructs the object.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Constructs the object.</p>
 
 
 					<h4>Parameters</h4>
@@ -209,14 +209,14 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getType">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.UserContext.html#48-54" title="Go to source code">getType</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.UserContext.html#48-56" title="Go to source code">getType</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Returns the type of the account (user/reseller/admin).</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns the type of the account (user/reseller/admin).</p>
 
 
 
@@ -235,27 +235,27 @@
 
 			<td class="attributes"><code>
 				 public 
-				<code><a href="class-Omines.DirectAdmin.Objects.Users.Admin.html">Omines\DirectAdmin\Objects\Users\Admin</a></code>|<code><a href="class-Omines.DirectAdmin.Objects.Users.Reseller.html">Omines\DirectAdmin\Objects\Users\Reseller</a></code>|<code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a></code>
+				<code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a></code>
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getContextUser">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.UserContext.html#56-64" title="Go to source code">getContextUser</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.UserContext.html#58-68" title="Go to source code">getContextUser</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Returns the actual user object behind the context.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns the actual user object behind the context.</p>
 
 
 
 					<h4>Returns</h4>
 					<div class="list">
-						<code><a href="class-Omines.DirectAdmin.Objects.Users.Admin.html">Omines\DirectAdmin\Objects\Users\Admin</a></code>|<code><a href="class-Omines.DirectAdmin.Objects.Users.Reseller.html">Omines\DirectAdmin\Objects\Users\Reseller</a></code>|<code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a></code><br>The user object behind the context.
+						<code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a></code><br>The user object behind the context.
 					</div>
 
 
@@ -275,25 +275,25 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDomain">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.UserContext.html#66-73" title="Go to source code">getDomain</a>( <span>string <var>$domainName</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.UserContext.html#70-79" title="Go to source code">getDomain</a>( <span>string <var>$domainName</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Returns a domain managed by the current user.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns a domain managed by the current user.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$domainName</var></dt>
-						<dd></dd>
+						<dd>The requested domain name.</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						null|<code><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></code>
+						null|<code><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></code><br>The domain if found, or NULL if it does not exist.
 					</div>
 
 
@@ -313,14 +313,14 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDomains">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.UserContext.html#75-81" title="Go to source code">getDomains</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.UserContext.html#81-89" title="Go to source code">getDomains</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Returns a full list of the domains managed by the current user.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns a full list of the domains managed by the current user.</p>
 
 
 
@@ -346,14 +346,14 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getUsername">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.UserContext.html#83-89" title="Go to source code">getUsername</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.UserContext.html#91-99" title="Go to source code">getUsername</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Returns the username of the current context.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns the username of the current context.</p>
 
 
 
