@@ -19,6 +19,19 @@ use Omines\DirectAdmin\Objects\DomainObject;
 abstract class MailObject extends DomainObject
 {
     /**
+     * Delete the object.
+     */
+    protected function invokeDelete($apiCall, $paramName)
+    {
+        $this->getContext()->invokePost($apiCall, [
+            'action' => 'delete',
+            'domain' => $this->getDomainName(),
+            $paramName => $this->getPrefix(),
+        ]);
+        $this->clearDomainCache();
+    }
+
+    /**
      * Returns the full email address for this forwarder.
      *
      * @return string

@@ -59,12 +59,7 @@ class Forwarder extends MailObject
      */
     public function delete()
     {
-        $this->getContext()->invokePost('EMAIL_FORWARDERS', [
-            'action' => 'delete',
-            'domain' => $this->getDomainName(),
-            'select0' => $this->getPrefix(),
-        ]);
-        $this->clearDomainCache();
+        parent::invokeDelete('EMAIL_FORWARDERS', 'select0');
     }
 
     /**
@@ -78,7 +73,7 @@ class Forwarder extends MailObject
     /**
      * Returns the list of valid aliases for this account.
      *
-     * @return string
+     * @return string[]
      */
     public function getAliases()
     {

@@ -84,6 +84,7 @@ class Domain extends Object
      * @param string $password Password for the account.
      * @param int|null $quota Quota in megabytes, or zero/null for unlimited.
      * @param int|null $sendLimit Send limit, or 0 for unlimited, or null for system default.
+     * @return Mailbox The newly created mailbox.
      */
     public function createMailbox($prefix, $password, $quota = null, $sendLimit = null)
     {

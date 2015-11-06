@@ -15,14 +15,13 @@ automation of our own DirectAdmin servers, and the existing implementations were
 ## Installation
 
 The recommended way to install this library is from [Packagist](https://packagist.org/packages/omines/directadmin)
-through [Composer](http://getcomposer.org).
+through [Composer](http://getcomposer.org):
 
 ```bash
 composer require omines/directadmin:dev-master
 ```
 
-The version specification is required until a stable version is released. Keep the note above in mind that the
-public interface may change several times until we settle on something to go stable with.
+The version specification is required until a stable version is released.
 
 If you're not familiar with `composer` follow the installation instructions for
 [Linux/Unix/Mac](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx) or

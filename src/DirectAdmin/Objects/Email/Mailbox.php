@@ -64,14 +64,14 @@ class Mailbox extends MailObject
      */
     public function delete()
     {
-        $this->getContext()->invokePost('POP', [
-            'action' => 'delete',
-            'domain' => $this->getDomainName(),
-            'user' => $this->getPrefix(),
-        ]);
-        $this->clearDomainCache();
+        parent::invokeDelete('POP', 'user');
     }
 
+    /**
+     * Reset the password for this mailbox.
+     *
+     * @param string $newPassword
+     */
     public function setPassword($newPassword)
     {
         $this->getContext()->invokePost('POP', [
