@@ -23,19 +23,14 @@ use Omines\DirectAdmin\Objects\Object;
  */
 class User extends Object
 {
-    /** @var array|null Lazy cache of config options. */
-    protected $config;
-
-    /** @var array|null Lazy cache of usage data. */
-    protected $usage;
-
     /** @var Domain[] **/
     private $domains;
 
     public function __construct($name, UserContext $context, $config = null)
     {
         parent::__construct($name, $context);
-        $this->config = $config;
+        if(isset($config))
+            $this->setCache('config', $config);
     }
 
     /**
@@ -141,15 +136,6 @@ class User extends Object
     }
 
     /**
-     * Ensures config and usage data are reloaded from server on next request.
-     */
-    public function flushCache()
-    {
-        unset($this->config);
-        unset($this->usage);
-    }
-
-    /**
      * @return UserContext
      */
     public function impersonate()
@@ -192,9 +178,9 @@ class User extends Object
      */
     private function getConfig($item)
     {
-        if(!isset($this->config))
-            $this->config = $this->getContext()->invokeGet('SHOW_USER_CONFIG', ['user' => $this->getUsername()]);
-        return isset($this->config[$item]) ? $this->config[$item] : null;
+        return $this->getCacheItem('config', $item, function() {
+            return $this->getContext()->invokeGet('SHOW_USER_CONFIG', ['user' => $this->getUsername()]);
+        });
     }
 
     /**
@@ -205,9 +191,9 @@ class User extends Object
      */
     private function getUsage($item)
     {
-        if(!isset($this->usage))
-            $this->usage = $this->getContext()->invokeGet('SHOW_USER_USAGE', ['user' => $this->getUsername()]);
-        return isset($this->usage[$item]) ? $this->usage[$item] : null;
+        return $this->getCacheItem('usage', $item, function() {
+            return $this->getContext()->invokeGet('SHOW_USER_USAGE', ['user' => $this->getUsername()]);
+        });
     }
 
     /**

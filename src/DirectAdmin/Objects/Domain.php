@@ -10,6 +10,7 @@
 namespace Omines\DirectAdmin\Objects;
 
 use Omines\DirectAdmin\Context\UserContext;
+use Omines\DirectAdmin\Objects\Email\Forwarder;
 
 /**
  * Encapsulates a domain and its derived objects, like aliases, pointers and mailboxes.
@@ -26,6 +27,12 @@ class Domain extends Object
 
     /** @var string[] */
     private $pointers;
+
+    /** @var string[] */
+    private $aliasesAndPointers;
+
+    /** @var Forwarder[]  */
+    private $forwarders;
 
     /** @var float */
     private $bandwidthUsed;
@@ -69,6 +76,21 @@ class Domain extends Object
     }
 
     /**
+     * Returns unified list of aliases and pointers.
+     *
+     * @return string[]
+     */
+    public function getAliasesAndPointers()
+    {
+        if(!isset($this->aliasesAndPointers))
+        {
+            $this->aliasesAndPointers = array_merge($this->aliases, $this->pointers);
+            sort($this->aliasesAndPointers);
+        }
+        return $this->aliasesAndPointers;
+    }
+
+    /**
      * @return float Bandwidth used in megabytes.
      */
     public function getBandwidthUsed()
@@ -100,9 +122,14 @@ class Domain extends Object
         return $this->domainName;
     }
 
-    public function getEmailForwarders()
+    public function getForwarders()
     {
-        return $this->getContext()->invokeGet('EMAIL_FORWARDERS', ['domain' => $this->getDomainName()]);
+        if(!isset($this->forwarders))
+        {
+            $forwarders = $this->getContext()->invokeGet('EMAIL_FORWARDERS', ['domain' => $this->getDomainName()]);
+            $this->forwarders = DomainObject::toDomainObjectArray($forwarders, Forwarder::class, $this->getContext(), $this);
+        }
+        return $this->forwarders;
     }
 
     public function getMailboxes()

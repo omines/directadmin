@@ -10,6 +10,7 @@
 use Omines\DirectAdmin\Context\AdminContext;
 use Omines\DirectAdmin\Context\UserContext;
 use Omines\DirectAdmin\DirectAdmin;
+use Omines\DirectAdmin\Objects\Domain;
 use Omines\DirectAdmin\Objects\Users\User;
 
 /**
@@ -57,6 +58,13 @@ class UserTest extends \PHPUnit_Framework_TestCase
         ], $context);
     }
 
+    public function testDefaultDomain()
+    {
+        $domain = self::$user->getDefaultDomain();
+        $this->assertEquals(TEST_USER_DOMAIN, $domain->getDomainName());
+        return $domain;
+    }
+
     /**
      * @depends testImpersonate
      */
@@ -64,7 +72,6 @@ class UserTest extends \PHPUnit_Framework_TestCase
     {
         $domainAsAdmin = self::$user->getDomain(TEST_USER_DOMAIN);
         $domainAsUser = $context->getDomain(TEST_USER_DOMAIN);
-        $this->assertEquals($domainAsAdmin->getBandwidthUsed(), self::$user->getDefaultDomain()->getBandwidthUsed());
         $this->assertEquals($domainAsAdmin->getBandwidthUsed(), $domainAsUser->getBandwidthUsed());
         $this->assertEquals($domainAsAdmin->getDiskUsage(), $domainAsUser->getDiskUsage());
         $this->assertEquals($context, $domainAsUser->getContext());
@@ -73,14 +80,13 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertEmpty($domainAsUser->getAliases());
         $this->assertNull($domainAsUser->getBandwidthLimit());
         $this->assertEmpty($domainAsUser->getPointers());
-        $this->assertEmpty($domainAsUser->getEmailForwarders());
+        $this->assertEmpty($domainAsUser->getForwarders());
         $this->assertEmpty($domainAsUser->getMailboxes());
     }
 
     public function testUserStats()
     {
         $user = self::$user;
-        $user->flushCache();
         $this->assertFalse($user->isSuspended());
         $this->assertEquals(DirectAdmin::ACCOUNT_TYPE_USER, $user->getType());
         $this->assertEquals(0, $user->getBandwidthUsage());
