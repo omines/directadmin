@@ -144,7 +144,7 @@
 
 				<b>Author:</b>
 				Niels Keurentjes <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m">&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m</a><br>
-			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.DomainObject.html#14-58" title="Go to source code">DirectAdmin/Objects/DomainObject.php</a>
+			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.DomainObject.html#14-73" title="Go to source code">DirectAdmin/Objects/DomainObject.php</a>
 		<br>
 	</div>
 
@@ -164,7 +164,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.DomainObject.html#24-32" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span>, <span><code><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></code> <var>$domain</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.DomainObject.html#24-32" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></code> <var>$domain</var></span> )</code>
 
 			<div class="description short">
 				
@@ -178,10 +178,8 @@
 					<div class="list"><dl>
 						<dt><var>$name</var></dt>
 						<dd>Canonical name for the object.</dd>
-						<dt><var>$context</var></dt>
-						<dd>Context within which the object is valid.</dd>
 						<dt><var>$domain</var></dt>
-						<dd></dd>
+						<dd>Domain to which the object belongs.</dd>
 					</dl></div>
 
 
@@ -189,6 +187,35 @@
 
 					<h4>Overrides</h4>
 					<div class="list"><code><a href="class-Omines.DirectAdmin.Objects.Object.html#___construct">Omines\DirectAdmin\Objects\Object::__construct</a></code></div>
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="clearDomainCache" id="_clearDomainCache">
+
+			<td class="attributes"><code>
+				 protected 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_clearDomainCache">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.DomainObject.html#34-40" title="Go to source code">clearDomainCache</a>( )</code>
+
+			<div class="description short">
+				<p>Clears the domain's cache.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Clears the domain's cache.</p>
+
+
+
+
+
+
 
 			</div>
 			</div></td>
@@ -204,7 +231,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDomain">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.DomainObject.html#34-40" title="Go to source code">getDomain</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.DomainObject.html#42-48" title="Go to source code">getDomain</a>( )</code>
 
 			<div class="description short">
 				
@@ -226,6 +253,39 @@
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="getDomainName" id="_getDomainName">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getDomainName">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.DomainObject.html#50-56" title="Go to source code">getDomainName</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="toDomainObjectArray" id="_toDomainObjectArray">
 
 			<td class="attributes"><code>
@@ -237,7 +297,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_toDomainObjectArray">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.DomainObject.html#42-57" title="Go to source code">toDomainObjectArray</a>( <span>array <var>$items</var></span>, <span>string <var>$class</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span>, <span><code><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></code> <var>$domain</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.DomainObject.html#58-72" title="Go to source code">toDomainObjectArray</a>( <span>array <var>$items</var></span>, <span>string <var>$class</var></span>, <span><code><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></code> <var>$domain</var></span> )</code>
 
 			<div class="description short">
 				<p>Converts an associative array of descriptors to objects of the specified type.</p>
@@ -252,8 +312,6 @@
 						<dt><var>$items</var></dt>
 						<dd></dd>
 						<dt><var>$class</var></dt>
-						<dd></dd>
-						<dt><var>$context</var></dt>
 						<dd></dd>
 						<dt><var>$domain</var></dt>
 						<dd></dd>

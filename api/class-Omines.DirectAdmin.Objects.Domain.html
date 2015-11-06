@@ -138,7 +138,7 @@
 
 				<b>Author:</b>
 				Niels Keurentjes <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m">&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m</a><br>
-			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.Domain.html#15-147" title="Go to source code">DirectAdmin/Objects/Domain.php</a>
+			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.Domain.html#15-166" title="Go to source code">DirectAdmin/Objects/Domain.php</a>
 		<br>
 	</div>
 
@@ -158,7 +158,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#46-68" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span>, <span>string <var>$config</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#43-65" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span>, <span>string <var>$config</var></span> )</code>
 
 			<div class="description short">
 				<p>Construct the object.</p>
@@ -187,6 +187,46 @@
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="createForwarder" id="_createForwarder">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Omines.DirectAdmin.Objects.Email.Forwarder.html">Omines\DirectAdmin\Objects\Email\Forwarder</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_createForwarder">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#67-77" title="Go to source code">createForwarder</a>( <span>string <var>$prefix</var></span>, <span>string|string[] <var>$recipients</var></span> )</code>
+
+			<div class="description short">
+				<p>Creates a new email forwarder.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Creates a new email forwarder.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$prefix</var></dt>
+						<dd>Part of the email address before the @.</dd>
+						<dt><var>$recipients</var></dt>
+						<dd>One or more recipients.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Omines.DirectAdmin.Objects.Email.Forwarder.html">Omines\DirectAdmin\Objects\Email\Forwarder</a></code><br>The newly created forwarder.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="getAliases" id="_getAliases">
 
 			<td class="attributes"><code>
@@ -198,7 +238,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getAliases">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#70-76" title="Go to source code">getAliases</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#79-85" title="Go to source code">getAliases</a>( )</code>
 
 			<div class="description short">
 				
@@ -220,7 +260,7 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getAliasesAndPointers" id="_getAliasesAndPointers">
+		<tr data-order="getDomainNames" id="_getDomainNames">
 
 			<td class="attributes"><code>
 				 public 
@@ -230,15 +270,15 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getAliasesAndPointers">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#78-91" title="Go to source code">getAliasesAndPointers</a>( )</code>
+			<a class="anchor" href="#_getDomainNames">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#87-99" title="Go to source code">getDomainNames</a>( )</code>
 
 			<div class="description short">
-				<p>Returns unified list of aliases and pointers.</p>
+				<p>Returns unified sorted list of main domain name, aliases and pointers.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Returns unified list of aliases and pointers.</p>
+				<p>Returns unified sorted list of main domain name, aliases and pointers.</p>
 
 
 
@@ -264,7 +304,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getBandwidthUsed">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#93-99" title="Go to source code">getBandwidthUsed</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#101-107" title="Go to source code">getBandwidthUsed</a>( )</code>
 
 			<div class="description short">
 				
@@ -297,7 +337,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getBandwidthLimit">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#101-107" title="Go to source code">getBandwidthLimit</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#109-115" title="Go to source code">getBandwidthLimit</a>( )</code>
 
 			<div class="description short">
 				
@@ -330,7 +370,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDiskUsage">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#109-115" title="Go to source code">getDiskUsage</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#117-123" title="Go to source code">getDiskUsage</a>( )</code>
 
 			<div class="description short">
 				
@@ -363,7 +403,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDomainName">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#117-123" title="Go to source code">getDomainName</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#125-131" title="Go to source code">getDomainName</a>( )</code>
 
 			<div class="description short">
 				
@@ -389,14 +429,14 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				<code><a href="class-Omines.DirectAdmin.Objects.Email.Forwarder.html">Omines\DirectAdmin\Objects\Email\Forwarder</a>[]</code>
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getForwarders">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#125-133" title="Go to source code">getForwarders</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#133-142" title="Go to source code">getForwarders</a>( )</code>
 
 			<div class="description short">
 				
@@ -407,6 +447,10 @@
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Omines.DirectAdmin.Objects.Email.Forwarder.html">Omines\DirectAdmin\Objects\Email\Forwarder</a>[]</code><br>Associative array of forwarders.
+					</div>
 
 
 
@@ -425,7 +469,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getMailboxes">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#135-138" title="Go to source code">getMailboxes</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#144-147" title="Go to source code">getMailboxes</a>( )</code>
 
 			<div class="description short">
 				
@@ -454,7 +498,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getPointers">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#140-146" title="Go to source code">getPointers</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#149-155" title="Go to source code">getPointers</a>( )</code>
 
 			<div class="description short">
 				
@@ -468,6 +512,39 @@
 					<h4>Returns</h4>
 					<div class="list">
 						string[]<br>List of domain pointers for this domain.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="__toString" id="___toString">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___toString">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#157-165" title="Go to source code">__toString</a>( )</code>
+
+			<div class="description short">
+				<p>Allows Domain object to be passed as a string with its domain name.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Allows Domain object to be passed as a string with its domain name.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
 					</div>
 
 
