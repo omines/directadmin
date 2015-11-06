@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class Omines\DirectAdmin\Objects\Email\Forwarder</title>
+	<title>Class Omines\DirectAdmin\Objects\Email\Mailbox</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -83,8 +83,8 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li class="active"><a href="class-Omines.DirectAdmin.Objects.Email.Forwarder.html">Forwarder</a></li>
-				<li><a href="class-Omines.DirectAdmin.Objects.Email.Mailbox.html">Mailbox</a></li>
+				<li><a href="class-Omines.DirectAdmin.Objects.Email.Forwarder.html">Forwarder</a></li>
+				<li class="active"><a href="class-Omines.DirectAdmin.Objects.Email.Mailbox.html">Mailbox</a></li>
 				<li><a href="class-Omines.DirectAdmin.Objects.Email.MailObject.html">MailObject</a></li>
 			</ul>
 
@@ -101,11 +101,11 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Class Forwarder</h1>
+	<h1>Class Mailbox</h1>
 
 
 	<div class="description">
-	<p>Encapsulates an email forwarder.</p>
+	<p>Encapsulates a full mailbox with POP/IMAP/webmail access.</p>
 	</div>
 
 	<dl class="tree well">
@@ -131,7 +131,7 @@
 		</dd>
 		<dd style="padding-left:90px">
 			<img src="resources/inherit.png" alt="Extended by">
-<b><span>Omines\DirectAdmin\Objects\Email\Forwarder</span></b>			
+<b><span>Omines\DirectAdmin\Objects\Email\Mailbox</span></b>			
 			
 			
 		</dd>
@@ -152,7 +152,7 @@
 
 				<b>Author:</b>
 				Niels Keurentjes <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m">&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m</a><br>
-			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.Email.Forwarder.html#14-89" title="Go to source code">DirectAdmin/Objects/Email/Forwarder.php</a>
+			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.Email.Mailbox.html#14-126" title="Go to source code">DirectAdmin/Objects/Email/Mailbox.php</a>
 		<br>
 	</div>
 
@@ -172,7 +172,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Email.Forwarder.html#24-35" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></code> <var>$domain</var></span>, <span>array|string <var>$recipients</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Email.Mailbox.html#23-35" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></code> <var>$domain</var></span>, <span>string|array|null <var>$config</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Construct the object.</p>
@@ -188,8 +188,8 @@
 						<dd>The domain name.</dd>
 						<dt><var>$domain</var></dt>
 						<dd>The containing domain.</dd>
-						<dt><var>$recipients</var></dt>
-						<dd>Array or string containing the recipients.</dd>
+						<dt><var>$config</var></dt>
+						<dd>URL encoded config string as returned by CMD_API_POP.</dd>
 					</dl></div>
 
 
@@ -205,36 +205,40 @@
 
 			<td class="attributes"><code>
 				 public static
-				<code><a href="class-Omines.DirectAdmin.Objects.Email.Forwarder.html">Omines\DirectAdmin\Objects\Email\Forwarder</a></code>
+				<code><a href="class-Omines.DirectAdmin.Objects.Email.Mailbox.html">Omines\DirectAdmin\Objects\Email\Mailbox</a></code>
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_create">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Email.Forwarder.html#37-55" title="Go to source code">create</a>( <span><code><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></code> <var>$domain</var></span>, <span>string <var>$prefix</var></span>, <span>string|string[] <var>$recipients</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Email.Mailbox.html#37-60" title="Go to source code">create</a>( <span><code><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></code> <var>$domain</var></span>, <span>string <var>$prefix</var></span>, <span>string <var>$password</var></span>, <span>integer|null <var>$quota</var> = <span class="php-keyword1">null</span></span>, <span>integer|null <var>$sendLimit</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				<p>Creates a new forwarder.</p>
+				<p>Creates a new mailbox.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Creates a new forwarder.</p>
+				<p>Creates a new mailbox.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$domain</var></dt>
-						<dd></dd>
+						<dd>Domain to add the account to.</dd>
 						<dt><var>$prefix</var></dt>
-						<dd></dd>
-						<dt><var>$recipients</var></dt>
-						<dd></dd>
+						<dd>Prefix for the account.</dd>
+						<dt><var>$password</var></dt>
+						<dd>Password for the account.</dd>
+						<dt><var>$quota</var></dt>
+						<dd>Quota in megabytes, or zero/null for unlimited.</dd>
+						<dt><var>$sendLimit</var></dt>
+						<dd>Send limit, or 0 for unlimited, or null for system default.</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						<code><a href="class-Omines.DirectAdmin.Objects.Email.Forwarder.html">Omines\DirectAdmin\Objects\Email\Forwarder</a></code>
+						<code><a href="class-Omines.DirectAdmin.Objects.Email.Mailbox.html">Omines\DirectAdmin\Objects\Email\Mailbox</a></code><br>The created mailbox.
 					</div>
 
 
@@ -254,14 +258,14 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_delete">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Email.Forwarder.html#57-68" title="Go to source code">delete</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Email.Mailbox.html#62-73" title="Go to source code">delete</a>( )</code>
 
 			<div class="description short">
-				<p>Deletes the forwarder.</p>
+				<p>Deletes the mailbox.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Deletes the forwarder.</p>
+				<p>Deletes the mailbox.</p>
 
 
 
@@ -272,18 +276,47 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getRecipients" id="_getRecipients">
+		<tr data-order="setPassword" id="_setPassword">
 
 			<td class="attributes"><code>
 				 public 
-				string[]
+				
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getRecipients">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Email.Forwarder.html#70-76" title="Go to source code">getRecipients</a>( )</code>
+			<a class="anchor" href="#_setPassword">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Email.Mailbox.html#75-84" title="Go to source code">setPassword</a>( <span> <var>$newPassword</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getDiskLimit" id="_getDiskLimit">
+
+			<td class="attributes"><code>
+				 public 
+				float|null
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getDiskLimit">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Email.Mailbox.html#86-92" title="Go to source code">getDiskLimit</a>( )</code>
 
 			<div class="description short">
 				
@@ -296,7 +329,7 @@
 
 					<h4>Returns</h4>
 					<div class="list">
-						string[]
+						float|null
 					</div>
 
 
@@ -305,31 +338,102 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getAliases" id="_getAliases">
+		<tr data-order="getDiskUsage" id="_getDiskUsage">
 
 			<td class="attributes"><code>
 				 public 
-				string
+				float
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getAliases">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Email.Forwarder.html#78-88" title="Go to source code">getAliases</a>( )</code>
+			<a class="anchor" href="#_getDiskUsage">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Email.Mailbox.html#94-100" title="Go to source code">getDiskUsage</a>( )</code>
 
 			<div class="description short">
-				<p>Returns the list of valid aliases for this account.</p>
+				
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Returns the list of valid aliases for this account.</p>
+				
 
 
 
 					<h4>Returns</h4>
 					<div class="list">
-						string
+						float
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getMailsSent" id="_getMailsSent">
+
+			<td class="attributes"><code>
+				 public 
+				integer
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getMailsSent">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Email.Mailbox.html#102-108" title="Go to source code">getMailsSent</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						integer
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getData" id="_getData">
+
+			<td class="attributes"><code>
+				 protected 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getData">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Email.Mailbox.html#110-125" title="Go to source code">getData</a>( <span>string <var>$key</var></span> )</code>
+
+			<div class="description short">
+				<p>Cache wrapper to keep mailbox stats up to date.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Cache wrapper to keep mailbox stats up to date.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$key</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						mixed
 					</div>
 
 
@@ -376,6 +480,36 @@
 
 
 
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Constants summary</h2></div>
+			<table class="summary table table-bordered table-striped constants" id="constants">
+			<tr data-order="CACHE_DATA" id="CACHE_DATA">
+
+				<td class="attributes"><code>string</code></td>
+				<td class="name">
+					<code>
+						<a href="source-class-Omines.DirectAdmin.Objects.Email.Mailbox.html#21" title="Go to source code"><b>CACHE_DATA</b></a>
+					</code>
+
+					<div class="description short">
+						
+					</div>
+
+					<div class="description detailed hidden">
+						
+
+					</div>
+				</td>
+				<td class="value">
+					<div>
+						<a href="#CACHE_DATA" class="anchor">#</a>
+						<code><span class="php-quote">'mailbox'</span></code>
+					</div>
+				</td>
+			</tr>
+			</table>
+		</div>
 
 
 
