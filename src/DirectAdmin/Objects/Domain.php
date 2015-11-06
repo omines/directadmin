@@ -28,9 +28,6 @@ class Domain extends Object
     /** @var string[] */
     private $pointers;
 
-    /** @var string[] */
-    private $aliasesAndPointers;
-
     /** @var float */
     private $bandwidthUsed;
 

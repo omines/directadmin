@@ -9,8 +9,6 @@
 
 namespace Omines\DirectAdmin\Objects;
 
-use Omines\DirectAdmin\Context\UserContext;
-
 /**
  * Encapsulates a domain-bound object.
  *

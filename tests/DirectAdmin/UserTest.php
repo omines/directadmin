@@ -88,8 +88,12 @@ class UserTest extends \PHPUnit_Framework_TestCase
     public function testUserStats()
     {
         $user = self::$user;
+
+        // Assert the user is not suspended while of the correct type
         $this->assertFalse($user->isSuspended());
         $this->assertEquals(DirectAdmin::ACCOUNT_TYPE_USER, $user->getType());
+
+        // It should not have any usage yet except a single domain
         $this->assertEquals(0, $user->getBandwidthUsage());
         $this->assertNull($user->getBandwidthLimit());
         $this->assertEquals(1, $user->getDomainUsage());
@@ -103,15 +107,19 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testForwarders(Domain $domain)
     {
+        // Create 2 forwarders after asserting they are the first
         $this->assertEmpty($domain->getForwarders());
         $domain->createForwarder('single', 'single@example.org');
         $domain->createForwarder('multiple', ['recipient@example.org', 'recipient@gmail.com']);
         $this->assertCount(2, $forwarders = $domain->getForwarders());
+
+        // Manage single forwarder
         $forwarder = $forwarders['single'];
         $this->assertEquals('single', $forwarder->getPrefix());
         $this->assertContains('single@example.org', $forwarder->getRecipients());
-        $aliases = $forwarder->getAliases();
         $this->assertContains('single@' . TEST_USER_DOMAIN, $forwarder->getAliases());
+
+        // Delete a forwarder and ensure domain stats are updated
         $forwarders['single']->delete();
         $this->assertCount(1, $forwarders = $domain->getForwarders());
     }
