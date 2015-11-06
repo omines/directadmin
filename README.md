@@ -5,7 +5,6 @@
 [![Scrutinizer](https://img.shields.io/scrutinizer/g/omines/directadmin.svg)](https://scrutinizer-ci.com/g/omines/directadmin/?branch=master)
 [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/47a71204-f274-4416-9db1-9773d65845ca.svg)](https://insight.sensiolabs.com/projects/47a71204-f274-4416-9db1-9773d65845ca)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/omines/directadmin/master/LICENSE)
-[![Packagist](https://img.shields.io/packagist/v/omines/directadmin.svg)](https://packagist.org/packages/omines/directadmin)
 
 This is a PHP client library to manage DirectAdmin control panel servers. We simply decided to develop this as we needed
 automation of our own DirectAdmin servers, and the existing implementations were unsupported and incomplete.
@@ -14,14 +13,13 @@ automation of our own DirectAdmin servers, and the existing implementations were
 
 ## Installation
 
-The recommended way to install this library is from [Packagist](https://packagist.org/packages/omines/directadmin)
-through [Composer](http://getcomposer.org):
+[![Packagist](https://img.shields.io/packagist/v/omines/directadmin.svg)](https://packagist.org/packages/omines/directadmin)
+[![Packagist](https://img.shields.io/packagist/vpre/omines/directadmin.svg)](https://packagist.org/packages/omines/directadmin#dev-master)
 
+The recommended way to install this library is through [Composer](http://getcomposer.org):
 ```bash
-composer require omines/directadmin:dev-master
+composer require omines/directadmin
 ```
-
-The version specification is required until a stable version is released.
 
 If you're not familiar with `composer` follow the installation instructions for
 [Linux/Unix/Mac](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx) or
