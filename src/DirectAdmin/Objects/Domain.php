@@ -10,6 +10,7 @@
 namespace Omines\DirectAdmin\Objects;
 
 use Omines\DirectAdmin\Context\UserContext;
+use Omines\DirectAdmin\Objects\Domains\Subdomain;
 use Omines\DirectAdmin\Objects\Email\Forwarder;
 use Omines\DirectAdmin\Objects\Email\Mailbox;
 
@@ -22,6 +23,7 @@ class Domain extends Object
 {
     const CACHE_FORWARDERS      = 'forwarders';
     const CACHE_MAILBOXES       = 'mailboxes';
+    const CACHE_SUBDOMAINS      = 'subdomains';
 
     /** @var string */
     private $domainName;
@@ -92,6 +94,17 @@ class Domain extends Object
     }
 
     /**
+     * Creates a new subdomain.
+     *
+     * @param string $prefix Prefix to add before the domain name.
+     * @return Subdomain The newly created subdomain.
+     */
+    public function createSubdomain($prefix)
+    {
+        return Subdomain::create($this, $prefix);
+    }
+
+    /**
      * @return string[] List of aliases for this domain.
      */
     public function getAliases()
@@ -159,7 +172,7 @@ class Domain extends Object
     }
 
     /**
-     * @return Mailbox[] Associate array of mailboxes.
+     * @return Mailbox[] Associative array of mailboxes.
      */
     public function getMailboxes()
     {
@@ -169,6 +182,18 @@ class Domain extends Object
                 'action' => 'full_list',
             ]);
             return DomainObject::toDomainObjectArray($boxes, Mailbox::class, $this);
+        });
+    }
+
+    /**
+     * @return Subdomain[] Associative array of subdomains.
+     */
+    public function getSubdomains()
+    {
+        return $this->getCache(self::CACHE_SUBDOMAINS, function() {
+            $subs = $this->getContext()->invokeGet('SUBDOMAINS', ['domain' => $this->getDomainName()]);
+            $subs = array_combine($subs, $subs);
+            return DomainObject::toDomainObjectArray($subs, Subdomain::class, $this);
         });
     }
 

@@ -151,4 +151,27 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $mail1->delete();
         $this->assertEmpty($domain->getMailboxes());
     }
+
+    /**
+     * @depends testDefaultDomain
+     */
+    public function testSubdomains(Domain $domain)
+    {
+        // Create 2 subdomains after asserting they are the first
+        $this->assertEmpty($domain->getSubdomains());
+        $sub1 = $domain->createSubdomain('sub1');
+        $sub2 = $domain->createSubdomain('sub2');
+        $this->assertCount(2, $subdomains = $domain->getSubdomains());
+
+        // Check properties
+        $this->assertEquals($sub1->getPrefix(), $subdomains['sub1']->getPrefix());
+        $this->assertEquals($sub2->getFullDomainName(), strval($subdomains['sub2']));
+        $this->assertEquals('sub1.' . TEST_USER_DOMAIN, $sub1->getFullDomainName());
+
+        // Check deletion
+        $sub1->delete();
+        $this->assertCount(1, $domain->getSubdomains());
+        $subdomains['sub2']->delete(false);
+        $this->assertEmpty($domain->getSubdomains());
+    }
 }
