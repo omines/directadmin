@@ -22,7 +22,7 @@ class Subdomain extends DomainObject
     /**
      * Construct the object.
      *
-     * @param string $name The domain name.
+     * @param string $prefix The domain name.
      * @param Domain $domain The containing domain.
      */
     public function __construct($prefix, Domain $domain)
