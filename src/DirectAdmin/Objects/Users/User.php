@@ -23,6 +23,9 @@ use Omines\DirectAdmin\Objects\Object;
  */
 class User extends Object
 {
+    const CACHE_CONFIG          = 'config';
+    const CACHE_USAGE           = 'usage';
+
     /** @var Domain[] **/
     private $domains;
 
@@ -37,7 +40,7 @@ class User extends Object
     {
         parent::__construct($name, $context);
         if(isset($config))
-            $this->setCache('config', $config);
+            $this->setCache(self::CACHE_CONFIG, $config);
     }
 
     /**
@@ -185,7 +188,7 @@ class User extends Object
      */
     private function getConfig($item)
     {
-        return $this->getCacheItem('config', $item, function() {
+        return $this->getCacheItem(self::CACHE_CONFIG, $item, function() {
             return $this->getContext()->invokeGet('SHOW_USER_CONFIG', ['user' => $this->getUsername()]);
         });
     }
@@ -198,7 +201,7 @@ class User extends Object
      */
     private function getUsage($item)
     {
-        return $this->getCacheItem('usage', $item, function() {
+        return $this->getCacheItem(self::CACHE_USAGE, $item, function() {
             return $this->getContext()->invokeGet('SHOW_USER_USAGE', ['user' => $this->getUsername()]);
         });
     }
