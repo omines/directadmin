@@ -157,6 +157,29 @@ class User extends Object
     }
 
     /**
+     * Modifies the configuration of the user. For available keys in the array check the documentation on
+     * CMD_API_MODIFY_USER in the linked document.
+     *
+     * @param array $newConfig
+     * @url http://www.directadmin.com/api.html#modify
+     */
+    public function modify(array $newConfig)
+    {
+        // Merge old and new config
+        $config = array_merge($this->loadConfig(), $newConfig, ['action' => 'customize', 'user' => $this->getUsername()]);
+        foreach(['bandwidth', 'domainptr', 'ftp', 'mysql', 'nemailf', 'nemailml', 'nemailr', 'nemails',
+                 'nsubdomains', 'quota', 'vdomains'] as $key)
+        {
+            $ukey = "u{$key}";
+            if($config[$key] === 'unlimited' || (array_key_exists($key, $config) && !isset($config[$key])))
+                $config[$ukey] = 'ON';
+            else
+                unset($config[$ukey]);
+        }
+        $this->getContext()->invokePost('MODIFY_USER', $config);
+    }
+
+    /**
      * Constructs the correct object from the given user config.
      *
      * @param array $config The raw config from DirectAdmin.
@@ -188,9 +211,7 @@ class User extends Object
      */
     private function getConfig($item)
     {
-        return $this->getCacheItem(self::CACHE_CONFIG, $item, function() {
-            return $this->getContext()->invokeGet('SHOW_USER_CONFIG', ['user' => $this->getUsername()]);
-        });
+        return $this->getCacheItem(self::CACHE_CONFIG, $item, function() { return $this->loadConfig(); });
     }
 
     /**
@@ -212,5 +233,15 @@ class User extends Object
     protected function isSelfManaged()
     {
         return ($this->getUsername() === $this->getContext()->getUsername());
+    }
+
+    /**
+     * Loads the current user configuration from the server.
+     *
+     * @return array
+     */
+    private function loadConfig()
+    {
+        return $this->getContext()->invokeGet('SHOW_USER_CONFIG', ['user' => $this->getUsername()]);
     }
 }
