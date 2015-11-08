@@ -39,12 +39,7 @@ class Subdomain extends DomainObject
      */
     public static function create(Domain $domain, $prefix)
     {
-        $domain->getContext()->invokePost('SUBDOMAIN', [
-            'action' => 'create',
-            'domain' => $domain->getDomainName(),
-            'subdomain' => $prefix,
-        ]);
-        $domain->clearCache();
+        $domain->invokePost('SUBDOMAIN', 'create', ['subdomain' => $prefix]);
         return new self($prefix, $domain);
     }
 
@@ -55,13 +50,10 @@ class Subdomain extends DomainObject
      */
     public function delete($deleteContents = true)
     {
-        $this->getContext()->invokePost('SUBDOMAIN', [
-            'action' => 'delete',
-            'domain' => $this->getBaseDomainName(),
+        $this->invokePost('SUBDOMAIN', 'delete', [
             'select0' => $this->getPrefix(),
             'contents' => ($deleteContents ? 'yes' : 'no')
         ]);
-        $this->clearDomainCache();
     }
 
     /**

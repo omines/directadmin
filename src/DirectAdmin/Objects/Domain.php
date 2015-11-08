@@ -206,6 +206,26 @@ class Domain extends Object
     }
 
     /**
+     * Invokes a POST command on a domain object.
+     *
+     * @param string $command Command to invoke.
+     * @param string $action Action to execute.
+     * @param array $parameters Additional options for the command.
+     * @param bool $clearCache Whether to clear the domain cache on success.
+     * @return array Response from the API.
+     */
+    public function invokePost($command, $action, $parameters = [], $clearCache = true)
+    {
+        $response = $this->getContext()->invokePost($command, array_merge([
+            'action' => $action,
+            'domain' => $this->domainName,
+        ], $parameters));
+        if($clearCache)
+            $this->clearCache();
+        return $response;
+    }
+
+    /**
      * Allows Domain object to be passed as a string with its domain name.
      *
      * @return string

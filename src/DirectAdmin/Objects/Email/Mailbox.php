@@ -46,16 +46,13 @@ class Mailbox extends MailObject
      */
     public static function create(Domain $domain, $prefix, $password, $quota = null, $sendLimit = null)
     {
-        $domain->getContext()->invokePost('POP', [
-            'action' => 'create',
-            'domain' => $domain->getDomainName(),
+        $domain->invokePost('POP', 'create', [
             'user' => $prefix,
             'passwd' => $password,
             'passwd2' => $password,
             'quota' => intval($quota) ?: 0,
             'limit' => isset($sendLimit) ? (intval($sendLimit) ?: 0) : null,
         ]);
-        $domain->clearCache();
         return new self($prefix, $domain);
     }
 
@@ -74,13 +71,11 @@ class Mailbox extends MailObject
      */
     public function setPassword($newPassword)
     {
-        $this->getContext()->invokePost('POP', [
-            'action' => 'modify',
-            'domain' => $this->getDomainName(),
+        $this->invokePost('POP', 'modify', [
             'user' => $this->getPrefix(),
             'passwd' => $newPassword,
             'passwd2' => $newPassword,
-        ]);
+        ], false);
     }
 
     /**

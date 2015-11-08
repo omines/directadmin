@@ -20,15 +20,13 @@ abstract class MailObject extends DomainObject
 {
     /**
      * Delete the object.
+     *
+     * @param string $command Command to execute.
+     * @param string $paramName Parameter name for the delete command.
      */
-    protected function invokeDelete($apiCall, $paramName)
+    protected function invokeDelete($command, $paramName)
     {
-        $this->getContext()->invokePost($apiCall, [
-            'action' => 'delete',
-            'domain' => $this->getDomainName(),
-            $paramName => $this->getPrefix(),
-        ]);
-        $this->clearDomainCache();
+        $this->invokePost($command, 'delete', [$paramName => $this->getPrefix()]);
     }
 
     /**

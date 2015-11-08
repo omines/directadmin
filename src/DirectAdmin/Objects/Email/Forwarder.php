@@ -44,13 +44,10 @@ class Forwarder extends MailObject
      */
     public static function create(Domain $domain, $prefix, $recipients)
     {
-        $domain->getContext()->invokePost('EMAIL_FORWARDERS', [
-            'action' => 'create',
-            'domain' => $domain->getDomainName(),
+        $domain->invokePost('EMAIL_FORWARDERS', 'create', [
             'user' => $prefix,
             'email' => is_array($recipients) ? implode(',', $recipients) : $recipients,
         ]);
-        $domain->clearCache();
         return new self($prefix, $domain, $recipients);
     }
 
