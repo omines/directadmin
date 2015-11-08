@@ -30,14 +30,6 @@ abstract class DomainObject extends Object
     }
 
     /**
-     * Clears the domain's cache.
-     */
-    protected function clearDomainCache()
-    {
-        $this->domain->clearCache();
-    }
-
-    /**
      * Invokes a POST command on a domain object.
      *
      * @param string $command Command to invoke.
