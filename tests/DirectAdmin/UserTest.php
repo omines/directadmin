@@ -165,8 +165,9 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
         // Check properties
         $this->assertEquals($sub1->getPrefix(), $subdomains['sub1']->getPrefix());
-        $this->assertEquals($sub2->getFullDomainName(), strval($subdomains['sub2']));
-        $this->assertEquals('sub1.' . TEST_USER_DOMAIN, $sub1->getFullDomainName());
+        $this->assertEquals($sub2->getDomainName(), strval($subdomains['sub2']));
+        $this->assertEquals('sub1.' . TEST_USER_DOMAIN, $sub1->getDomainName());
+        $this->assertEquals(TEST_USER_DOMAIN, $sub1->getBaseDomainName());
 
         // Check deletion
         $sub1->delete();

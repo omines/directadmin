@@ -57,7 +57,7 @@ class Subdomain extends DomainObject
     {
         $this->getContext()->invokePost('SUBDOMAIN', [
             'action' => 'delete',
-            'domain' => $this->getDomainName(),
+            'domain' => $this->getBaseDomainName(),
             'select0' => $this->getPrefix(),
             'contents' => ($deleteContents ? 'yes' : 'no')
         ]);
@@ -69,9 +69,19 @@ class Subdomain extends DomainObject
      *
      * @return string
      */
-    public function getFullDomainName()
+    public function getDomainName()
     {
-        return $this->getPrefix() . '.' . $this->getDomainName();
+        return $this->getPrefix() . '.' . parent::getDomainName();
+    }
+
+    /**
+     * Returns the full domain name for the subdomain.
+     *
+     * @return string
+     */
+    public function getBaseDomainName()
+    {
+        return parent::getDomainName();
     }
 
     /**
@@ -91,6 +101,6 @@ class Subdomain extends DomainObject
      */
     public function __toString()
     {
-        return $this->getFullDomainName();
+        return $this->getDomainName();
     }
 }
