@@ -23,13 +23,13 @@ class Mailbox extends MailObject
     /**
      * Construct the object.
      *
-     * @param string $name The domain name.
+     * @param string $prefix The part before the @ in the address.
      * @param Domain $domain The containing domain.
      * @param string|array|null $config URL encoded config string as returned by CMD_API_POP.
      */
-    public function __construct($name, Domain $domain, $config = null)
+    public function __construct($prefix, Domain $domain, $config = null)
     {
-        parent::__construct($name, $domain);
+        parent::__construct($prefix, $domain);
         if(isset($config))
             $this->setCache(self::CACHE_DATA, is_string($config) ? \GuzzleHttp\Psr7\parse_query($config) : $config);
     }

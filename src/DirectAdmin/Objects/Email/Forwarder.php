@@ -24,13 +24,13 @@ class Forwarder extends MailObject
     /**
      * Construct the object.
      *
-     * @param string $name The domain name.
+     * @param string $prefix The part before the @ in the address.
      * @param Domain $domain The containing domain.
      * @param array|string $recipients Array or string containing the recipients.
      */
-    public function __construct($name, Domain $domain, $recipients)
+    public function __construct($prefix, Domain $domain, $recipients)
     {
-        parent::__construct($name, $domain);
+        parent::__construct($prefix, $domain);
         $this->recipients = is_string($recipients) ? array_map('trim', explode(',', $recipients)) : $recipients;
     }
 
