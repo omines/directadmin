@@ -67,6 +67,10 @@
 							Objects<span></span>
 						</a>
 							<ul>
+					<li>
+						<a href="namespace-Omines.DirectAdmin.Objects.Domains.html">
+							Domains						</a>
+							</li>
 					<li class="active">
 						<a href="namespace-Omines.DirectAdmin.Objects.Email.html">
 							Email						</a>
@@ -172,7 +176,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Email.Forwarder.html#24-35" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></code> <var>$domain</var></span>, <span>array|string <var>$recipients</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Email.Forwarder.html#24-35" title="Go to source code">__construct</a>( <span>string <var>$prefix</var></span>, <span><code><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></code> <var>$domain</var></span>, <span>array|string <var>$recipients</var></span> )</code>
 
 			<div class="description short">
 				<p>Construct the object.</p>
@@ -184,8 +188,8 @@
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$name</var></dt>
-						<dd>The domain name.</dd>
+						<dt><var>$prefix</var></dt>
+						<dd>The part before the @ in the address.</dd>
 						<dt><var>$domain</var></dt>
 						<dd>The containing domain.</dd>
 						<dt><var>$recipients</var></dt>

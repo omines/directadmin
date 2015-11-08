@@ -68,6 +68,10 @@
 						</a>
 							<ul>
 					<li>
+						<a href="namespace-Omines.DirectAdmin.Objects.Domains.html">
+							Domains						</a>
+							</li>
+					<li>
 						<a href="namespace-Omines.DirectAdmin.Objects.Email.html">
 							Email						</a>
 							</li>
@@ -90,6 +94,7 @@
 				<li><a href="class-Omines.DirectAdmin.DirectAdmin.html">Omines\DirectAdmin\DirectAdmin</a></li>
 				<li><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></li>
 				<li><a href="class-Omines.DirectAdmin.Objects.DomainObject.html">Omines\DirectAdmin\Objects\DomainObject</a></li>
+				<li><a href="class-Omines.DirectAdmin.Objects.Domains.Subdomain.html">Omines\DirectAdmin\Objects\Domains\Subdomain</a></li>
 				<li><a href="class-Omines.DirectAdmin.Objects.Email.Forwarder.html">Omines\DirectAdmin\Objects\Email\Forwarder</a></li>
 				<li><a href="class-Omines.DirectAdmin.Objects.Email.Mailbox.html">Omines\DirectAdmin\Objects\Email\Mailbox</a></li>
 				<li><a href="class-Omines.DirectAdmin.Objects.Email.MailObject.html">Omines\DirectAdmin\Objects\Email\MailObject</a></li>
@@ -140,13 +145,13 @@
 </span><span id="23" class="l"><a href="#23"> 23 </a>    <span class="php-comment">/**
 </span></span><span id="24" class="l"><a href="#24"> 24 </a><span class="php-comment">     * Construct the object.
 </span></span><span id="25" class="l"><a href="#25"> 25 </a><span class="php-comment">     *
-</span></span><span id="26" class="l"><a href="#26"> 26 </a><span class="php-comment">     * @param string $name The domain name.
+</span></span><span id="26" class="l"><a href="#26"> 26 </a><span class="php-comment">     * @param string $prefix The part before the @ in the address.
 </span></span><span id="27" class="l"><a href="#27"> 27 </a><span class="php-comment">     * @param Domain $domain The containing domain.
 </span></span><span id="28" class="l"><a href="#28"> 28 </a><span class="php-comment">     * @param string|array|null $config URL encoded config string as returned by CMD_API_POP.
 </span></span><span id="29" class="l"><a href="#29"> 29 </a><span class="php-comment">     */</span>
-</span><span id="30" class="l"><a href="#30"> 30 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct(<span class="php-var">$name</span>, Domain <span class="php-var">$domain</span>, <span class="php-var">$config</span> = <span class="php-keyword1">null</span>)
+</span><span id="30" class="l"><a href="#30"> 30 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct(<span class="php-var">$prefix</span>, Domain <span class="php-var">$domain</span>, <span class="php-var">$config</span> = <span class="php-keyword1">null</span>)
 </span><span id="31" class="l"><a href="#31"> 31 </a>    {
-</span><span id="32" class="l"><a href="#32"> 32 </a>        parent::__construct(<span class="php-var">$name</span>, <span class="php-var">$domain</span>);
+</span><span id="32" class="l"><a href="#32"> 32 </a>        parent::__construct(<span class="php-var">$prefix</span>, <span class="php-var">$domain</span>);
 </span><span id="33" class="l"><a href="#33"> 33 </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$config</span>))
 </span><span id="34" class="l"><a href="#34"> 34 </a>            <span class="php-var">$this</span>-&gt;setCache(self::CACHE_DATA, <span class="php-keyword2">is_string</span>(<span class="php-var">$config</span>) ? \GuzzleHttp\Psr7\parse_query(<span class="php-var">$config</span>) : <span class="php-var">$config</span>);
 </span><span id="35" class="l"><a href="#35"> 35 </a>    }
@@ -255,6 +260,6 @@
 	</div>
 </div>
 <script src="resources/combined.js?a009e22136a50e69371cc348476174588218abbb"></script>
-<script src="elementlist.js?cc5a92ce06eb69c2ffe7d706bff716da10a08ea2"></script>
+<script src="elementlist.js?335c8f46e102fec76482f88a9efa8675edf09dc4"></script>
 </body>
 </html>
