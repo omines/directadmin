@@ -51,21 +51,41 @@ class User extends Object
         return $this->getName();
     }
 
+    /**
+     * Returns the bandwidth limit of the user.
+     *
+     * @return float|null Limit in megabytes, or null for unlimited.
+     */
     public function getBandwidthLimit()
     {
         return floatval($this->getConfig('bandwidth')) ?: null;
     }
 
+    /**
+     * Returns the current period's bandwidth usage in megabytes.
+     *
+     * @return float
+     */
     public function getBandwidthUsage()
     {
         return floatval($this->getUsage('bandwidth'));
     }
 
+    /**
+     * Returns the disk quota of the user.
+     *
+     * @return float|null Limit in megabytes, or null for unlimited.
+     */
     public function getDiskLimit()
     {
         return floatval($this->getConfig('quota')) ?: null;
     }
 
+    /**
+     * Returns the current disk usage in megabytes.
+     *
+     * @return float
+     */
     public function getDiskUsage()
     {
         return floatval($this->getUsage('quota'));
@@ -160,10 +180,10 @@ class User extends Object
      * Modifies the configuration of the user. For available keys in the array check the documentation on
      * CMD_API_MODIFY_USER in the linked document.
      *
-     * @param array $newConfig
+     * @param array $newConfig Associative array of values to be modified.
      * @url http://www.directadmin.com/api.html#modify
      */
-    public function modify(array $newConfig)
+    public function modifyConfig(array $newConfig)
     {
         // Merge old and new config
         $config = array_merge($this->loadConfig(), $newConfig, ['action' => 'customize', 'user' => $this->getUsername()]);
@@ -177,6 +197,31 @@ class User extends Object
                 unset($config[$ukey]);
         }
         $this->getContext()->invokePost('MODIFY_USER', $config);
+        $this->clearCache();
+    }
+
+    /**
+     * @param float|null $newValue New value, or NULL for unlimited.
+     */
+    public function setBandwidthLimit($newValue)
+    {
+        $this->modifyConfig(['bandwidth' => isset($newValue) ? floatval($newValue) : null]);
+    }
+
+    /**
+     * @param float|null $newValue New value, or NULL for unlimited.
+     */
+    public function setDiskLimit($newValue)
+    {
+        $this->modifyConfig(['quota' => isset($newValue) ? floatval($newValue) : null]);
+    }
+
+    /**
+     * @param int|null $newValue New value, or NULL for unlimited.
+     */
+    public function setDomainLimit($newValue)
+    {
+        $this->modifyConfig(['vdomains' => isset($newValue) ? intval($newValue) : null]);
     }
 
     /**
