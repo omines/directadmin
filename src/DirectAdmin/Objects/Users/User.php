@@ -187,15 +187,27 @@ class User extends Object
     {
         // Merge old and new config
         $config = array_merge($this->loadConfig(), $newConfig, ['action' => 'customize', 'user' => $this->getUsername()]);
-        foreach(['bandwidth', 'domainptr', 'ftp', 'mysql', 'nemailf', 'nemailml', 'nemailr', 'nemails',
-                 'nsubdomains', 'quota', 'vdomains'] as $key)
-        {
-            unset($config[$ukey = "u{$key}"]);
-            if($config[$key] === 'unlimited' || (array_key_exists($key, $config) && !isset($config[$key])))
-                $config[$ukey] = 'ON';
-        }
+        self::applyUnlimitedOptions($config);
         $this->getContext()->invokePost('MODIFY_USER', $config);
         $this->clearCache();
+    }
+
+    /**
+     * Temporary implementation of this function - should move to package management later on.
+     *
+     * @param array &$options
+     */
+    private static function applyUnlimitedOptions(array &$options)
+    {
+        static $hasUnlimited = ['bandwidth', 'domainptr', 'ftp', 'mysql', 'nemailf', 'nemailml', 'nemailr', 'nemails',
+                                'nsubdomains', 'quota', 'vdomains'];
+        foreach($hasUnlimited as $key)
+        {
+            $ukey = "u{$key}";
+            unset($options[$ukey]);
+            if($options[$key] === 'unlimited' || (array_key_exists($key, $options) && !isset($options[$key])))
+                $options[$ukey] = 'ON';
+        }
     }
 
     /**
