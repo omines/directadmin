@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
  - Subdomain management
+ - User config modification
 
 ## 0.1.0 - 2015-11-06
 ### Added

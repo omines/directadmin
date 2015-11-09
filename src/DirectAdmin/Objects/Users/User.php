@@ -190,11 +190,9 @@ class User extends Object
         foreach(['bandwidth', 'domainptr', 'ftp', 'mysql', 'nemailf', 'nemailml', 'nemailr', 'nemails',
                  'nsubdomains', 'quota', 'vdomains'] as $key)
         {
-            $ukey = "u{$key}";
+            unset($config[$ukey = "u{$key}"]);
             if($config[$key] === 'unlimited' || (array_key_exists($key, $config) && !isset($config[$key])))
                 $config[$ukey] = 'ON';
-            else
-                unset($config[$ukey]);
         }
         $this->getContext()->invokePost('MODIFY_USER', $config);
         $this->clearCache();

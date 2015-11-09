@@ -102,6 +102,27 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($user->getDiskLimit());
     }
 
+    public function testUserQuota()
+    {
+        $user = self::$user;
+
+        // Set some quota
+        $user->setBandwidthLimit(25000);
+        $user->setDiskLimit(500);
+        $user->setDomainLimit(5);
+
+        // Verify the settings were applied correctly
+        $this->assertEquals(25000, $user->getBandwidthLimit());
+        $this->assertEquals(500, $user->getDiskLimit());
+        $this->assertEquals(5, $user->getDomainLimit());
+
+        // Unset some quota (implying unlimited) and validate them
+        $user->setBandwidthLimit(null);
+        $user->setDiskLimit(null);
+        $this->assertNull($user->getBandwidthLimit());
+        $this->assertNull($user->getDiskLimit());
+    }
+
     /**
      * @depends testDefaultDomain
      */
