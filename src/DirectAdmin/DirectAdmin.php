@@ -14,6 +14,7 @@ use GuzzleHttp\Exception\TransferException;
 use Omines\DirectAdmin\Context\AdminContext;
 use Omines\DirectAdmin\Context\ResellerContext;
 use Omines\DirectAdmin\Context\UserContext;
+use Omines\DirectAdmin\Utility\Conversion;
 
 /**
  * DirectAdmin API main class, encapsulating a specific account connection to a single server.
@@ -129,7 +130,7 @@ class DirectAdmin
         $result = $this->rawRequest($method, '/CMD_API_' . $command, $options);
         if(!empty($result['error']))
             throw new DirectAdminException("$method to $command failed: $result[details] ($result[text])");
-        return self::toArray($result);
+        return Conversion::sanitizeArray($result);
     }
 
     /**
@@ -159,39 +160,12 @@ class DirectAdmin
             $response = $this->connection->request($method, $uri, $options);
             if($response->getHeader('Content-Type')[0] == 'text/html')
                 throw new DirectAdminException('DirectAdmin API returned an error: ' . strip_tags($response->getBody()->getContents()));
-            return self::parseResponse($response->getBody()->getContents());
+            return Conversion::responseToArray($response->getBody()->getContents());
         }
         catch(TransferException $exception)
         {
             // Rethrow anything that causes a network issue
             throw new DirectAdminException("Request to $uri using $method failed", 0, $exception);
         }
-    }
-
-    /**
-     * Processes DirectAdmin style responses.
-     *
-     * @param string $data
-     * @return array
-     */
-    private static function parseResponse($data)
-    {
-        $unescaped = preg_replace_callback('/&#([0-9]{2})/', function($val) {
-            return chr($val[1]); }, $data);
-        return \GuzzleHttp\Psr7\parse_query($unescaped);
-    }
-
-    /**
-     * Ensures a DA-style response is wrapped properly as an array.
-     *
-     * @param mixed $result Messy input.
-     * @return array Sane output.
-     */
-    private static function toArray($result)
-    {
-        if(count($result) == 1 && isset($result['list[]']))
-            $result = $result['list[]'];
-        return is_array($result) ? $result : [$result];
-
     }
 }
