@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class Omines\DirectAdmin\Context\BaseContext</title>
+	<title>Class Omines\DirectAdmin\Utility\Conversion</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -28,7 +28,7 @@
 
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="namespace-Omines.DirectAdmin.Context.html" title="Summary of Omines\DirectAdmin\Context"><span>Namespace</span></a>
+						<a href="namespace-Omines.DirectAdmin.Utility.html" title="Summary of Omines\DirectAdmin\Utility"><span>Namespace</span></a>
 					</li>
 					<li class="active">
 <span>Class</span>					</li>
@@ -58,7 +58,7 @@
 							DirectAdmin<span></span>
 						</a>
 							<ul>
-					<li class="active">
+					<li>
 						<a href="namespace-Omines.DirectAdmin.Context.html">
 							Context						</a>
 							</li>
@@ -80,7 +80,7 @@
 							Users						</a>
 							</li>
 								</ul></li>
-					<li>
+					<li class="active">
 						<a href="namespace-Omines.DirectAdmin.Utility.html">
 							Utility						</a>
 							</li>
@@ -92,10 +92,7 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-Omines.DirectAdmin.Context.AdminContext.html">AdminContext</a></li>
-				<li class="active"><a href="class-Omines.DirectAdmin.Context.BaseContext.html">BaseContext</a></li>
-				<li><a href="class-Omines.DirectAdmin.Context.ResellerContext.html">ResellerContext</a></li>
-				<li><a href="class-Omines.DirectAdmin.Context.UserContext.html">UserContext</a></li>
+				<li class="active"><a href="class-Omines.DirectAdmin.Utility.Conversion.html">Conversion</a></li>
 			</ul>
 
 
@@ -111,43 +108,30 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Class BaseContext</h1>
+	<h1>Class Conversion</h1>
 
 
 	<div class="description">
-	<p>Encapsulates a contextual connection to a DirectAdmin server.</p>
+	<p>Static helper class for various conversion operations.</p>
 	</div>
 
 
 
-	<div>
-		<h3>Direct known subclasses</h3>
-		<p class="elementList">
-			<code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code>
-		</p>
-	</div>
 
-	<div>
-		<h3>Indirect known subclasses</h3>
-		<p class="elementList">
-			<code><a href="class-Omines.DirectAdmin.Context.AdminContext.html">Omines\DirectAdmin\Context\AdminContext</a></code>, 
-			<code><a href="class-Omines.DirectAdmin.Context.ResellerContext.html">Omines\DirectAdmin\Context\ResellerContext</a></code>
-		</p>
-	</div>
 
 
 
 
 
 	<div class="alert alert-info">
-		<b>Abstract</b><br>
 		
-		<b>Namespace:</b> <a href="namespace-Omines.html">Omines</a>\<a href="namespace-Omines.DirectAdmin.html">DirectAdmin</a>\<a href="namespace-Omines.DirectAdmin.Context.html">Context</a><br>
+		
+		<b>Namespace:</b> <a href="namespace-Omines.html">Omines</a>\<a href="namespace-Omines.DirectAdmin.html">DirectAdmin</a>\<a href="namespace-Omines.DirectAdmin.Utility.html">Utility</a><br>
 		
 
 				<b>Author:</b>
 				Niels Keurentjes <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m">&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m</a><br>
-			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Context.BaseContext.html#14-67" title="Go to source code">DirectAdmin/Context/BaseContext.php</a>
+			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Utility.Conversion.html#12-75" title="Go to source code">DirectAdmin/Utility/Conversion.php</a>
 		<br>
 	</div>
 
@@ -156,65 +140,38 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="__construct" id="___construct">
+		<tr data-order="onOff" id="_onOff">
 
 			<td class="attributes"><code>
-				 public 
-				
+				 public static
+				string
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.BaseContext.html#24-32" title="Go to source code">__construct</a>( <span><code><a href="class-Omines.DirectAdmin.DirectAdmin.html">Omines\DirectAdmin\DirectAdmin</a></code> <var>$connection</var></span> )</code>
+			<a class="anchor" href="#_onOff">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Utility.Conversion.html#19-29" title="Go to source code">onOff</a>( <span>mixed <var>$input</var></span>, <span>mixed <var>$fallback</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
-				<p>Constructs the object.</p>
+				<p>Reduces any input to an ON/OFF value.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Constructs the object.</p>
+				<p>Reduces any input to an ON/OFF value.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$connection</var></dt>
-						<dd>A prepared connection.</dd>
+						<dt><var>$input</var></dt>
+						<dd>Data to convert.</dd>
+						<dt><var>$fallback</var></dt>
+						<dd>Fallback to use if $input is NULL.</dd>
 					</dl></div>
-
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="getConnection" id="_getConnection">
-
-			<td class="attributes"><code>
-				 protected 
-				<code><a href="class-Omines.DirectAdmin.DirectAdmin.html">Omines\DirectAdmin\DirectAdmin</a></code>
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getConnection">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.BaseContext.html#34-42" title="Go to source code">getConnection</a>( )</code>
-
-			<div class="description short">
-				<p>Returns the internal connection wrapper.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Returns the internal connection wrapper.</p>
-
-
 
 					<h4>Returns</h4>
 					<div class="list">
-						<code><a href="class-Omines.DirectAdmin.DirectAdmin.html">Omines\DirectAdmin\DirectAdmin</a></code>
+						string<br>Either ON or OFF.
 					</div>
 
 
@@ -223,38 +180,36 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="invokeGet" id="_invokeGet">
+		<tr data-order="processUnlimitedOptions" id="_processUnlimitedOptions">
 
 			<td class="attributes"><code>
-				 public 
+				 public static
 				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_invokeGet">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.BaseContext.html#44-54" title="Go to source code">invokeGet</a>( <span>string <var>$command</var></span>, <span>array <var>$query</var> = []</span> )</code>
+			<a class="anchor" href="#_processUnlimitedOptions">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Utility.Conversion.html#31-48" title="Go to source code">processUnlimitedOptions</a>( <span>array <var>$options</var></span> )</code>
 
 			<div class="description short">
-				<p>Invokes the DirectAdmin API via HTTP GET.</p>
+				<p>Detects package/domain options that can be unlimited and sets the accordingly.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Invokes the DirectAdmin API via HTTP GET.</p>
+				<p>Detects package/domain options that can be unlimited and sets the accordingly.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$command</var></dt>
-						<dd>DirectAdmin API command to invoke.</dd>
-						<dt><var>$query</var></dt>
-						<dd>Optional query parameters.</dd>
+						<dt><var>$options</var></dt>
+						<dd></dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						array<br>The parsed and validated response.
+						array<br>Modified array.
 					</div>
 
 
@@ -263,38 +218,74 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="invokePost" id="_invokePost">
+		<tr data-order="responseToArray" id="_responseToArray">
 
 			<td class="attributes"><code>
-				 public 
+				 public static
 				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_invokePost">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.BaseContext.html#56-66" title="Go to source code">invokePost</a>( <span>string <var>$command</var></span>, <span>array <var>$postParameters</var> = []</span> )</code>
+			<a class="anchor" href="#_responseToArray">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Utility.Conversion.html#50-61" title="Go to source code">responseToArray</a>( <span>string <var>$data</var></span> )</code>
 
 			<div class="description short">
-				<p>Invokes the DirectAdmin API via HTTP POST.</p>
+				<p>Processes DirectAdmin style encoded responses into a sane array.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Invokes the DirectAdmin API via HTTP POST.</p>
+				<p>Processes DirectAdmin style encoded responses into a sane array.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$command</var></dt>
-						<dd>DirectAdmin API command to invoke.</dd>
-						<dt><var>$postParameters</var></dt>
-						<dd>Optional form parameters.</dd>
+						<dt><var>$data</var></dt>
+						<dd></dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						array<br>The parsed and validated response.
+						array
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="sanitizeArray" id="_sanitizeArray">
+
+			<td class="attributes"><code>
+				 public static
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_sanitizeArray">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Utility.Conversion.html#63-74" title="Go to source code">sanitizeArray</a>( <span>mixed <var>$result</var></span> )</code>
+
+			<div class="description short">
+				<p>Ensures a DA-style response element is wrapped properly as an array.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Ensures a DA-style response element is wrapped properly as an array.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$result</var></dt>
+						<dd>Messy input.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						array<br>Sane output.
 					</div>
 
 
