@@ -29,6 +29,21 @@ class Conversion
     }
 
     /**
+     * Expands a single option to its unlimited counterpart if NULL or literal 'unlimited'.
+     *
+     * @param array $options Array of options to process.
+     * @param string $key Key of the item to process.
+     */
+    protected static function processUnlimitedOption(array &$options, $key)
+    {
+        $ukey = "u{$key}";
+        if(array_key_exists($key, $options) && ($options[$key] === 'unlimited' || !isset($options[$key])))
+            $options[$ukey] = 'ON';
+        else
+            unset($options[$ukey]);
+    }
+
+    /**
      * Detects package/domain options that can be unlimited and sets the accordingly.
      *
      * @param array $options
@@ -39,10 +54,7 @@ class Conversion
         foreach(['bandwidth', 'domainptr', 'ftp', 'mysql', 'nemailf', 'nemailml', 'nemailr', 'nemails',
                     'nsubdomains', 'quota', 'vdomains'] as $key)
         {
-            $ukey = "u{$key}";
-            unset($options[$ukey]);
-            if(array_key_exists($key, $options) && ($options[$key] === 'unlimited' || !isset($options[$key])))
-                $options[$ukey] = 'ON';
+            self::processUnlimitedOption($options, $key);
         }
         return $options;
     }
