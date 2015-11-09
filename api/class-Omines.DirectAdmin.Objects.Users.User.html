@@ -159,7 +159,7 @@
 
 				<b>Author:</b>
 				Niels Keurentjes <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m">&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m</a><br>
-			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#20-286" title="Go to source code">DirectAdmin/Objects/Users/User.php</a>
+			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#20-338" title="Go to source code">DirectAdmin/Objects/Users/User.php</a>
 		<br>
 	</div>
 
@@ -208,6 +208,85 @@
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="clearCache" id="_clearCache">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_clearCache">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#47-54" title="Go to source code">clearCache</a>( )</code>
+
+			<div class="description short">
+				<p>Clear the object's internal cache.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Clear the object's internal cache.</p>
+
+
+
+
+
+
+					<h4>Overrides</h4>
+					<div class="list"><code><a href="class-Omines.DirectAdmin.Objects.Object.html#_clearCache">Omines\DirectAdmin\Objects\Object::clearCache</a></code></div>
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="createDomain" id="_createDomain">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_createDomain">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#56-73" title="Go to source code">createDomain</a>( <span>string <var>$domainName</var></span>, <span>float|null <var>$bandwidthLimit</var> = <span class="php-keyword1">null</span></span>, <span>float|null <var>$diskLimit</var> = <span class="php-keyword1">null</span></span>, <span>boolean|null <var>$ssl</var> = <span class="php-keyword1">null</span></span>, <span>boolean|null <var>$php</var> = <span class="php-keyword1">null</span></span>, <span>boolean|null <var>$cgi</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p>Creates a new domain under this user.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Creates a new domain under this user.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$domainName</var></dt>
+						<dd>Domain name to create.</dd>
+						<dt><var>$bandwidthLimit</var></dt>
+						<dd>Bandwidth limit in MB, or NULL to share with account.</dd>
+						<dt><var>$diskLimit</var></dt>
+						<dd>Disk limit in MB, or NULL to share with account.</dd>
+						<dt><var>$ssl</var></dt>
+						<dd>Whether SSL is to be enabled, or NULL to fallback to account default.</dd>
+						<dt><var>$php</var></dt>
+						<dd>Whether PHP is to be enabled, or NULL to fallback to account default.</dd>
+						<dt><var>$cgi</var></dt>
+						<dd>Whether CGI is to be enabled, or NULL to fallback to account default.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></code><br>Newly created domain.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="getUsername" id="_getUsername">
 
 			<td class="attributes"><code>
@@ -219,7 +298,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getUsername">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#47-53" title="Go to source code">getUsername</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#75-81" title="Go to source code">getUsername</a>( )</code>
 
 			<div class="description short">
 				
@@ -252,7 +331,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getBandwidthLimit">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#55-63" title="Go to source code">getBandwidthLimit</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#83-91" title="Go to source code">getBandwidthLimit</a>( )</code>
 
 			<div class="description short">
 				<p>Returns the bandwidth limit of the user.</p>
@@ -285,7 +364,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getBandwidthUsage">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#65-73" title="Go to source code">getBandwidthUsage</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#93-101" title="Go to source code">getBandwidthUsage</a>( )</code>
 
 			<div class="description short">
 				<p>Returns the current period's bandwidth usage in megabytes.</p>
@@ -318,7 +397,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDiskLimit">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#75-83" title="Go to source code">getDiskLimit</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#103-111" title="Go to source code">getDiskLimit</a>( )</code>
 
 			<div class="description short">
 				<p>Returns the disk quota of the user.</p>
@@ -351,7 +430,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDiskUsage">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#85-93" title="Go to source code">getDiskUsage</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#113-121" title="Go to source code">getDiskUsage</a>( )</code>
 
 			<div class="description short">
 				<p>Returns the current disk usage in megabytes.</p>
@@ -384,7 +463,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDefaultDomain">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#95-103" title="Go to source code">getDefaultDomain</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#123-131" title="Go to source code">getDefaultDomain</a>( )</code>
 
 			<div class="description short">
 				
@@ -417,7 +496,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDomainLimit">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#105-113" title="Go to source code">getDomainLimit</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#133-141" title="Go to source code">getDomainLimit</a>( )</code>
 
 			<div class="description short">
 				<p>Returns maximum number of domains allowed to this user, or NULL for unlimited.</p>
@@ -450,7 +529,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDomainUsage">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#115-123" title="Go to source code">getDomainUsage</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#143-151" title="Go to source code">getDomainUsage</a>( )</code>
 
 			<div class="description short">
 				<p>Returns number of domains owned by this user.</p>
@@ -483,7 +562,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_isSuspended">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#125-133" title="Go to source code">isSuspended</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#153-161" title="Go to source code">isSuspended</a>( )</code>
 
 			<div class="description short">
 				<p>Returns whether the user is currently suspended.</p>
@@ -516,7 +595,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDomain">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#135-144" title="Go to source code">getDomain</a>( <span>string <var>$domainName</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#163-172" title="Go to source code">getDomain</a>( <span>string <var>$domainName</var></span> )</code>
 
 			<div class="description short">
 				
@@ -554,7 +633,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDomains">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#146-159" title="Go to source code">getDomains</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#174-187" title="Go to source code">getDomains</a>( )</code>
 
 			<div class="description short">
 				
@@ -587,7 +666,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getType">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#161-167" title="Go to source code">getType</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#189-195" title="Go to source code">getType</a>( )</code>
 
 			<div class="description short">
 				
@@ -609,6 +688,105 @@
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="hasCGI" id="_hasCGI">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_hasCGI">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#197-203" title="Go to source code">hasCGI</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>Whether the user can use CGI.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="hasPHP" id="_hasPHP">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_hasPHP">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#205-211" title="Go to source code">hasPHP</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>Whether the user can use PHP.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="hasSSL" id="_hasSSL">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_hasSSL">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#213-219" title="Go to source code">hasSSL</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>Whether the user can use SSL.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="impersonate" id="_impersonate">
 
 			<td class="attributes"><code>
@@ -620,7 +798,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_impersonate">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#169-178" title="Go to source code">impersonate</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#221-230" title="Go to source code">impersonate</a>( )</code>
 
 			<div class="description short">
 				
@@ -653,7 +831,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_modifyConfig">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#180-195" title="Go to source code">modifyConfig</a>( <span>array <var>$newConfig</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#232-247" title="Go to source code">modifyConfig</a>( <span>array <var>$newConfig</var></span> )</code>
 
 			<div class="description short">
 				<p>Modifies the configuration of the user. For available keys in the array check the documentation on
@@ -693,7 +871,7 @@ CMD_API_MODIFY_USER in the linked document.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setBandwidthLimit">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#197-203" title="Go to source code">setBandwidthLimit</a>( <span>float|null <var>$newValue</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#249-255" title="Go to source code">setBandwidthLimit</a>( <span>float|null <var>$newValue</var></span> )</code>
 
 			<div class="description short">
 				
@@ -727,7 +905,7 @@ CMD_API_MODIFY_USER in the linked document.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setDiskLimit">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#205-211" title="Go to source code">setDiskLimit</a>( <span>float|null <var>$newValue</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#257-263" title="Go to source code">setDiskLimit</a>( <span>float|null <var>$newValue</var></span> )</code>
 
 			<div class="description short">
 				
@@ -761,7 +939,7 @@ CMD_API_MODIFY_USER in the linked document.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setDomainLimit">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#213-219" title="Go to source code">setDomainLimit</a>( <span>integer|null <var>$newValue</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#265-271" title="Go to source code">setDomainLimit</a>( <span>integer|null <var>$newValue</var></span> )</code>
 
 			<div class="description short">
 				
@@ -795,7 +973,7 @@ CMD_API_MODIFY_USER in the linked document.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_fromConfig">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#221-243" title="Go to source code">fromConfig</a>( <span>array <var>$config</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#273-295" title="Go to source code">fromConfig</a>( <span>array <var>$config</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span> )</code>
 
 			<div class="description short">
 				<p>Constructs the correct object from the given user config.</p>
@@ -839,7 +1017,7 @@ CMD_API_MODIFY_USER in the linked document.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_isSelfManaged">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#269-275" title="Go to source code">isSelfManaged</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Users.User.html#321-327" title="Go to source code">isSelfManaged</a>( )</code>
 
 			<div class="description short">
 				
@@ -867,7 +1045,6 @@ CMD_API_MODIFY_USER in the linked document.</p>
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Omines.DirectAdmin.Objects.Object.html#methods">Omines\DirectAdmin\Objects\Object</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-Omines.DirectAdmin.Objects.Object.html#_clearCache">clearCache()</a></code>, 
 				<code><a href="class-Omines.DirectAdmin.Objects.Object.html#_getCache">getCache()</a></code>, 
 				<code><a href="class-Omines.DirectAdmin.Objects.Object.html#_getCacheItem">getCacheItem()</a></code>, 
 				<code><a href="class-Omines.DirectAdmin.Objects.Object.html#_getContext">getContext()</a></code>, 

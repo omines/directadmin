@@ -147,7 +147,7 @@
 
 				<b>Author:</b>
 				Niels Keurentjes <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m">&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m</a><br>
-			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.Domain.html#17-237" title="Go to source code">DirectAdmin/Objects/Domain.php</a>
+			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.Domain.html#21-302" title="Go to source code">DirectAdmin/Objects/Domain.php</a>
 		<br>
 	</div>
 
@@ -167,7 +167,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#46-68" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span>, <span>string <var>$config</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#53-84" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span>, <span>string|array <var>$config</var></span> )</code>
 
 			<div class="description short">
 				<p>Construct the object.</p>
@@ -196,6 +196,56 @@
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="create" id="_create">
+
+			<td class="attributes"><code>
+				 public static
+				<code><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_create">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#86-112" title="Go to source code">create</a>( <span><code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a></code> <var>$user</var></span>, <span>string <var>$domainName</var></span>, <span>float|null <var>$bandwidthLimit</var> = <span class="php-keyword1">null</span></span>, <span>float|null <var>$diskLimit</var> = <span class="php-keyword1">null</span></span>, <span>boolean|null <var>$ssl</var> = <span class="php-keyword1">null</span></span>, <span>boolean|null <var>$php</var> = <span class="php-keyword1">null</span></span>, <span>boolean|null <var>$cgi</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p>Creates a new domain under the specified user.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Creates a new domain under the specified user.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$user</var></dt>
+						<dd>Owner of the domain.</dd>
+						<dt><var>$domainName</var></dt>
+						<dd>Domain name to create.</dd>
+						<dt><var>$bandwidthLimit</var></dt>
+						<dd>Bandwidth limit in MB, or NULL to share with account.</dd>
+						<dt><var>$diskLimit</var></dt>
+						<dd>Disk limit in MB, or NULL to share with account.</dd>
+						<dt><var>$ssl</var></dt>
+						<dd>Whether SSL is to be enabled, or NULL to fallback to account default.</dd>
+						<dt><var>$php</var></dt>
+						<dd>Whether PHP is to be enabled, or NULL to fallback to account default.</dd>
+						<dt><var>$cgi</var></dt>
+						<dd>Whether CGI is to be enabled, or NULL to fallback to account default.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Omines.DirectAdmin.Objects.Domain.html">Omines\DirectAdmin\Objects\Domain</a></code><br>The newly created domain.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="createForwarder" id="_createForwarder">
 
 			<td class="attributes"><code>
@@ -207,7 +257,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_createForwarder">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#70-80" title="Go to source code">createForwarder</a>( <span>string <var>$prefix</var></span>, <span>string|string[] <var>$recipients</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#114-124" title="Go to source code">createForwarder</a>( <span>string <var>$prefix</var></span>, <span>string|string[] <var>$recipients</var></span> )</code>
 
 			<div class="description short">
 				<p>Creates a new email forwarder.</p>
@@ -247,7 +297,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_createMailbox">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#82-94" title="Go to source code">createMailbox</a>( <span>string <var>$prefix</var></span>, <span>string <var>$password</var></span>, <span>integer|null <var>$quota</var> = <span class="php-keyword1">null</span></span>, <span>integer|null <var>$sendLimit</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#126-138" title="Go to source code">createMailbox</a>( <span>string <var>$prefix</var></span>, <span>string <var>$password</var></span>, <span>integer|null <var>$quota</var> = <span class="php-keyword1">null</span></span>, <span>integer|null <var>$sendLimit</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Creates a new mailbox.</p>
@@ -291,7 +341,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_createSubdomain">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#96-105" title="Go to source code">createSubdomain</a>( <span>string <var>$prefix</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#140-149" title="Go to source code">createSubdomain</a>( <span>string <var>$prefix</var></span> )</code>
 
 			<div class="description short">
 				<p>Creates a new subdomain.</p>
@@ -318,6 +368,35 @@
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="delete" id="_delete">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_delete">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#151-162" title="Go to source code">delete</a>( )</code>
+
+			<div class="description short">
+				<p>Deletes this domain from the user.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Deletes this domain from the user.</p>
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="getAliases" id="_getAliases">
 
 			<td class="attributes"><code>
@@ -329,7 +408,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getAliases">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#107-113" title="Go to source code">getAliases</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#164-170" title="Go to source code">getAliases</a>( )</code>
 
 			<div class="description short">
 				
@@ -362,7 +441,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDomainNames">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#115-127" title="Go to source code">getDomainNames</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#172-184" title="Go to source code">getDomainNames</a>( )</code>
 
 			<div class="description short">
 				<p>Returns unified sorted list of main domain name, aliases and pointers.</p>
@@ -395,7 +474,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getBandwidthUsed">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#129-135" title="Go to source code">getBandwidthUsed</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#186-192" title="Go to source code">getBandwidthUsed</a>( )</code>
 
 			<div class="description short">
 				
@@ -428,7 +507,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getBandwidthLimit">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#137-143" title="Go to source code">getBandwidthLimit</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#194-200" title="Go to source code">getBandwidthLimit</a>( )</code>
 
 			<div class="description short">
 				
@@ -461,7 +540,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDiskUsage">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#145-151" title="Go to source code">getDiskUsage</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#202-208" title="Go to source code">getDiskUsage</a>( )</code>
 
 			<div class="description short">
 				
@@ -494,7 +573,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDomainName">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#153-159" title="Go to source code">getDomainName</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#210-216" title="Go to source code">getDomainName</a>( )</code>
 
 			<div class="description short">
 				
@@ -527,7 +606,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getForwarders">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#161-172" title="Go to source code">getForwarders</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#218-229" title="Go to source code">getForwarders</a>( )</code>
 
 			<div class="description short">
 				
@@ -560,7 +639,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getMailboxes">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#174-186" title="Go to source code">getMailboxes</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#231-243" title="Go to source code">getMailboxes</a>( )</code>
 
 			<div class="description short">
 				
@@ -582,6 +661,39 @@
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="getOwner" id="_getOwner">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getOwner">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#245-251" title="Go to source code">getOwner</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="getSubdomains" id="_getSubdomains">
 
 			<td class="attributes"><code>
@@ -593,7 +705,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getSubdomains">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#188-198" title="Go to source code">getSubdomains</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#253-263" title="Go to source code">getSubdomains</a>( )</code>
 
 			<div class="description short">
 				
@@ -626,7 +738,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getPointers">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#200-206" title="Go to source code">getPointers</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#265-271" title="Go to source code">getPointers</a>( )</code>
 
 			<div class="description short">
 				
@@ -659,7 +771,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_invokePost">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#208-226" title="Go to source code">invokePost</a>( <span>string <var>$command</var></span>, <span>string <var>$action</var></span>, <span>array <var>$parameters</var> = []</span>, <span>boolean <var>$clearCache</var> = <span class="php-keyword1">true</span></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#273-291" title="Go to source code">invokePost</a>( <span>string <var>$command</var></span>, <span>string <var>$action</var></span>, <span>array <var>$parameters</var> = []</span>, <span>boolean <var>$clearCache</var> = <span class="php-keyword1">true</span></span> )</code>
 
 			<div class="description short">
 				<p>Invokes a POST command on a domain object.</p>
@@ -703,7 +815,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___toString">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#228-236" title="Go to source code">__toString</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Domain.html#293-301" title="Go to source code">__toString</a>( )</code>
 
 			<div class="description short">
 				<p>Allows Domain object to be passed as a string with its domain name.</p>
@@ -756,7 +868,7 @@
 				<td class="attributes"><code>string</code></td>
 				<td class="name">
 					<code>
-						<a href="source-class-Omines.DirectAdmin.Objects.Domain.html#24" title="Go to source code"><b>CACHE_FORWARDERS</b></a>
+						<a href="source-class-Omines.DirectAdmin.Objects.Domain.html#28" title="Go to source code"><b>CACHE_FORWARDERS</b></a>
 					</code>
 
 					<div class="description short">
@@ -780,7 +892,7 @@
 				<td class="attributes"><code>string</code></td>
 				<td class="name">
 					<code>
-						<a href="source-class-Omines.DirectAdmin.Objects.Domain.html#25" title="Go to source code"><b>CACHE_MAILBOXES</b></a>
+						<a href="source-class-Omines.DirectAdmin.Objects.Domain.html#29" title="Go to source code"><b>CACHE_MAILBOXES</b></a>
 					</code>
 
 					<div class="description short">
@@ -804,7 +916,7 @@
 				<td class="attributes"><code>string</code></td>
 				<td class="name">
 					<code>
-						<a href="source-class-Omines.DirectAdmin.Objects.Domain.html#26" title="Go to source code"><b>CACHE_SUBDOMAINS</b></a>
+						<a href="source-class-Omines.DirectAdmin.Objects.Domain.html#30" title="Go to source code"><b>CACHE_SUBDOMAINS</b></a>
 					</code>
 
 					<div class="description short">
