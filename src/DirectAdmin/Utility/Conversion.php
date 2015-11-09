@@ -20,12 +20,12 @@ class Conversion
      * Reduces any input to an ON/OFF value.
      *
      * @param mixed $input Data to convert.
-     * @param mixed $fallback Fallback to use if $input is NULL.
+     * @param mixed $default Fallback to use if $input is NULL.
      * @return string Either ON or OFF.
      */
-    public static function onOff($input, $fallback = false)
+    public static function onOff($input, $default = false)
     {
-        return filter_var(isset($input) ? $input : $fallback, FILTER_VALIDATE_BOOLEAN) ? 'ON' : 'OFF';
+        return self::toBool($input, $default) ? 'ON' : 'OFF';
     }
 
     /**
@@ -83,5 +83,17 @@ class Conversion
         if(count($result) == 1 && isset($result['list[]']))
             $result = $result['list[]'];
         return is_array($result) ? $result : [$result];
+    }
+
+    /**
+     * Converts values like ON, YES etc. to proper boolean variables.
+     *
+     * @param mixed $value Value to be converted.
+     * @param mixed $default Value to use if $value is NULL.
+     * @return bool
+     */
+    public static function toBool($value, $default = false)
+    {
+        return filter_var(isset($value) ? $value : $default, FILTER_VALIDATE_BOOLEAN);
     }
 }

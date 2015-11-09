@@ -45,6 +45,34 @@ class User extends Object
     }
 
     /**
+     * Clear the object's internal cache.
+     */
+    public function clearCache()
+    {
+        unset($this->domains);
+        parent::clearCache();
+    }
+
+    /**
+     * Creates a new domain under this user.
+     *
+     * @param string $domainName Domain name to create.
+     * @param float|null $bandwidthLimit Bandwidth limit in MB, or NULL to share with account.
+     * @param float|null $diskLimit Disk limit in MB, or NULL to share with account.
+     * @param bool|null $ssl Whether SSL is to be enabled, or NULL to fallback to account default.
+     * @param bool|null $php Whether PHP is to be enabled, or NULL to fallback to account default.
+     * @param bool|null $cgi Whether CGI is to be enabled, or NULL to fallback to account default.
+     * @return Domain Newly created domain.
+     */
+    public function createDomain($domainName, $bandwidthLimit = null, $diskLimit = null, $ssl = null, $php = null, $cgi = null)
+    {
+        $user = $this->isSelfManaged() ? $this : $this->impersonate()->getContextUser();
+        $domain = Domain::create($user, $domainName, $bandwidthLimit, $diskLimit, $ssl, $php, $cgi);
+        $this->clearCache();
+        return $domain;
+    }
+
+    /**
      * @return string The username.
      */
     public function getUsername()
@@ -164,6 +192,30 @@ class User extends Object
     public function getType()
     {
         return $this->getConfig('usertype');
+    }
+
+    /**
+     * @return bool Whether the user can use CGI.
+     */
+    public function hasCGI()
+    {
+        return Conversion::toBool($this->getConfig('cgi'));
+    }
+
+    /**
+     * @return bool Whether the user can use PHP.
+     */
+    public function hasPHP()
+    {
+        return Conversion::toBool($this->getConfig('php'));
+    }
+
+    /**
+     * @return bool Whether the user can use SSL.
+     */
+    public function hasSSL()
+    {
+        return Conversion::toBool($this->getConfig('ssl'));
     }
 
     /**

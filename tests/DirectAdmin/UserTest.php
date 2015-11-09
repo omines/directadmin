@@ -102,6 +102,24 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($user->getDiskLimit());
     }
 
+    public function testDomains()
+    {
+        $user = self::$user;
+
+        // Create some domains with various settings
+        $domain1 = $user->createDomain('example1.org');
+        $domain2 = $user->createDomain('example2.org', 50);
+        $domain3 = $user->createDomain('example3.org', 200, 50, false, null, true);
+        $this->assertCount(4, $domains = $user->getDomains());
+
+        // Delete all added domains
+        $domain1->delete();
+        $domain2->delete();
+        $domain3->delete();
+        $user->clearCache(); // This shouldn't be necessary...?
+        $this->assertCount(1, $user->getDomains());
+    }
+
     public function testUserQuota()
     {
         $user = self::$user;

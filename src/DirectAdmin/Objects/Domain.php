@@ -9,10 +9,14 @@
 
 namespace Omines\DirectAdmin\Objects;
 
+use Omines\DirectAdmin\Context\ResellerContext;
 use Omines\DirectAdmin\Context\UserContext;
+use Omines\DirectAdmin\DirectAdminException;
 use Omines\DirectAdmin\Objects\Domains\Subdomain;
 use Omines\DirectAdmin\Objects\Email\Forwarder;
 use Omines\DirectAdmin\Objects\Email\Mailbox;
+use Omines\DirectAdmin\Objects\Users\User;
+use Omines\DirectAdmin\Utility\Conversion;
 
 /**
  * Encapsulates a domain and its derived objects, like aliases, pointers and mailboxes.
@@ -27,6 +31,9 @@ class Domain extends Object
 
     /** @var string */
     private $domainName;
+
+    /** @var User */
+    private $owner;
 
     /** @var string[] */
     private $aliases;
@@ -48,16 +55,25 @@ class Domain extends Object
      *
      * @param string $name The domain name.
      * @param UserContext $context The owning user context.
-     * @param string $config The basic config string as returned by CMD_API_ADDITIONAL_DOMAINS.
+     * @param string|array $config The basic config string as returned by CMD_API_ADDITIONAL_DOMAINS.
      */
     public function __construct($name, UserContext $context, $config)
     {
         parent::__construct($name, $context);
 
         // Unpack domain config
-        $data = \GuzzleHttp\Psr7\parse_query($config);
+        $data = is_array($config) ? $config : \GuzzleHttp\Psr7\parse_query($config);
         $this->domainName = $data['domain'];
 
+        // Determine owner
+        if($data['username'] === $context->getUsername())
+            $this->owner = $context->getContextUser();
+        elseif($context instanceof ResellerContext)
+            $this->owner = $context->getUser($data['username']);
+        else
+            throw new DirectAdminException('Could not determine relationship between context user and domain');
+
+        // Parse plain options
         $bandwidths = array_map('trim', explode('/', $data['bandwidth']));
         $this->bandwidthUsed = floatval($bandwidths[0]);
         $this->bandwidthLimit = ctype_alpha($bandwidths[1]) ? null : floatval($bandwidths[1]);
@@ -65,6 +81,34 @@ class Domain extends Object
 
         $this->aliases = array_filter(explode('|', $data['alias_pointers']));
         $this->pointers = array_filter(explode('|', $data['pointers']));
+    }
+
+    /**
+     * Creates a new domain under the specified user.
+     *
+     * @param User $user Owner of the domain.
+     * @param string $domainName Domain name to create.
+     * @param float|null $bandwidthLimit Bandwidth limit in MB, or NULL to share with account.
+     * @param float|null $diskLimit Disk limit in MB, or NULL to share with account.
+     * @param bool|null $ssl Whether SSL is to be enabled, or NULL to fallback to account default.
+     * @param bool|null $php Whether PHP is to be enabled, or NULL to fallback to account default.
+     * @param bool|null $cgi Whether CGI is to be enabled, or NULL to fallback to account default.
+     * @return Domain The newly created domain.
+     */
+    public static function create(User $user, $domainName, $bandwidthLimit = null, $diskLimit = null, $ssl = null, $php = null, $cgi = null)
+    {
+        $options = [
+            'action' => 'create',
+            'domain' => $domainName,
+            (isset($bandwidthLimit) ? 'bandwidth' : 'ubandwidth') => $bandwidthLimit,
+            (isset($diskLimit) ? 'quota' : 'uquota') => $diskLimit,
+            'ssl' => Conversion::onOff($ssl, $user->hasSSL()),
+            'php' => Conversion::onOff($php, $user->hasPHP()),
+            'cgi' => Conversion::onOff($cgi, $user->hasCGI()),
+        ];
+        $user->getContext()->invokePost('DOMAIN', $options);
+        $config = $user->getContext()->invokeGet('ADDITIONAL_DOMAINS');
+        return new self($domainName, $user->getContext(), $config[$domainName]);
     }
 
     /**
@@ -102,6 +146,19 @@ class Domain extends Object
     public function createSubdomain($prefix)
     {
         return Subdomain::create($this, $prefix);
+    }
+
+    /**
+     * Deletes this domain from the user.
+     */
+    public function delete()
+    {
+        $this->getContext()->invokePost('DOMAIN', [
+            'delete' => true,
+            'confirmed' => true,
+            'select0' => $this->domainName,
+        ]);
+        $this->owner->clearCache();
     }
 
     /**
@@ -183,6 +240,14 @@ class Domain extends Object
             ]);
             return DomainObject::toDomainObjectArray($boxes, Mailbox::class, $this);
         });
+    }
+
+    /**
+     * @return User
+     */
+    public function getOwner()
+    {
+        return $this->owner;
     }
 
     /**
