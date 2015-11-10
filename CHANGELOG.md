@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [0.1.1] - 2015-11-10
 ### Added
  - Domain management
  - Subdomain management
@@ -21,4 +23,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Retrieving, creating and deleting mailboxes
 - Resetting mailbox passwords
 
-[Unreleased]: https://github.com/omines/directadmin/compare/v0.1.0...master
+[Unreleased]: https://github.com/omines/directadmin/compare/v0.1.1...master
+[0.1.1]: https://github.com/omines/directadmin/compare/v0.1.0...v0.1.1

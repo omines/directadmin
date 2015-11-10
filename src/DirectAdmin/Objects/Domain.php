@@ -9,7 +9,6 @@
 
 namespace Omines\DirectAdmin\Objects;
 
-use Omines\DirectAdmin\Context\ResellerContext;
 use Omines\DirectAdmin\Context\UserContext;
 use Omines\DirectAdmin\DirectAdminException;
 use Omines\DirectAdmin\Objects\Domains\Subdomain;
