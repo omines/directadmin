@@ -37,10 +37,9 @@ class Conversion
     protected static function processUnlimitedOption(array &$options, $key)
     {
         $ukey = "u{$key}";
+        unset($options[$ukey]);
         if(array_key_exists($key, $options) && ($options[$key] === 'unlimited' || !isset($options[$key])))
             $options[$ukey] = 'ON';
-        else
-            unset($options[$ukey]);
     }
 
     /**

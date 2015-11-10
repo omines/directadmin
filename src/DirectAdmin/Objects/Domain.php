@@ -68,8 +68,6 @@ class Domain extends Object
         // Determine owner
         if($data['username'] === $context->getUsername())
             $this->owner = $context->getContextUser();
-        elseif($context instanceof ResellerContext)
-            $this->owner = $context->getUser($data['username']);
         else
             throw new DirectAdminException('Could not determine relationship between context user and domain');
 

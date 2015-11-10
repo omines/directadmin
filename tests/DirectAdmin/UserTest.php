@@ -12,6 +12,7 @@ use Omines\DirectAdmin\Context\UserContext;
 use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\Objects\Domain;
 use Omines\DirectAdmin\Objects\Users\User;
+use Omines\DirectAdmin\Utility\Conversion;
 
 /**
  * UserTest
@@ -76,6 +77,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($domainAsAdmin->getBandwidthUsed(), $domainAsUser->getBandwidthUsed());
         $this->assertEquals($domainAsAdmin->getDiskUsage(), $domainAsUser->getDiskUsage());
         $this->assertEquals($context, $domainAsUser->getContext());
+        $this->assertEquals(self::$user->getUsername(), $domainAsUser->getOwner()->getUsername());
 
         // Should be no further objects or settings yet
         $this->assertEmpty($domainAsUser->getAliases());
@@ -83,6 +85,15 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertEmpty($domainAsUser->getPointers());
         $this->assertEmpty($domainAsUser->getForwarders());
         $this->assertEmpty($domainAsUser->getMailboxes());
+    }
+
+    /**
+     * @expectedException \Omines\DirectAdmin\DirectAdminException
+     * @expectedExceptionMessage Could not determine relationship between context user and domain
+     */
+    public function testDomainCorruption()
+    {
+        new Domain('example.org', self::$master, ['domain' => 'example.org', 'username' => 'invalid']);
     }
 
     public function testUserStats()
