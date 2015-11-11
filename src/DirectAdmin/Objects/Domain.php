@@ -167,20 +167,6 @@ class Domain extends Object
     }
 
     /**
-     * Returns unified sorted list of main domain name, aliases and pointers.
-     *
-     * @return string[]
-     */
-    public function getDomainNames()
-    {
-        return $this->getCache('domainNames', function() {
-            $list = array_merge($this->aliases, $this->pointers, [$this->getDomainName()]);
-            sort($list);
-            return $list;
-        });
-    }
-
-    /**
      * @return float Bandwidth used in megabytes.
      */
     public function getBandwidthUsed()
@@ -210,6 +196,20 @@ class Domain extends Object
     public function getDomainName()
     {
         return $this->domainName;
+    }
+
+    /**
+     * Returns unified sorted list of main domain name, aliases and pointers.
+     *
+     * @return string[]
+     */
+    public function getDomainNames()
+    {
+        return $this->getCache('domainNames', function() {
+            $list = array_merge($this->aliases, $this->pointers, [$this->getDomainName()]);
+            sort($list);
+            return $list;
+        });
     }
 
     /**
@@ -248,6 +248,14 @@ class Domain extends Object
     }
 
     /**
+     * @return string[] List of domain pointers for this domain.
+     */
+    public function getPointers()
+    {
+        return $this->pointers;
+    }
+
+    /**
      * @return Subdomain[] Associative array of subdomains.
      */
     public function getSubdomains()
@@ -257,14 +265,6 @@ class Domain extends Object
             $subs = array_combine($subs, $subs);
             return DomainObject::toDomainObjectArray($subs, Subdomain::class, $this);
         });
-    }
-
-    /**
-     * @return string[] List of domain pointers for this domain.
-     */
-    public function getPointers()
-    {
-        return $this->pointers;
     }
 
     /**
