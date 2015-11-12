@@ -288,16 +288,17 @@
 </span><span id="160" class="l"><a href="#160">160 </a>            <span class="php-var">$response</span> = <span class="php-var">$this</span>-&gt;connection-&gt;request(<span class="php-var">$method</span>, <span class="php-var">$uri</span>, <span class="php-var">$options</span>);
 </span><span id="161" class="l"><a href="#161">161 </a>            <span class="php-keyword1">if</span>(<span class="php-var">$response</span>-&gt;getHeader(<span class="php-quote">'Content-Type'</span>)[<span class="php-num">0</span>] == <span class="php-quote">'text/html'</span>)
 </span><span id="162" class="l"><a href="#162">162 </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> DirectAdminException(<span class="php-quote">'DirectAdmin API returned an error: '</span> . <span class="php-keyword2">strip_tags</span>(<span class="php-var">$response</span>-&gt;getBody()-&gt;getContents()));
-</span><span id="163" class="l"><a href="#163">163 </a>            <span class="php-keyword1">return</span> Conversion::responseToArray(<span class="php-var">$response</span>-&gt;getBody()-&gt;getContents());
-</span><span id="164" class="l"><a href="#164">164 </a>        }
-</span><span id="165" class="l"><a href="#165">165 </a>        <span class="php-keyword1">catch</span>(TransferException <span class="php-var">$exception</span>)
-</span><span id="166" class="l"><a href="#166">166 </a>        {
-</span><span id="167" class="l"><a href="#167">167 </a>            <span class="php-comment">// Rethrow anything that causes a network issue</span>
-</span><span id="168" class="l"><a href="#168">168 </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> DirectAdminException(<span class="php-quote">&quot;Request to </span><span class="php-var">$uri</span><span class="php-quote"> using </span><span class="php-var">$method</span><span class="php-quote"> failed&quot;</span>, <span class="php-num">0</span>, <span class="php-var">$exception</span>);
-</span><span id="169" class="l"><a href="#169">169 </a>        }
-</span><span id="170" class="l"><a href="#170">170 </a>    }
-</span><span id="171" class="l"><a href="#171">171 </a>}
-</span><span id="172" class="l"><a href="#172">172 </a></span></code></pre>
+</span><span id="163" class="l"><a href="#163">163 </a>            <span class="php-var">$body</span> = <span class="php-var">$response</span>-&gt;getBody()-&gt;getContents();
+</span><span id="164" class="l"><a href="#164">164 </a>            <span class="php-keyword1">return</span> Conversion::responseToArray(<span class="php-var">$body</span>);
+</span><span id="165" class="l"><a href="#165">165 </a>        }
+</span><span id="166" class="l"><a href="#166">166 </a>        <span class="php-keyword1">catch</span>(TransferException <span class="php-var">$exception</span>)
+</span><span id="167" class="l"><a href="#167">167 </a>        {
+</span><span id="168" class="l"><a href="#168">168 </a>            <span class="php-comment">// Rethrow anything that causes a network issue</span>
+</span><span id="169" class="l"><a href="#169">169 </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> DirectAdminException(<span class="php-quote">&quot;Request to </span><span class="php-var">$uri</span><span class="php-quote"> using </span><span class="php-var">$method</span><span class="php-quote"> failed&quot;</span>, <span class="php-num">0</span>, <span class="php-var">$exception</span>);
+</span><span id="170" class="l"><a href="#170">170 </a>        }
+</span><span id="171" class="l"><a href="#171">171 </a>    }
+</span><span id="172" class="l"><a href="#172">172 </a>}
+</span><span id="173" class="l"><a href="#173">173 </a></span></code></pre>
 	</div>
 
 	<div id="footer">

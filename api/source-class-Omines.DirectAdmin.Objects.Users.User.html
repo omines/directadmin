@@ -375,96 +375,104 @@
 </span><span id="247" class="l"><a href="#247">247 </a>    }
 </span><span id="248" class="l"><a href="#248">248 </a>
 </span><span id="249" class="l"><a href="#249">249 </a>    <span class="php-comment">/**
-</span></span><span id="250" class="l"><a href="#250">250 </a><span class="php-comment">     * @param float|null $newValue New value, or NULL for unlimited.
+</span></span><span id="250" class="l"><a href="#250">250 </a><span class="php-comment">     * @param bool $newValue Whether catch-all email is enabled for this user.
 </span></span><span id="251" class="l"><a href="#251">251 </a><span class="php-comment">     */</span>
-</span><span id="252" class="l"><a href="#252">252 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setBandwidthLimit(<span class="php-var">$newValue</span>)
+</span><span id="252" class="l"><a href="#252">252 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setAllowCatchall(<span class="php-var">$newValue</span>)
 </span><span id="253" class="l"><a href="#253">253 </a>    {
-</span><span id="254" class="l"><a href="#254">254 </a>        <span class="php-var">$this</span>-&gt;modifyConfig([<span class="php-quote">'bandwidth'</span> =&gt; <span class="php-keyword1">isset</span>(<span class="php-var">$newValue</span>) ? <span class="php-keyword2">floatval</span>(<span class="php-var">$newValue</span>) : <span class="php-keyword1">null</span>]);
+</span><span id="254" class="l"><a href="#254">254 </a>        <span class="php-var">$this</span>-&gt;modifyConfig([<span class="php-quote">'catchall'</span> =&gt; Conversion::onOff(<span class="php-var">$newValue</span>)]);
 </span><span id="255" class="l"><a href="#255">255 </a>    }
 </span><span id="256" class="l"><a href="#256">256 </a>
 </span><span id="257" class="l"><a href="#257">257 </a>    <span class="php-comment">/**
 </span></span><span id="258" class="l"><a href="#258">258 </a><span class="php-comment">     * @param float|null $newValue New value, or NULL for unlimited.
 </span></span><span id="259" class="l"><a href="#259">259 </a><span class="php-comment">     */</span>
-</span><span id="260" class="l"><a href="#260">260 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setDiskLimit(<span class="php-var">$newValue</span>)
+</span><span id="260" class="l"><a href="#260">260 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setBandwidthLimit(<span class="php-var">$newValue</span>)
 </span><span id="261" class="l"><a href="#261">261 </a>    {
-</span><span id="262" class="l"><a href="#262">262 </a>        <span class="php-var">$this</span>-&gt;modifyConfig([<span class="php-quote">'quota'</span> =&gt; <span class="php-keyword1">isset</span>(<span class="php-var">$newValue</span>) ? <span class="php-keyword2">floatval</span>(<span class="php-var">$newValue</span>) : <span class="php-keyword1">null</span>]);
+</span><span id="262" class="l"><a href="#262">262 </a>        <span class="php-var">$this</span>-&gt;modifyConfig([<span class="php-quote">'bandwidth'</span> =&gt; <span class="php-keyword1">isset</span>(<span class="php-var">$newValue</span>) ? <span class="php-keyword2">floatval</span>(<span class="php-var">$newValue</span>) : <span class="php-keyword1">null</span>]);
 </span><span id="263" class="l"><a href="#263">263 </a>    }
 </span><span id="264" class="l"><a href="#264">264 </a>
 </span><span id="265" class="l"><a href="#265">265 </a>    <span class="php-comment">/**
-</span></span><span id="266" class="l"><a href="#266">266 </a><span class="php-comment">     * @param int|null $newValue New value, or NULL for unlimited.
+</span></span><span id="266" class="l"><a href="#266">266 </a><span class="php-comment">     * @param float|null $newValue New value, or NULL for unlimited.
 </span></span><span id="267" class="l"><a href="#267">267 </a><span class="php-comment">     */</span>
-</span><span id="268" class="l"><a href="#268">268 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setDomainLimit(<span class="php-var">$newValue</span>)
+</span><span id="268" class="l"><a href="#268">268 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setDiskLimit(<span class="php-var">$newValue</span>)
 </span><span id="269" class="l"><a href="#269">269 </a>    {
-</span><span id="270" class="l"><a href="#270">270 </a>        <span class="php-var">$this</span>-&gt;modifyConfig([<span class="php-quote">'vdomains'</span> =&gt; <span class="php-keyword1">isset</span>(<span class="php-var">$newValue</span>) ? <span class="php-keyword2">intval</span>(<span class="php-var">$newValue</span>) : <span class="php-keyword1">null</span>]);
+</span><span id="270" class="l"><a href="#270">270 </a>        <span class="php-var">$this</span>-&gt;modifyConfig([<span class="php-quote">'quota'</span> =&gt; <span class="php-keyword1">isset</span>(<span class="php-var">$newValue</span>) ? <span class="php-keyword2">floatval</span>(<span class="php-var">$newValue</span>) : <span class="php-keyword1">null</span>]);
 </span><span id="271" class="l"><a href="#271">271 </a>    }
 </span><span id="272" class="l"><a href="#272">272 </a>
 </span><span id="273" class="l"><a href="#273">273 </a>    <span class="php-comment">/**
-</span></span><span id="274" class="l"><a href="#274">274 </a><span class="php-comment">     * Constructs the correct object from the given user config.
-</span></span><span id="275" class="l"><a href="#275">275 </a><span class="php-comment">     *
-</span></span><span id="276" class="l"><a href="#276">276 </a><span class="php-comment">     * @param array $config The raw config from DirectAdmin.
-</span></span><span id="277" class="l"><a href="#277">277 </a><span class="php-comment">     * @param UserContext $context The context within which the config was retrieved.
-</span></span><span id="278" class="l"><a href="#278">278 </a><span class="php-comment">     * @return Admin|Reseller|User The correct object.
-</span></span><span id="279" class="l"><a href="#279">279 </a><span class="php-comment">     * @throws DirectAdminException If the user type could not be determined.
-</span></span><span id="280" class="l"><a href="#280">280 </a><span class="php-comment">     */</span>
-</span><span id="281" class="l"><a href="#281">281 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> fromConfig(<span class="php-var">$config</span>, UserContext <span class="php-var">$context</span>)
-</span><span id="282" class="l"><a href="#282">282 </a>    {
-</span><span id="283" class="l"><a href="#283">283 </a>        <span class="php-var">$name</span> = <span class="php-var">$config</span>[<span class="php-quote">'username'</span>];
-</span><span id="284" class="l"><a href="#284">284 </a>        <span class="php-keyword1">switch</span>(<span class="php-var">$config</span>[<span class="php-quote">'usertype'</span>])
-</span><span id="285" class="l"><a href="#285">285 </a>        {
-</span><span id="286" class="l"><a href="#286">286 </a>            <span class="php-keyword1">case</span> DirectAdmin::ACCOUNT_TYPE_USER:
-</span><span id="287" class="l"><a href="#287">287 </a>                <span class="php-keyword1">return</span> <span class="php-keyword1">new</span> User(<span class="php-var">$name</span>, <span class="php-var">$context</span>, <span class="php-var">$config</span>);
-</span><span id="288" class="l"><a href="#288">288 </a>            <span class="php-keyword1">case</span> DirectAdmin::ACCOUNT_TYPE_RESELLER:
-</span><span id="289" class="l"><a href="#289">289 </a>                <span class="php-keyword1">return</span> <span class="php-keyword1">new</span> Reseller(<span class="php-var">$name</span>, <span class="php-var">$context</span>, <span class="php-var">$config</span>);
-</span><span id="290" class="l"><a href="#290">290 </a>            <span class="php-keyword1">case</span> DirectAdmin::ACCOUNT_TYPE_ADMIN:
-</span><span id="291" class="l"><a href="#291">291 </a>                <span class="php-keyword1">return</span> <span class="php-keyword1">new</span> Admin(<span class="php-var">$name</span>, <span class="php-var">$context</span>, <span class="php-var">$config</span>);
-</span><span id="292" class="l"><a href="#292">292 </a>            <span class="php-keyword1">default</span>:
-</span><span id="293" class="l"><a href="#293">293 </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> DirectAdminException(<span class="php-quote">&quot;Unknown user type '</span><span class="php-var">$config</span><span class="php-quote">[usertype]'&quot;</span>);
-</span><span id="294" class="l"><a href="#294">294 </a>        }
-</span><span id="295" class="l"><a href="#295">295 </a>    }
-</span><span id="296" class="l"><a href="#296">296 </a>
-</span><span id="297" class="l"><a href="#297">297 </a>    <span class="php-comment">/**
-</span></span><span id="298" class="l"><a href="#298">298 </a><span class="php-comment">     * Internal function to safe guard config changes and cache them.
-</span></span><span id="299" class="l"><a href="#299">299 </a><span class="php-comment">     *
-</span></span><span id="300" class="l"><a href="#300">300 </a><span class="php-comment">     * @param string $item Config item to retrieve.
-</span></span><span id="301" class="l"><a href="#301">301 </a><span class="php-comment">     * @return mixed The value of the config item, or NULL.
-</span></span><span id="302" class="l"><a href="#302">302 </a><span class="php-comment">     */</span>
-</span><span id="303" class="l"><a href="#303">303 </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> getConfig(<span class="php-var">$item</span>)
-</span><span id="304" class="l"><a href="#304">304 </a>    {
-</span><span id="305" class="l"><a href="#305">305 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getCacheItem(self::CACHE_CONFIG, <span class="php-var">$item</span>, <span class="php-keyword1">function</span>() { <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;loadConfig(); });
-</span><span id="306" class="l"><a href="#306">306 </a>    }
-</span><span id="307" class="l"><a href="#307">307 </a>
-</span><span id="308" class="l"><a href="#308">308 </a>    <span class="php-comment">/**
-</span></span><span id="309" class="l"><a href="#309">309 </a><span class="php-comment">     * Internal function to safe guard usage changes and cache them.
-</span></span><span id="310" class="l"><a href="#310">310 </a><span class="php-comment">     *
-</span></span><span id="311" class="l"><a href="#311">311 </a><span class="php-comment">     * @param string $item Usage item to retrieve.
-</span></span><span id="312" class="l"><a href="#312">312 </a><span class="php-comment">     * @return mixed The value of the stats item, or NULL.
-</span></span><span id="313" class="l"><a href="#313">313 </a><span class="php-comment">     */</span>
-</span><span id="314" class="l"><a href="#314">314 </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> getUsage(<span class="php-var">$item</span>)
-</span><span id="315" class="l"><a href="#315">315 </a>    {
-</span><span id="316" class="l"><a href="#316">316 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getCacheItem(self::CACHE_USAGE, <span class="php-var">$item</span>, <span class="php-keyword1">function</span>() {
-</span><span id="317" class="l"><a href="#317">317 </a>            <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getContext()-&gt;invokeGet(<span class="php-quote">'SHOW_USER_USAGE'</span>, [<span class="php-quote">'user'</span> =&gt; <span class="php-var">$this</span>-&gt;getUsername()]);
-</span><span id="318" class="l"><a href="#318">318 </a>        });
-</span><span id="319" class="l"><a href="#319">319 </a>    }
-</span><span id="320" class="l"><a href="#320">320 </a>
-</span><span id="321" class="l"><a href="#321">321 </a>    <span class="php-comment">/**
-</span></span><span id="322" class="l"><a href="#322">322 </a><span class="php-comment">     * @return bool Whether the account is managing itself.
-</span></span><span id="323" class="l"><a href="#323">323 </a><span class="php-comment">     */</span>
-</span><span id="324" class="l"><a href="#324">324 </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> isSelfManaged()
-</span><span id="325" class="l"><a href="#325">325 </a>    {
-</span><span id="326" class="l"><a href="#326">326 </a>        <span class="php-keyword1">return</span> (<span class="php-var">$this</span>-&gt;getUsername() === <span class="php-var">$this</span>-&gt;getContext()-&gt;getUsername());
+</span></span><span id="274" class="l"><a href="#274">274 </a><span class="php-comment">     * @param int|null $newValue New value, or NULL for unlimited.
+</span></span><span id="275" class="l"><a href="#275">275 </a><span class="php-comment">     */</span>
+</span><span id="276" class="l"><a href="#276">276 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setDomainLimit(<span class="php-var">$newValue</span>)
+</span><span id="277" class="l"><a href="#277">277 </a>    {
+</span><span id="278" class="l"><a href="#278">278 </a>        <span class="php-var">$this</span>-&gt;modifyConfig([<span class="php-quote">'vdomains'</span> =&gt; <span class="php-keyword1">isset</span>(<span class="php-var">$newValue</span>) ? <span class="php-keyword2">intval</span>(<span class="php-var">$newValue</span>) : <span class="php-keyword1">null</span>]);
+</span><span id="279" class="l"><a href="#279">279 </a>    }
+</span><span id="280" class="l"><a href="#280">280 </a>
+</span><span id="281" class="l"><a href="#281">281 </a>    <span class="php-comment">/**
+</span></span><span id="282" class="l"><a href="#282">282 </a><span class="php-comment">     * Constructs the correct object from the given user config.
+</span></span><span id="283" class="l"><a href="#283">283 </a><span class="php-comment">     *
+</span></span><span id="284" class="l"><a href="#284">284 </a><span class="php-comment">     * @param array $config The raw config from DirectAdmin.
+</span></span><span id="285" class="l"><a href="#285">285 </a><span class="php-comment">     * @param UserContext $context The context within which the config was retrieved.
+</span></span><span id="286" class="l"><a href="#286">286 </a><span class="php-comment">     * @return Admin|Reseller|User The correct object.
+</span></span><span id="287" class="l"><a href="#287">287 </a><span class="php-comment">     * @throws DirectAdminException If the user type could not be determined.
+</span></span><span id="288" class="l"><a href="#288">288 </a><span class="php-comment">     */</span>
+</span><span id="289" class="l"><a href="#289">289 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> fromConfig(<span class="php-var">$config</span>, UserContext <span class="php-var">$context</span>)
+</span><span id="290" class="l"><a href="#290">290 </a>    {
+</span><span id="291" class="l"><a href="#291">291 </a>        <span class="php-var">$name</span> = <span class="php-var">$config</span>[<span class="php-quote">'username'</span>];
+</span><span id="292" class="l"><a href="#292">292 </a>        <span class="php-keyword1">switch</span>(<span class="php-var">$config</span>[<span class="php-quote">'usertype'</span>])
+</span><span id="293" class="l"><a href="#293">293 </a>        {
+</span><span id="294" class="l"><a href="#294">294 </a>            <span class="php-keyword1">case</span> DirectAdmin::ACCOUNT_TYPE_USER:
+</span><span id="295" class="l"><a href="#295">295 </a>                <span class="php-keyword1">return</span> <span class="php-keyword1">new</span> User(<span class="php-var">$name</span>, <span class="php-var">$context</span>, <span class="php-var">$config</span>);
+</span><span id="296" class="l"><a href="#296">296 </a>            <span class="php-keyword1">case</span> DirectAdmin::ACCOUNT_TYPE_RESELLER:
+</span><span id="297" class="l"><a href="#297">297 </a>                <span class="php-keyword1">return</span> <span class="php-keyword1">new</span> Reseller(<span class="php-var">$name</span>, <span class="php-var">$context</span>, <span class="php-var">$config</span>);
+</span><span id="298" class="l"><a href="#298">298 </a>            <span class="php-keyword1">case</span> DirectAdmin::ACCOUNT_TYPE_ADMIN:
+</span><span id="299" class="l"><a href="#299">299 </a>                <span class="php-keyword1">return</span> <span class="php-keyword1">new</span> Admin(<span class="php-var">$name</span>, <span class="php-var">$context</span>, <span class="php-var">$config</span>);
+</span><span id="300" class="l"><a href="#300">300 </a>            <span class="php-keyword1">default</span>:
+</span><span id="301" class="l"><a href="#301">301 </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> DirectAdminException(<span class="php-quote">&quot;Unknown user type '</span><span class="php-var">$config</span><span class="php-quote">[usertype]'&quot;</span>);
+</span><span id="302" class="l"><a href="#302">302 </a>        }
+</span><span id="303" class="l"><a href="#303">303 </a>    }
+</span><span id="304" class="l"><a href="#304">304 </a>
+</span><span id="305" class="l"><a href="#305">305 </a>    <span class="php-comment">/**
+</span></span><span id="306" class="l"><a href="#306">306 </a><span class="php-comment">     * Internal function to safe guard config changes and cache them.
+</span></span><span id="307" class="l"><a href="#307">307 </a><span class="php-comment">     *
+</span></span><span id="308" class="l"><a href="#308">308 </a><span class="php-comment">     * @param string $item Config item to retrieve.
+</span></span><span id="309" class="l"><a href="#309">309 </a><span class="php-comment">     * @return mixed The value of the config item, or NULL.
+</span></span><span id="310" class="l"><a href="#310">310 </a><span class="php-comment">     */</span>
+</span><span id="311" class="l"><a href="#311">311 </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> getConfig(<span class="php-var">$item</span>)
+</span><span id="312" class="l"><a href="#312">312 </a>    {
+</span><span id="313" class="l"><a href="#313">313 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getCacheItem(self::CACHE_CONFIG, <span class="php-var">$item</span>, <span class="php-keyword1">function</span>() { <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;loadConfig(); });
+</span><span id="314" class="l"><a href="#314">314 </a>    }
+</span><span id="315" class="l"><a href="#315">315 </a>
+</span><span id="316" class="l"><a href="#316">316 </a>    <span class="php-comment">/**
+</span></span><span id="317" class="l"><a href="#317">317 </a><span class="php-comment">     * Internal function to safe guard usage changes and cache them.
+</span></span><span id="318" class="l"><a href="#318">318 </a><span class="php-comment">     *
+</span></span><span id="319" class="l"><a href="#319">319 </a><span class="php-comment">     * @param string $item Usage item to retrieve.
+</span></span><span id="320" class="l"><a href="#320">320 </a><span class="php-comment">     * @return mixed The value of the stats item, or NULL.
+</span></span><span id="321" class="l"><a href="#321">321 </a><span class="php-comment">     */</span>
+</span><span id="322" class="l"><a href="#322">322 </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> getUsage(<span class="php-var">$item</span>)
+</span><span id="323" class="l"><a href="#323">323 </a>    {
+</span><span id="324" class="l"><a href="#324">324 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getCacheItem(self::CACHE_USAGE, <span class="php-var">$item</span>, <span class="php-keyword1">function</span>() {
+</span><span id="325" class="l"><a href="#325">325 </a>            <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getContext()-&gt;invokeGet(<span class="php-quote">'SHOW_USER_USAGE'</span>, [<span class="php-quote">'user'</span> =&gt; <span class="php-var">$this</span>-&gt;getUsername()]);
+</span><span id="326" class="l"><a href="#326">326 </a>        });
 </span><span id="327" class="l"><a href="#327">327 </a>    }
 </span><span id="328" class="l"><a href="#328">328 </a>
 </span><span id="329" class="l"><a href="#329">329 </a>    <span class="php-comment">/**
-</span></span><span id="330" class="l"><a href="#330">330 </a><span class="php-comment">     * Loads the current user configuration from the server.
-</span></span><span id="331" class="l"><a href="#331">331 </a><span class="php-comment">     *
-</span></span><span id="332" class="l"><a href="#332">332 </a><span class="php-comment">     * @return array
-</span></span><span id="333" class="l"><a href="#333">333 </a><span class="php-comment">     */</span>
-</span><span id="334" class="l"><a href="#334">334 </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> loadConfig()
-</span><span id="335" class="l"><a href="#335">335 </a>    {
-</span><span id="336" class="l"><a href="#336">336 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getContext()-&gt;invokeGet(<span class="php-quote">'SHOW_USER_CONFIG'</span>, [<span class="php-quote">'user'</span> =&gt; <span class="php-var">$this</span>-&gt;getUsername()]);
-</span><span id="337" class="l"><a href="#337">337 </a>    }
-</span><span id="338" class="l"><a href="#338">338 </a>}
-</span><span id="339" class="l"><a href="#339">339 </a></span></code></pre>
+</span></span><span id="330" class="l"><a href="#330">330 </a><span class="php-comment">     * @return bool Whether the account is managing itself.
+</span></span><span id="331" class="l"><a href="#331">331 </a><span class="php-comment">     */</span>
+</span><span id="332" class="l"><a href="#332">332 </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> isSelfManaged()
+</span><span id="333" class="l"><a href="#333">333 </a>    {
+</span><span id="334" class="l"><a href="#334">334 </a>        <span class="php-keyword1">return</span> (<span class="php-var">$this</span>-&gt;getUsername() === <span class="php-var">$this</span>-&gt;getContext()-&gt;getUsername());
+</span><span id="335" class="l"><a href="#335">335 </a>    }
+</span><span id="336" class="l"><a href="#336">336 </a>
+</span><span id="337" class="l"><a href="#337">337 </a>    <span class="php-comment">/**
+</span></span><span id="338" class="l"><a href="#338">338 </a><span class="php-comment">     * Loads the current user configuration from the server.
+</span></span><span id="339" class="l"><a href="#339">339 </a><span class="php-comment">     *
+</span></span><span id="340" class="l"><a href="#340">340 </a><span class="php-comment">     * @return array
+</span></span><span id="341" class="l"><a href="#341">341 </a><span class="php-comment">     */</span>
+</span><span id="342" class="l"><a href="#342">342 </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> loadConfig()
+</span><span id="343" class="l"><a href="#343">343 </a>    {
+</span><span id="344" class="l"><a href="#344">344 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getContext()-&gt;invokeGet(<span class="php-quote">'SHOW_USER_CONFIG'</span>, [<span class="php-quote">'user'</span> =&gt; <span class="php-var">$this</span>-&gt;getUsername()]);
+</span><span id="345" class="l"><a href="#345">345 </a>    }
+</span><span id="346" class="l"><a href="#346">346 </a>}
+</span><span id="347" class="l"><a href="#347">347 </a></span></code></pre>
 	</div>
 
 	<div id="footer">
