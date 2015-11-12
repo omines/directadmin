@@ -28,6 +28,9 @@ class Domain extends Object
     const CACHE_MAILBOXES       = 'mailboxes';
     const CACHE_SUBDOMAINS      = 'subdomains';
 
+    const CATCHALL_BLACKHOLE    = ':blackhole:';
+    const CATCHALL_FAIL         = ':fail:';
+
     /** @var string */
     private $domainName;
 
@@ -183,6 +186,15 @@ class Domain extends Object
     }
 
     /**
+     * @return string|null Currently configured catch-all configuration.
+     */
+    public function getCatchall()
+    {
+        $value = $this->getContext()->invokeGet('EMAIL_CATCH_ALL', ['domain' => $this->domainName]);
+        return isset($value['value']) ? $value['value'] : null;
+    }
+
+    /**
      * @return float Disk usage in megabytes.
      */
     public function getDiskUsage()
@@ -285,6 +297,16 @@ class Domain extends Object
         if($clearCache)
             $this->clearCache();
         return $response;
+    }
+
+    /**
+     * @param string $newValue New address for the catch-all, or one of the CATCHALL_ constants.
+     */
+    public function setCatchall($newValue)
+    {
+        $parameters = array_merge(['domain' => $this->domainName, 'update' => 'Update'],
+            (empty($newValue) || $newValue[0] == ':') ? ['catch' => $newValue] : ['catch' => 'address', 'value' => $newValue]);
+        $this->getContext()->invokePost('EMAIL_CATCH_ALL', $parameters);
     }
 
     /**

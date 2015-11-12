@@ -155,6 +155,20 @@ class UserTest extends \PHPUnit_Framework_TestCase
     /**
      * @depends testDefaultDomain
      */
+    public function testCatchall(Domain $domain)
+    {
+        self::$user->setAllowCatchall(true);
+        $domain->setCatchall('aap@noot.mies');
+        $this->assertEquals('aap@noot.mies', $domain->getCatchall());
+        $domain->setCatchall(Domain::CATCHALL_BLACKHOLE);
+        $this->assertEquals(Domain::CATCHALL_BLACKHOLE, $domain->getCatchall());
+        $domain->setCatchall(Domain::CATCHALL_FAIL);
+        $this->assertEquals(Domain::CATCHALL_FAIL, $domain->getCatchall());
+    }
+
+    /**
+     * @depends testDefaultDomain
+     */
     public function testForwarders(Domain $domain)
     {
         // Create 2 forwarders after asserting they are the first

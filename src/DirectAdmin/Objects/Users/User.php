@@ -247,6 +247,14 @@ class User extends Object
     }
 
     /**
+     * @param bool $newValue Whether catch-all email is enabled for this user.
+     */
+    public function setAllowCatchall($newValue)
+    {
+        $this->modifyConfig(['catchall' => Conversion::onOff($newValue)]);
+    }
+
+    /**
      * @param float|null $newValue New value, or NULL for unlimited.
      */
     public function setBandwidthLimit($newValue)
