@@ -107,6 +107,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
         // It should not have any usage yet except a single domain
         $this->assertEquals(0, $user->getBandwidthUsage());
         $this->assertNull($user->getBandwidthLimit());
+        $this->assertEquals(0, $user->getDatabaseUsage());
+        $this->assertNull($user->getDatabaseLimit());
         $this->assertEquals(1, $user->getDomainUsage());
         $this->assertNull($user->getDomainLimit());
         $this->assertEquals(0, $user->getDiskUsage());
@@ -129,6 +131,27 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $domain3->delete();
         $user->clearCache(); // This shouldn't be necessary...?
         $this->assertCount(1, $user->getDomains());
+    }
+
+    public function testDatabases()
+    {
+        $user = self::$user;
+
+        // Create 3 databases of which 1 with double user
+        $db1 = $user->createDatabase('test1', 'test2', 'test3');
+        $user->createDatabase('test2', 'test2');
+        $user->createDatabase('test3', 'test3', 'test4');
+        $this->assertCount(3, $databases = $user->getDatabases());
+        $this->assertEquals($db1->getOwner()->getUsername(), $user->getUsername());
+
+        // Delete all of them
+        $db1->delete();
+        $user->clearCache(); // Buggy...
+        $this->assertCount(2, $databases = $user->getDatabases());
+        $databases['test2']->delete();
+        $databases['test3']->delete();
+        $user->clearCache(); // Buggy...
+        $this->assertEmpty($user->getDatabases());
     }
 
     public function testUserQuota()

@@ -48,10 +48,12 @@ class Database extends Object
         $options = [
             'action' => 'create',
             'name' => $name,
-            'user' => $username,
-            'passwd' => $password,
-            'passwd2' => $password,
         ];
+        if(!empty($password)) {
+            $options += ['user' => $username, 'passwd' => $password, 'passwd2' => $password];
+        } else {
+            $options += ['userlist' => $username];
+        }
         $user->getContext()->invokePost('DATABASES', $options);
         return new self($name, $user, $user->getContext());
     }
