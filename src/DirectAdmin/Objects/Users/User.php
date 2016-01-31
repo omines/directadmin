@@ -13,6 +13,7 @@ use Omines\DirectAdmin\Context\ResellerContext;
 use Omines\DirectAdmin\Context\UserContext;
 use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\DirectAdminException;
+use Omines\DirectAdmin\Objects\Database;
 use Omines\DirectAdmin\Objects\Domain;
 use Omines\DirectAdmin\Objects\Object;
 use Omines\DirectAdmin\Utility\Conversion;
@@ -25,6 +26,7 @@ use Omines\DirectAdmin\Utility\Conversion;
 class User extends Object
 {
     const CACHE_CONFIG          = 'config';
+    const CACHE_DATABASES       = 'databases';
     const CACHE_USAGE           = 'usage';
 
     /** @var Domain[] **/
@@ -54,6 +56,22 @@ class User extends Object
     }
 
     /**
+     * Creates a new database under this user.
+     *
+     * @param string $name Database name, without <user>_ prefix.
+     * @param string $username Username to access the database with, without <user>_ prefix.
+     * @param string|null $password Password, or null if database user already exists.
+     * @return Database Newly created database.
+     */
+    public function createDatabase($name, $username, $password = null)
+    {
+        $db = Database::create($this->getSelfManagedUser(), $name, $username, $password);
+        $this->clearCache();
+        return $db;
+
+    }
+
+    /**
      * Creates a new domain under this user.
      *
      * @param string $domainName Domain name to create.
@@ -66,8 +84,7 @@ class User extends Object
      */
     public function createDomain($domainName, $bandwidthLimit = null, $diskLimit = null, $ssl = null, $php = null, $cgi = null)
     {
-        $user = $this->isSelfManaged() ? $this : $this->impersonate()->getContextUser();
-        $domain = Domain::create($user, $domainName, $bandwidthLimit, $diskLimit, $ssl, $php, $cgi);
+        $domain = Domain::create($this->getSelfManagedUser(), $domainName, $bandwidthLimit, $diskLimit, $ssl, $php, $cgi);
         $this->clearCache();
         return $domain;
     }
@@ -98,6 +115,26 @@ class User extends Object
     public function getBandwidthUsage()
     {
         return floatval($this->getUsage('bandwidth'));
+    }
+
+    /**
+     * Returns the database quota of the user.
+     *
+     * @return int|null Limit, or null for unlimited.
+     */
+    public function getDatabaseLimit()
+    {
+        return intval($this->getConfig('mysql')) ?: null;
+    }
+
+    /**
+     * Returns the current number databases in use.
+     *
+     * @return int
+     */
+    public function getDatabaseUsage()
+    {
+        return intval($this->getUsage('mysql'));
     }
 
     /**
@@ -158,6 +195,23 @@ class User extends Object
     public function isSuspended()
     {
         return ($this->getConfig('suspended') === 'ON');
+    }
+
+    /**
+     * @return Domain[]
+     */
+    public function getDatabases()
+    {
+        return $this->getCache(self::CACHE_DATABASES, function() {
+            $databases = [];
+            foreach($this->getSelfManagedContext()->invokeGet('DATABASES') as $fullName) {
+                list($user, $db) = explode('_', $fullName, 2);
+                if($this->getUsername() != $user)
+                    throw new DirectAdminException('Username incorrect on database ' . $fullName);
+                $databases[$db] = new Database($db, $this, $this->getSelfManagedContext());
+            }
+            return $databases;
+        });
     }
 
     /**
@@ -324,6 +378,23 @@ class User extends Object
         return $this->getCacheItem(self::CACHE_USAGE, $item, function() {
             return $this->getContext()->invokeGet('SHOW_USER_USAGE', ['user' => $this->getUsername()]);
         });
+    }
+
+    /**
+     * @return UserContext The local user context.
+     */
+    protected function getSelfManagedContext()
+    {
+        return $this->isSelfManaged() ? $this->getContext() : $this->impersonate();
+    }
+
+
+    /**
+     * @return User The user acting as himself.
+     */
+    protected function getSelfManagedUser()
+    {
+        return $this->isSelfManaged() ? $this : $this->impersonate()->getContextUser();
     }
 
     /**
