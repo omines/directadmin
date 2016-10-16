@@ -18,6 +18,8 @@ use Omines\DirectAdmin\Objects\Users\User;
  */
 class Database extends Object
 {
+    const CACHE_ACCESS_HOSTS = 'access_hosts';
+
     /** @var User */
     private $owner;
 
@@ -68,6 +70,34 @@ class Database extends Object
             'select0' => $this->getDatabaseName(),
         ]);
         $this->getContext()->getContextUser()->clearCache();
+    }
+
+    /**
+     * @return Database\AccessHost[]
+     */
+    public function getAccessHosts()
+    {
+        return $this->getCache(self::CACHE_ACCESS_HOSTS, function() {
+            $accessHosts = $this->getContext()->invokeGet('DATABASES', [
+                'action' => 'accesshosts',
+                'db' => $this->getDatabaseName(),
+            ]);
+
+            return array_map(function($name) {
+                return new Database\AccessHost($name, $this);
+            }, $accessHosts);
+        });
+    }
+
+    /**
+     * @param string $name
+     * @return Database\AccessHost
+     */
+    public function createAccessHost($name)
+    {
+        $accessHost = Database\AccessHost::create($this, $name);
+        $this->getContext()->getContextUser()->clearCache();
+        return $accessHost;
     }
 
     /**
