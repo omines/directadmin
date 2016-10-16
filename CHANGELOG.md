@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+ - Add access hosts to database management (#13)
 
 ## [0.1.2] - 2016-01-31
 ### Added
