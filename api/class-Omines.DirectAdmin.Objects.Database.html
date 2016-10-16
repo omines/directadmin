@@ -68,6 +68,10 @@
 						</a>
 							<ul>
 					<li>
+						<a href="namespace-Omines.DirectAdmin.Objects.Database.html">
+							Database						</a>
+							</li>
+					<li>
 						<a href="namespace-Omines.DirectAdmin.Objects.Domains.html">
 							Domains						</a>
 							</li>
@@ -148,7 +152,7 @@
 
 				<b>Author:</b>
 				Niels Keurentjes <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m">&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m</a><br>
-			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.Database.html#14-88" title="Go to source code">DirectAdmin/Objects/Database.php</a>
+			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.Database.html#14-118" title="Go to source code">DirectAdmin/Objects/Database.php</a>
 		<br>
 	</div>
 
@@ -168,7 +172,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#26-35" title="Go to source code">__construct</a>( <span>array <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a></code> <var>$owner</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#28-37" title="Go to source code">__construct</a>( <span>array <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a></code> <var>$owner</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span> )</code>
 
 			<div class="description short">
 				
@@ -208,7 +212,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_create">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#37-59" title="Go to source code">create</a>( <span><code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a></code> <var>$user</var></span>, <span>string <var>$name</var></span>, <span>string <var>$username</var></span>, <span>string|null <var>$password</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#39-61" title="Go to source code">create</a>( <span><code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a></code> <var>$user</var></span>, <span>string <var>$name</var></span>, <span>string <var>$username</var></span>, <span>string|null <var>$password</var></span> )</code>
 
 			<div class="description short">
 				<p>Creates a new database under the specified user.</p>
@@ -252,7 +256,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_delete">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#61-71" title="Go to source code">delete</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#63-73" title="Go to source code">delete</a>( )</code>
 
 			<div class="description short">
 				<p>Deletes this database from the user.</p>
@@ -263,6 +267,77 @@
 
 
 
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getAccessHosts" id="_getAccessHosts">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Omines.DirectAdmin.Objects.Database.AccessHost.html">Omines\DirectAdmin\Objects\Database\AccessHost</a>[]</code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getAccessHosts">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#75-90" title="Go to source code">getAccessHosts</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Omines.DirectAdmin.Objects.Database.AccessHost.html">Omines\DirectAdmin\Objects\Database\AccessHost</a>[]</code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="createAccessHost" id="_createAccessHost">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Omines.DirectAdmin.Objects.Database.AccessHost.html">Omines\DirectAdmin\Objects\Database\AccessHost</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_createAccessHost">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#92-101" title="Go to source code">createAccessHost</a>( <span>string <var>$name</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$name</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Omines.DirectAdmin.Objects.Database.AccessHost.html">Omines\DirectAdmin\Objects\Database\AccessHost</a></code>
+					</div>
 
 
 
@@ -281,7 +356,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDatabaseName">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#73-79" title="Go to source code">getDatabaseName</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#103-109" title="Go to source code">getDatabaseName</a>( )</code>
 
 			<div class="description short">
 				
@@ -314,7 +389,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getOwner">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#81-87" title="Go to source code">getOwner</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#111-117" title="Go to source code">getOwner</a>( )</code>
 
 			<div class="description short">
 				
@@ -358,6 +433,36 @@
 
 
 
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Constants summary</h2></div>
+			<table class="summary table table-bordered table-striped constants" id="constants">
+			<tr data-order="CACHE_ACCESS_HOSTS" id="CACHE_ACCESS_HOSTS">
+
+				<td class="attributes"><code>string</code></td>
+				<td class="name">
+					<code>
+						<a href="source-class-Omines.DirectAdmin.Objects.Database.html#21" title="Go to source code"><b>CACHE_ACCESS_HOSTS</b></a>
+					</code>
+
+					<div class="description short">
+						
+					</div>
+
+					<div class="description detailed hidden">
+						
+
+					</div>
+				</td>
+				<td class="value">
+					<div>
+						<a href="#CACHE_ACCESS_HOSTS" class="anchor">#</a>
+						<code><span class="php-quote">'access_hosts'</span></code>
+					</div>
+				</td>
+			</tr>
+			</table>
+		</div>
 
 
 
