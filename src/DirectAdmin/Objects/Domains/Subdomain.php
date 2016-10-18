@@ -1,7 +1,8 @@
 <?php
-/**
- * DirectAdmin
- * (c) Omines Internetbureau B.V.
+
+/*
+ * DirectAdmin API Client
+ * (c) Omines Internetbureau B.V. - https://omines.nl/
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,7 +14,7 @@ use Omines\DirectAdmin\Objects\Domain;
 use Omines\DirectAdmin\Objects\DomainObject;
 
 /**
- * Subdomain
+ * Subdomain.
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
@@ -22,8 +23,8 @@ class Subdomain extends DomainObject
     /**
      * Construct the object.
      *
-     * @param string $prefix The domain name.
-     * @param Domain $domain The containing domain.
+     * @param string $prefix The domain name
+     * @param Domain $domain The containing domain
      */
     public function __construct($prefix, Domain $domain)
     {
@@ -33,9 +34,9 @@ class Subdomain extends DomainObject
     /**
      * Creates a new subdomain.
      *
-     * @param Domain $domain Parent domain.
-     * @param string $prefix Prefix of the subdomain.
-     * @return Subdomain The newly created object.
+     * @param Domain $domain Parent domain
+     * @param string $prefix Prefix of the subdomain
+     * @return Subdomain The newly created object
      */
     public static function create(Domain $domain, $prefix)
     {
@@ -46,13 +47,13 @@ class Subdomain extends DomainObject
     /**
      * Deletes the subdomain.
      *
-     * @param bool $deleteContents Whether to delete all directory contents as well.
+     * @param bool $deleteContents Whether to delete all directory contents as well
      */
     public function delete($deleteContents = true)
     {
         $this->invokePost('SUBDOMAIN', 'delete', [
             'select0' => $this->getPrefix(),
-            'contents' => ($deleteContents ? 'yes' : 'no')
+            'contents' => ($deleteContents ? 'yes' : 'no'),
         ]);
     }
 

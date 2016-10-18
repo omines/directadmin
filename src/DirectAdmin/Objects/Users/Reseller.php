@@ -1,7 +1,8 @@
 <?php
-/**
- * DirectAdmin
- * (c) Omines Internetbureau B.V.
+
+/*
+ * DirectAdmin API Client
+ * (c) Omines Internetbureau B.V. - https://omines.nl/
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,14 +17,14 @@ use Omines\DirectAdmin\DirectAdminException;
 use Omines\DirectAdmin\Objects\Object;
 
 /**
- * Reseller
+ * Reseller.
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
 class Reseller extends User
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __construct($name, UserContext $context, $config = null)
     {
@@ -47,7 +48,6 @@ class Reseller extends User
     {
         return Object::toObjectArray($this->getContext()->invokeGet('SHOW_USERS', ['reseller' => $this->getUsername()]),
                                      User::class, $this->getContext());
-
     }
 
     /**
@@ -56,8 +56,9 @@ class Reseller extends User
     public function impersonate()
     {
         /** @var AdminContext $context */
-        if(!($context = $this->getContext()) instanceof AdminContext)
+        if (!($context = $this->getContext()) instanceof AdminContext) {
             throw new DirectAdminException('You need to be an admin to impersonate a reseller');
+        }
         return $context->impersonateReseller($this->getUsername());
     }
 }

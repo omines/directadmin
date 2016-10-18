@@ -1,7 +1,8 @@
 <?php
-/**
- * DirectAdmin
- * (c) Omines Internetbureau B.V.
+
+/*
+ * DirectAdmin API Client
+ * (c) Omines Internetbureau B.V. - https://omines.nl/
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,10 +13,9 @@ use Omines\DirectAdmin\Context\UserContext;
 use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\Objects\Domain;
 use Omines\DirectAdmin\Objects\Users\User;
-use Omines\DirectAdmin\Utility\Conversion;
 
 /**
- * UserTest
+ * UserTest.
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
@@ -55,7 +55,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     {
         User::fromConfig([
             'username' => 'invalid',
-            'usertype' => 'invalid'
+            'usertype' => 'invalid',
         ], $context);
     }
 

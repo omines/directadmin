@@ -1,7 +1,8 @@
 <?php
-/**
- * DirectAdmin
- * (c) Omines Internetbureau B.V.
+
+/*
+ * DirectAdmin API Client
+ * (c) Omines Internetbureau B.V. - https://omines.nl/
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -27,7 +28,7 @@ class AdminContext extends ResellerContext
      * @param string $username
      * @param string $password
      * @param string $email
-     * @return Admin The newly created Admin.
+     * @return Admin The newly created Admin
      */
     public function createAdmin($username, $password, $email)
     {
@@ -41,8 +42,8 @@ class AdminContext extends ResellerContext
      * @param string $password
      * @param string $email
      * @param string $domain
-     * @param string|array $package Either a package name or an array of options for custom.
-     * @param string $ip shared, sharedreseller or assign. Defaults to 'shared'.
+     * @param string|array $package Either a package name or an array of options for custom
+     * @param string $ip shared, sharedreseller or assign. Defaults to 'shared'
      * @return Reseller
      * @url http://www.directadmin.com/api.html#create for options to use.
      */
@@ -113,19 +114,19 @@ class AdminContext extends ResellerContext
      * Returns a new AdminContext acting as the specified admin.
      *
      * @param string $username
-     * @param bool $validate Whether to check the admin exists and is an admin.
+     * @param bool $validate Whether to check the admin exists and is an admin
      * @return AdminContext
      */
     public function impersonateAdmin($username, $validate = false)
     {
-        return new AdminContext($this->getConnection()->loginAs($username), $validate);
+        return new self($this->getConnection()->loginAs($username), $validate);
     }
 
     /**
      * Returns a new ResellerContext acting as the specified reseller.
      *
      * @param string $username
-     * @param bool $validate Whether to check the reseller exists and is a reseller.
+     * @param bool $validate Whether to check the reseller exists and is a reseller
      * @return ResellerContext
      */
     public function impersonateReseller($username, $validate = false)

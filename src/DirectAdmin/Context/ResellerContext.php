@@ -1,7 +1,8 @@
 <?php
-/**
- * DirectAdmin
- * (c) Omines Internetbureau B.V.
+
+/*
+ * DirectAdmin API Client
+ * (c) Omines Internetbureau B.V. - https://omines.nl/
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -22,13 +23,13 @@ class ResellerContext extends UserContext
     /**
      * Creates a new user on the server.
      *
-     * @param string $username Login for the new user.
-     * @param string $password Password for the new user.
-     * @param string $email Email for the new user.
-     * @param string $domain Default domain for the new user.
-     * @param string $ip IP for the user.
-     * @param string|array $package Either a package name or an array of options for custom.
-     * @return User Newly created user.
+     * @param string $username Login for the new user
+     * @param string $password Password for the new user
+     * @param string $email Email for the new user
+     * @param string $domain Default domain for the new user
+     * @param string $ip IP for the user
+     * @param string|array $package Either a package name or an array of options for custom
+     * @return User Newly created user
      * @url http://www.directadmin.com/api.html#create for options to use.
      */
     public function createUser($username, $password, $email, $domain, $ip, $package = [])
@@ -43,18 +44,18 @@ class ResellerContext extends UserContext
     /**
      * Internal helper function for creating new accounts.
      *
-     * @param string $username Login for the new user.
-     * @param string $password Password for the new user.
-     * @param string $email Email for the new user.
-     * @param array $options List of DA account options to apply.
-     * @param string $endpoint API endpoint to invoke.
-     * @param string $returnType Class name that should wrap the resulting account.
+     * @param string $username Login for the new user
+     * @param string $password Password for the new user
+     * @param string $email Email for the new user
+     * @param array $options List of DA account options to apply
+     * @param string $endpoint API endpoint to invoke
+     * @param string $returnType Class name that should wrap the resulting account
      * @return object An instance of the type specified in $returnType
      */
     protected function createAccount($username, $password, $email, $options, $endpoint, $returnType)
     {
         $this->invokePost($endpoint, array_merge($options, [
-            'action' =>	'create',
+            'action' => 'create',
             'add' => 'Submit',
             'email' => $email,
             'passwd' => $password,
@@ -67,7 +68,7 @@ class ResellerContext extends UserContext
     /**
      * Deletes a single account.
      *
-     * @param string $username Account to delete.
+     * @param string $username Account to delete
      */
     public function deleteAccount($username)
     {
@@ -77,20 +78,21 @@ class ResellerContext extends UserContext
     /**
      * Deletes multiple accounts.
      *
-     * @param string[] $usernames Accounts to delete.
+     * @param string[] $usernames Accounts to delete
      */
     public function deleteAccounts(array $usernames)
     {
         $options = ['confirmed' => 'Confirm', 'delete' => 'yes'];
-        foreach(array_values($usernames) as $idx => $username)
+        foreach (array_values($usernames) as $idx => $username) {
             $options["select{$idx}"] = $username;
+        }
         $this->invokePost('SELECT_USERS', $options);
     }
 
     /**
      * Returns all IPs available to this reseller.
      *
-     * @return array List of IPs as strings.
+     * @return array List of IPs as strings
      */
     public function getIPs()
     {
@@ -112,7 +114,7 @@ class ResellerContext extends UserContext
     /**
      * Returns all users for this reseller.
      *
-     * @return User[] Associative array of users.
+     * @return User[] Associative array of users
      */
     public function getUsers()
     {
@@ -122,8 +124,8 @@ class ResellerContext extends UserContext
     /**
      * Impersonates a user, allowing the reseller/admin to act on their behalf.
      *
-     * @param string $username Login of the account to impersonate.
-     * @param bool $validate Whether to check the user exists and is a user.
+     * @param string $username Login of the account to impersonate
+     * @param bool $validate Whether to check the user exists and is a user
      * @return UserContext
      */
     public function impersonateUser($username, $validate = false)

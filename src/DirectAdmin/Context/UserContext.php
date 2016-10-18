@@ -1,7 +1,8 @@
 <?php
-/**
- * DirectAdmin
- * (c) Omines Internetbureau B.V.
+
+/*
+ * DirectAdmin API Client
+ * (c) Omines Internetbureau B.V. - https://omines.nl/
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -27,28 +28,28 @@ class UserContext extends BaseContext
     /**
      * Constructs the object.
      *
-     * @param DirectAdmin $connection A prepared connection.
-     * @param bool $validate Whether to check if the connection matches the context.
+     * @param DirectAdmin $connection A prepared connection
+     * @param bool $validate Whether to check if the connection matches the context
      */
     public function __construct(DirectAdmin $connection, $validate = false)
     {
         parent::__construct($connection);
-        if($validate)
-        {
+        if ($validate) {
             $classMap = [
                 DirectAdmin::ACCOUNT_TYPE_ADMIN => AdminContext::class,
                 DirectAdmin::ACCOUNT_TYPE_RESELLER => ResellerContext::class,
-                DirectAdmin::ACCOUNT_TYPE_USER => UserContext::class,
+                DirectAdmin::ACCOUNT_TYPE_USER => self::class,
             ];
-            if($classMap[$this->getType()] != get_class($this))
+            if ($classMap[$this->getType()] != get_class($this)) {
                 throw new DirectAdminException('Validation mismatch on context construction');
+            }
         }
     }
 
     /**
      * Returns the type of the account (user/reseller/admin).
      *
-     * @return string One of the DirectAdmin::ACCOUNT_TYPE_ constants describing the type of underlying account.
+     * @return string One of the DirectAdmin::ACCOUNT_TYPE_ constants describing the type of underlying account
      */
     public function getType()
     {
@@ -58,20 +59,21 @@ class UserContext extends BaseContext
     /**
      * Returns the actual user object behind the context.
      *
-     * @return User The user object behind the context.
+     * @return User The user object behind the context
      */
     public function getContextUser()
     {
-        if(!isset($this->user))
+        if (!isset($this->user)) {
             $this->user = User::fromConfig($this->invokeGet('SHOW_USER_CONFIG'), $this);
+        }
         return $this->user;
     }
 
     /**
      * Returns a domain managed by the current user.
      *
-     * @param string $domainName The requested domain name.
-     * @return null|Domain The domain if found, or NULL if it does not exist.
+     * @param string $domainName The requested domain name
+     * @return null|Domain The domain if found, or NULL if it does not exist
      */
     public function getDomain($domainName)
     {
@@ -91,7 +93,7 @@ class UserContext extends BaseContext
     /**
      * Returns the username of the current context.
      *
-     * @return string Username for the current context.
+     * @return string Username for the current context
      */
     public function getUsername()
     {

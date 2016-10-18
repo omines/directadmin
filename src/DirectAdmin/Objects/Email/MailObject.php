@@ -1,7 +1,8 @@
 <?php
-/**
- * DirectAdmin
- * (c) Omines Internetbureau B.V.
+
+/*
+ * DirectAdmin API Client
+ * (c) Omines Internetbureau B.V. - https://omines.nl/
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -21,8 +22,8 @@ abstract class MailObject extends DomainObject
     /**
      * Delete the object.
      *
-     * @param string $command Command to execute.
-     * @param string $paramName Parameter name for the delete command.
+     * @param string $command Command to execute
+     * @param string $paramName Parameter name for the delete command
      */
     protected function invokeDelete($command, $paramName)
     {

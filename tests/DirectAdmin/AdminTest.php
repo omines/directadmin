@@ -1,7 +1,8 @@
 <?php
-/**
- * DirectAdmin
- * (c) Omines Internetbureau B.V.
+
+/*
+ * DirectAdmin API Client
+ * (c) Omines Internetbureau B.V. - https://omines.nl/
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,7 +13,7 @@ use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\Objects\Users\Admin;
 
 /**
- * Tests admin level functionality
+ * Tests admin level functionality.
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
@@ -56,5 +57,4 @@ class AdminTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey(MASTER_ADMIN_USERNAME, $accounts);
         $this->assertEquals(count($accounts), count($users) + count($resellers) + count($admins));
     }
-
 }

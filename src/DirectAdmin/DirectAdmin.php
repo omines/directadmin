@@ -1,7 +1,8 @@
 <?php
-/**
- * DirectAdmin
- * (c) Omines Internetbureau B.V.
+
+/*
+ * DirectAdmin API Client
+ * (c) Omines Internetbureau B.V. - https://omines.nl/
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -23,9 +24,9 @@ use Omines\DirectAdmin\Utility\Conversion;
  */
 class DirectAdmin
 {
-    const ACCOUNT_TYPE_ADMIN            = 'admin';
-    const ACCOUNT_TYPE_RESELLER         = 'reseller';
-    const ACCOUNT_TYPE_USER             = 'user';
+    const ACCOUNT_TYPE_ADMIN = 'admin';
+    const ACCOUNT_TYPE_RESELLER = 'reseller';
+    const ACCOUNT_TYPE_USER = 'user';
 
     /** @var string */
     private $authenticatedUser;
@@ -45,10 +46,10 @@ class DirectAdmin
     /**
      * Connects to DirectAdmin with an admin account.
      *
-     * @param string $url The base URL of the DirectAdmin server.
-     * @param string $username The username of the account.
-     * @param string $password The password of the account.
-     * @param bool $validate Whether to ensure the account exists and is of the correct type.
+     * @param string $url The base URL of the DirectAdmin server
+     * @param string $username The username of the account
+     * @param string $password The password of the account
+     * @param bool $validate Whether to ensure the account exists and is of the correct type
      * @return AdminContext
      */
     public static function connectAdmin($url, $username, $password, $validate = false)
@@ -59,10 +60,10 @@ class DirectAdmin
     /**
      * Connects to DirectAdmin with a reseller account.
      *
-     * @param string $url The base URL of the DirectAdmin server.
-     * @param string $username The username of the account.
-     * @param string $password The password of the account.
-     * @param bool $validate Whether to ensure the account exists and is of the correct type.
+     * @param string $url The base URL of the DirectAdmin server
+     * @param string $username The username of the account
+     * @param string $password The password of the account
+     * @param bool $validate Whether to ensure the account exists and is of the correct type
      * @return ResellerContext
      */
     public static function connectReseller($url, $username, $password, $validate = false)
@@ -73,10 +74,10 @@ class DirectAdmin
     /**
      * Connects to DirectAdmin with a user account.
      *
-     * @param string $url The base URL of the DirectAdmin server.
-     * @param string $username The username of the account.
-     * @param string $password The password of the account.
-     * @param bool $validate Whether to ensure the account exists and is of the correct type.
+     * @param string $url The base URL of the DirectAdmin server
+     * @param string $username The username of the account
+     * @param string $password The password of the account
+     * @param bool $validate Whether to ensure the account exists and is of the correct type
      * @return UserContext
      */
     public static function connectUser($url, $username, $password, $validate = false)
@@ -87,9 +88,9 @@ class DirectAdmin
     /**
      * Creates a connection wrapper to DirectAdmin as the specified account.
      *
-     * @param string $url The base URL of the DirectAdmin server.
-     * @param string $username The username of the account.
-     * @param string $password The password of the account.
+     * @param string $url The base URL of the DirectAdmin server
+     * @param string $username The username of the account
+     * @param string $password The password of the account
      */
     protected function __construct($url, $username, $password)
     {
@@ -107,7 +108,7 @@ class DirectAdmin
     /**
      * Returns the username behind the current connection.
      *
-     * @return string Currently logged in user's username.
+     * @return string Currently logged in user's username
      */
     public function getUsername()
     {
@@ -118,16 +119,17 @@ class DirectAdmin
      * Invokes the DirectAdmin API with specific options.
      *
      * @param string $method HTTP method to use (ie. GET or POST)
-     * @param string $command DirectAdmin API command to invoke.
-     * @param array $options Guzzle options to use for the call.
-     * @return array The unvalidated response.
-     * @throws DirectAdminException If anything went wrong on the network level.
+     * @param string $command DirectAdmin API command to invoke
+     * @param array $options Guzzle options to use for the call
+     * @return array The unvalidated response
+     * @throws DirectAdminException If anything went wrong on the network level
      */
     public function invoke($method, $command, $options = [])
     {
         $result = $this->rawRequest($method, '/CMD_API_' . $command, $options);
-        if(!empty($result['error']))
+        if (!empty($result['error'])) {
             throw new DirectAdminException("$method to $command failed: $result[details] ($result[text])");
+        }
         return Conversion::sanitizeArray($result);
     }
 
@@ -153,16 +155,14 @@ class DirectAdmin
      */
     private function rawRequest($method, $uri, $options)
     {
-        try
-        {
+        try {
             $response = $this->connection->request($method, $uri, $options);
-            if($response->getHeader('Content-Type')[0] == 'text/html')
+            if ($response->getHeader('Content-Type')[0] == 'text/html') {
                 throw new DirectAdminException("DirectAdmin API returned a text/html body. Requested {$uri} via {$method}. Responded: " . strip_tags($response->getBody()->getContents()));
+            }
             $body = $response->getBody()->getContents();
             return Conversion::responseToArray($body);
-        }
-        catch(TransferException $exception)
-        {
+        } catch (TransferException $exception) {
             // Rethrow anything that causes a network issue
             throw new DirectAdminException("Request to {$uri} using {$method} failed", 0, $exception);
         }

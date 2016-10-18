@@ -1,7 +1,8 @@
 <?php
-/**
- * DirectAdmin
- * (c) Omines Internetbureau B.V.
+
+/*
+ * DirectAdmin API Client
+ * (c) Omines Internetbureau B.V. - https://omines.nl/
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -20,8 +21,8 @@ abstract class DomainObject extends Object
     private $domain;
 
     /**
-     * @param string $name Canonical name for the object.
-     * @param Domain $domain Domain to which the object belongs.
+     * @param string $name Canonical name for the object
+     * @param Domain $domain Domain to which the object belongs
      */
     protected function __construct($name, Domain $domain)
     {
@@ -32,11 +33,11 @@ abstract class DomainObject extends Object
     /**
      * Invokes a POST command on a domain object.
      *
-     * @param string $command Command to invoke.
-     * @param string $action Action to execute.
-     * @param array $parameters Additional options for the command.
-     * @param bool $clearCache Whether to clear the domain cache.
-     * @return array Response from the API.
+     * @param string $command Command to invoke
+     * @param string $action Action to execute
+     * @param array $parameters Additional options for the command
+     * @param bool $clearCache Whether to clear the domain cache
+     * @return array Response from the API
      */
     protected function invokePost($command, $action, $parameters = [], $clearCache = true)
     {
@@ -69,7 +70,7 @@ abstract class DomainObject extends Object
      */
     public static function toDomainObjectArray(array $items, $class, Domain $domain)
     {
-        array_walk($items, function(&$value, $name) use ($class, $domain) {
+        array_walk($items, function (&$value, $name) use ($class, $domain) {
             $value = new $class($name, $domain, $value);
         });
         return $items;

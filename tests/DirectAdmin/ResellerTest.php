@@ -1,7 +1,8 @@
 <?php
-/**
- * DirectAdmin
- * (c) Omines Internetbureau B.V.
+
+/*
+ * DirectAdmin API Client
+ * (c) Omines Internetbureau B.V. - https://omines.nl/
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,7 +14,7 @@ use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\Objects\Users\Reseller;
 
 /**
- * ResellerTest
+ * ResellerTest.
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */

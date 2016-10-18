@@ -1,7 +1,8 @@
 <?php
-/**
- * DirectAdmin
- * (c) Omines Internetbureau B.V.
+
+/*
+ * DirectAdmin API Client
+ * (c) Omines Internetbureau B.V. - https://omines.nl/
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -23,26 +24,27 @@ class Mailbox extends MailObject
     /**
      * Construct the object.
      *
-     * @param string $prefix The part before the @ in the address.
-     * @param Domain $domain The containing domain.
-     * @param string|array|null $config URL encoded config string as returned by CMD_API_POP.
+     * @param string $prefix The part before the @ in the address
+     * @param Domain $domain The containing domain
+     * @param string|array|null $config URL encoded config string as returned by CMD_API_POP
      */
     public function __construct($prefix, Domain $domain, $config = null)
     {
         parent::__construct($prefix, $domain);
-        if(isset($config))
+        if (isset($config)) {
             $this->setCache(self::CACHE_DATA, is_string($config) ? \GuzzleHttp\Psr7\parse_query($config) : $config);
+        }
     }
 
     /**
      * Creates a new mailbox.
      *
-     * @param Domain $domain Domain to add the account to.
-     * @param string $prefix Prefix for the account.
-     * @param string $password Password for the account.
-     * @param int|null $quota Quota in megabytes, or zero/null for unlimited.
-     * @param int|null $sendLimit Send limit, or 0 for unlimited, or null for system default.
-     * @return Mailbox The created mailbox.
+     * @param Domain $domain Domain to add the account to
+     * @param string $prefix Prefix for the account
+     * @param string $password Password for the account
+     * @param int|null $quota Quota in megabytes, or zero/null for unlimited
+     * @param int|null $sendLimit Send limit, or 0 for unlimited, or null for system default
+     * @return Mailbox The created mailbox
      */
     public static function create(Domain $domain, $prefix, $password, $quota = null, $sendLimit = null)
     {
@@ -116,7 +118,7 @@ class Mailbox extends MailObject
      */
     protected function getData($key)
     {
-        return $this->getCacheItem(self::CACHE_DATA, $key, function() {
+        return $this->getCacheItem(self::CACHE_DATA, $key, function () {
             $result = $this->getContext()->invokeGet('POP', [
                 'domain' => $this->getDomainName(),
                 'action' => 'full_list',

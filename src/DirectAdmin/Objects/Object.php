@@ -1,7 +1,8 @@
 <?php
-/**
- * DirectAdmin
- * (c) Omines Internetbureau B.V.
+
+/*
+ * DirectAdmin API Client
+ * (c) Omines Internetbureau B.V. - https://omines.nl/
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -29,8 +30,8 @@ abstract class Object
     private $cache = [];
 
     /**
-     * @param string $name Canonical name for the object.
-     * @param UserContext $context Context within which the object is valid.
+     * @param string $name Canonical name for the object
+     * @param UserContext $context Context within which the object is valid
      */
     protected function __construct($name, UserContext $context)
     {
@@ -49,14 +50,15 @@ abstract class Object
     /**
      * Retrieves an item from the internal cache.
      *
-     * @param string $key Key to retrieve.
-     * @param Callable|mixed $default Either a callback or an explicit default value.
-     * @return mixed Cached value.
+     * @param string $key Key to retrieve
+     * @param callable|mixed $default Either a callback or an explicit default value
+     * @return mixed Cached value
      */
     protected function getCache($key, $default)
     {
-        if(!isset($this->cache[$key]))
+        if (!isset($this->cache[$key])) {
             $this->cache[$key] = is_callable($default) ? $default() : $default;
+        }
         return $this->cache[$key];
     }
 
@@ -65,16 +67,18 @@ abstract class Object
      *
      * @param string $key
      * @param string $item
-     * @param Callable|mixed $defaultKey
+     * @param callable|mixed $defaultKey
      * @param mixed|null $defaultItem
-     * @return mixed Cached value.
+     * @return mixed Cached value
      */
     protected function getCacheItem($key, $item, $defaultKey, $defaultItem = null)
     {
-        if(empty($cache = $this->getCache($key, $defaultKey)))
+        if (empty($cache = $this->getCache($key, $defaultKey))) {
             return $defaultItem;
-        if(!is_array($cache))
+        }
+        if (!is_array($cache)) {
             throw new DirectAdminException("Cache item $key is not an array");
+        }
         return isset($cache[$item]) ? $cache[$item] : $defaultItem;
     }
 
@@ -117,7 +121,7 @@ abstract class Object
      */
     public static function toObjectArray(array $items, $class, UserContext $context)
     {
-        return array_combine($items, array_map(function($item) use ($class, $context) {
+        return array_combine($items, array_map(function ($item) use ($class, $context) {
             return new $class($item, $context);
         }, $items));
     }
@@ -132,7 +136,7 @@ abstract class Object
      */
     public static function toRichObjectArray(array $items, $class, UserContext $context)
     {
-        array_walk($items, function(&$value, $name) use ($class, $context) {
+        array_walk($items, function (&$value, $name) use ($class, $context) {
             $value = new $class($name, $context, $value);
         });
         return $items;

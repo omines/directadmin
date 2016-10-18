@@ -1,7 +1,8 @@
 <?php
-/**
- * DirectAdmin
- * (c) Omines Internetbureau B.V.
+
+/*
+ * DirectAdmin API Client
+ * (c) Omines Internetbureau B.V. - https://omines.nl/
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -24,7 +25,7 @@ abstract class BaseContext
     /**
      * Constructs the object.
      *
-     * @param DirectAdmin $connection A prepared connection.
+     * @param DirectAdmin $connection A prepared connection
      */
     public function __construct(DirectAdmin $connection)
     {
@@ -44,9 +45,9 @@ abstract class BaseContext
     /**
      * Invokes the DirectAdmin API via HTTP GET.
      *
-     * @param string $command DirectAdmin API command to invoke.
-     * @param array $query Optional query parameters.
-     * @return array The parsed and validated response.
+     * @param string $command DirectAdmin API command to invoke
+     * @param array $query Optional query parameters
+     * @return array The parsed and validated response
      */
     public function invokeGet($command, $query = [])
     {
@@ -56,9 +57,9 @@ abstract class BaseContext
     /**
      * Invokes the DirectAdmin API via HTTP POST.
      *
-     * @param string $command DirectAdmin API command to invoke.
-     * @param array $postParameters Optional form parameters.
-     * @return array The parsed and validated response.
+     * @param string $command DirectAdmin API command to invoke
+     * @param array $postParameters Optional form parameters
+     * @return array The parsed and validated response
      */
     public function invokePost($command, $postParameters = [])
     {

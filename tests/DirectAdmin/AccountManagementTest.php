@@ -1,7 +1,8 @@
 <?php
-/**
- * DirectAdmin
- * (c) Omines Internetbureau B.V.
+
+/*
+ * DirectAdmin API Client
+ * (c) Omines Internetbureau B.V. - https://omines.nl/
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -10,7 +11,7 @@
 use Omines\DirectAdmin\DirectAdmin;
 
 /**
- * AccountManagementTest
+ * AccountManagementTest.
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
@@ -22,14 +23,11 @@ class AccountManagementTest extends \PHPUnit_Framework_TestCase
      */
     public static function setUpBeforeClass()
     {
-        try
-        {
+        try {
             // Ensure all test accounts are gone
             $adminContext = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD);
             $adminContext->deleteAccounts([USER_USERNAME, RESELLER_USERNAME, ADMIN_USERNAME]);
-        }
-        catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             // Silently fail as this is expected behaviour
         }
     }
