@@ -14,7 +14,7 @@ use Omines\DirectAdmin\Context\AdminContext;
 use Omines\DirectAdmin\Context\ResellerContext;
 use Omines\DirectAdmin\Context\UserContext;
 use Omines\DirectAdmin\DirectAdminException;
-use Omines\DirectAdmin\Objects\Object;
+use Omines\DirectAdmin\Objects\BaseObject;
 
 /**
  * Reseller.
@@ -46,7 +46,7 @@ class Reseller extends User
      */
     public function getUsers()
     {
-        return Object::toObjectArray($this->getContext()->invokeGet('SHOW_USERS', ['reseller' => $this->getUsername()]),
+        return BaseObject::toObjectArray($this->getContext()->invokeGet('SHOW_USERS', ['reseller' => $this->getUsername()]),
                                      User::class, $this->getContext());
     }
 

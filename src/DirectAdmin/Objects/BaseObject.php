@@ -18,7 +18,7 @@ use Omines\DirectAdmin\DirectAdminException;
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
-abstract class Object
+abstract class BaseObject
 {
     /** @var string */
     private $name;

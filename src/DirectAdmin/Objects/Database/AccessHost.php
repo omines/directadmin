@@ -11,9 +11,9 @@
 namespace Omines\DirectAdmin\Objects\Database;
 
 use Omines\DirectAdmin\Objects\Database;
-use Omines\DirectAdmin\Objects\Object;
+use Omines\DirectAdmin\Objects\BaseObject;
 
-class AccessHost extends Object
+class AccessHost extends BaseObject
 {
     /** @var Database $database */
     protected $database;

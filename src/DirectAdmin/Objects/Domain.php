@@ -23,7 +23,7 @@ use Omines\DirectAdmin\Utility\Conversion;
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
-class Domain extends Object
+class Domain extends BaseObject
 {
     const CACHE_FORWARDERS = 'forwarders';
     const CACHE_MAILBOXES = 'mailboxes';

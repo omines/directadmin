@@ -10,7 +10,7 @@
 
 namespace Omines\DirectAdmin\Context;
 
-use Omines\DirectAdmin\Objects\Object;
+use Omines\DirectAdmin\Objects\BaseObject;
 use Omines\DirectAdmin\Objects\Users\Admin;
 use Omines\DirectAdmin\Objects\Users\Reseller;
 use Omines\DirectAdmin\Objects\Users\User;
@@ -63,7 +63,7 @@ class AdminContext extends ResellerContext
      */
     public function getAdmins()
     {
-        return Object::toObjectArray($this->invokeGet('SHOW_ADMINS'), Admin::class, $this);
+        return BaseObject::toObjectArray($this->invokeGet('SHOW_ADMINS'), Admin::class, $this);
     }
 
     /**
@@ -85,7 +85,7 @@ class AdminContext extends ResellerContext
      */
     public function getAllUsers()
     {
-        return Object::toObjectArray($this->invokeGet('SHOW_ALL_USERS'), User::class, $this);
+        return BaseObject::toObjectArray($this->invokeGet('SHOW_ALL_USERS'), User::class, $this);
     }
 
     /**
@@ -107,7 +107,7 @@ class AdminContext extends ResellerContext
      */
     public function getResellers()
     {
-        return Object::toObjectArray($this->invokeGet('SHOW_RESELLERS'), Reseller::class, $this);
+        return BaseObject::toObjectArray($this->invokeGet('SHOW_RESELLERS'), Reseller::class, $this);
     }
 
     /**

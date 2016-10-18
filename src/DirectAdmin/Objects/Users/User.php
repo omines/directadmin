@@ -16,7 +16,7 @@ use Omines\DirectAdmin\DirectAdmin;
 use Omines\DirectAdmin\DirectAdminException;
 use Omines\DirectAdmin\Objects\Database;
 use Omines\DirectAdmin\Objects\Domain;
-use Omines\DirectAdmin\Objects\Object;
+use Omines\DirectAdmin\Objects\BaseObject;
 use Omines\DirectAdmin\Utility\Conversion;
 
 /**
@@ -24,7 +24,7 @@ use Omines\DirectAdmin\Utility\Conversion;
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
-class User extends Object
+class User extends BaseObject
 {
     const CACHE_CONFIG = 'config';
     const CACHE_DATABASES = 'databases';
@@ -238,7 +238,7 @@ class User extends Object
             if (!$this->isSelfManaged()) {
                 $this->domains = $this->impersonate()->getDomains();
             } else {
-                $this->domains = Object::toRichObjectArray($this->getContext()->invokeGet('ADDITIONAL_DOMAINS'), Domain::class, $this->getContext());
+                $this->domains = BaseObject::toRichObjectArray($this->getContext()->invokeGet('ADDITIONAL_DOMAINS'), Domain::class, $this->getContext());
             }
         }
         return $this->domains;

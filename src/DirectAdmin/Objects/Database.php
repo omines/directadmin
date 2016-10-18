@@ -18,7 +18,7 @@ use Omines\DirectAdmin\Objects\Users\User;
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
-class Database extends Object
+class Database extends BaseObject
 {
     const CACHE_ACCESS_HOSTS = 'access_hosts';
 
@@ -31,9 +31,9 @@ class Database extends Object
     /**
      * Database constructor.
      *
-     * @param string $name Name of the database.
-     * @param User $owner Database owner.
-     * @param UserContext $context Context within which the object is valid.
+     * @param string $name Name of the database
+     * @param User $owner Database owner
+     * @param UserContext $context Context within which the object is valid
      */
     public function __construct($name, User $owner, UserContext $context)
     {

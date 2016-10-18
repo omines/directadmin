@@ -15,7 +15,7 @@ namespace Omines\DirectAdmin\Objects;
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
-abstract class DomainObject extends Object
+abstract class DomainObject extends BaseObject
 {
     /** @var Domain */
     private $domain;
