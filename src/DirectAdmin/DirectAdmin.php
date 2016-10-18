@@ -159,14 +159,14 @@ class DirectAdmin
         {
             $response = $this->connection->request($method, $uri, $options);
             if($response->getHeader('Content-Type')[0] == 'text/html')
-                throw new DirectAdminException('DirectAdmin API returned an error: ' . strip_tags($response->getBody()->getContents()));
+                throw new DirectAdminException("DirectAdmin API returned a text/html body. Requested {$uri} via {$method}. Responded: " . strip_tags($response->getBody()->getContents()));
             $body = $response->getBody()->getContents();
             return Conversion::responseToArray($body);
         }
         catch(TransferException $exception)
         {
             // Rethrow anything that causes a network issue
-            throw new DirectAdminException("Request to $uri using $method failed", 0, $exception);
+            throw new DirectAdminException("Request to {$uri} using {$method} failed", 0, $exception);
         }
     }
 }
