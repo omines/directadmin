@@ -119,7 +119,7 @@
 
 
 	<div class="description">
-	<p>Database</p>
+	<p>Database.</p>
 	</div>
 
 	<dl class="tree well">
@@ -152,7 +152,7 @@
 
 				<b>Author:</b>
 				Niels Keurentjes <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m">&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m</a><br>
-			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.Database.html#14-118" title="Go to source code">DirectAdmin/Objects/Database.php</a>
+			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.Database.html#16-124" title="Go to source code">DirectAdmin/Objects/Database.php</a>
 		<br>
 	</div>
 
@@ -172,24 +172,24 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#28-37" title="Go to source code">__construct</a>( <span>array <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a></code> <var>$owner</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#31-43" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a></code> <var>$owner</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Database constructor.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Database constructor.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$name</var></dt>
-						<dd>$info</dd>
+						<dd>Name of the database.</dd>
 						<dt><var>$owner</var></dt>
-						<dd>$context Context within which the object is valid.</dd>
+						<dd>Database owner.</dd>
 						<dt><var>$context</var></dt>
-						<dd></dd>
+						<dd>Context within which the object is valid.</dd>
 					</dl></div>
 
 
@@ -212,7 +212,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_create">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#39-61" title="Go to source code">create</a>( <span><code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a></code> <var>$user</var></span>, <span>string <var>$name</var></span>, <span>string <var>$username</var></span>, <span>string|null <var>$password</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#45-67" title="Go to source code">create</a>( <span><code><a href="class-Omines.DirectAdmin.Objects.Users.User.html">Omines\DirectAdmin\Objects\Users\User</a></code> <var>$user</var></span>, <span>string <var>$name</var></span>, <span>string <var>$username</var></span>, <span>string|null <var>$password</var></span> )</code>
 
 			<div class="description short">
 				<p>Creates a new database under the specified user.</p>
@@ -225,18 +225,18 @@
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$user</var></dt>
-						<dd>Owner of the database.</dd>
+						<dd>Owner of the database</dd>
 						<dt><var>$name</var></dt>
-						<dd>Database name, without <user>_ prefix.</dd>
+						<dd>Database name, without <user>_ prefix</dd>
 						<dt><var>$username</var></dt>
-						<dd>Username to access the database with, without <user>_ prefix.</dd>
+						<dd>Username to access the database with, without <user>_ prefix</dd>
 						<dt><var>$password</var></dt>
-						<dd>Password, or null if database user already exists.</dd>
+						<dd>Password, or null if database user already exists</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						<code><a href="class-Omines.DirectAdmin.Objects.Database.html">Omines\DirectAdmin\Objects\Database</a></code><br>Newly created database.
+						<code><a href="class-Omines.DirectAdmin.Objects.Database.html">Omines\DirectAdmin\Objects\Database</a></code><br>Newly created database
 					</div>
 
 
@@ -256,7 +256,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_delete">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#63-73" title="Go to source code">delete</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#69-79" title="Go to source code">delete</a>( )</code>
 
 			<div class="description short">
 				<p>Deletes this database from the user.</p>
@@ -285,7 +285,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getAccessHosts">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#75-90" title="Go to source code">getAccessHosts</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#81-96" title="Go to source code">getAccessHosts</a>( )</code>
 
 			<div class="description short">
 				
@@ -318,7 +318,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_createAccessHost">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#92-101" title="Go to source code">createAccessHost</a>( <span>string <var>$name</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#98-107" title="Go to source code">createAccessHost</a>( <span>string <var>$name</var></span> )</code>
 
 			<div class="description short">
 				
@@ -356,7 +356,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDatabaseName">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#103-109" title="Go to source code">getDatabaseName</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#109-115" title="Go to source code">getDatabaseName</a>( )</code>
 
 			<div class="description short">
 				
@@ -369,7 +369,7 @@
 
 					<h4>Returns</h4>
 					<div class="list">
-						string<br>Name of the database.
+						string<br>Name of the database
 					</div>
 
 
@@ -389,7 +389,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getOwner">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#111-117" title="Go to source code">getOwner</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.Database.html#117-123" title="Go to source code">getOwner</a>( )</code>
 
 			<div class="description short">
 				
@@ -442,7 +442,7 @@
 				<td class="attributes"><code>string</code></td>
 				<td class="name">
 					<code>
-						<a href="source-class-Omines.DirectAdmin.Objects.Database.html#21" title="Go to source code"><b>CACHE_ACCESS_HOSTS</b></a>
+						<a href="source-class-Omines.DirectAdmin.Objects.Database.html#23" title="Go to source code"><b>CACHE_ACCESS_HOSTS</b></a>
 					</code>
 
 					<div class="description short">
