@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class Omines\DirectAdmin\Objects\Object</title>
+	<title>Class Omines\DirectAdmin\Objects\BaseObject</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -96,10 +96,10 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li class="active"><a href="class-Omines.DirectAdmin.Objects.BaseObject.html">BaseObject</a></li>
 				<li><a href="class-Omines.DirectAdmin.Objects.Database.html">Database</a></li>
 				<li><a href="class-Omines.DirectAdmin.Objects.Domain.html">Domain</a></li>
 				<li><a href="class-Omines.DirectAdmin.Objects.DomainObject.html">DomainObject</a></li>
-				<li class="active"><a href="class-Omines.DirectAdmin.Objects.Object.html">Object</a></li>
 			</ul>
 
 
@@ -115,7 +115,7 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Class Object</h1>
+	<h1>Class BaseObject</h1>
 
 
 	<div class="description">
@@ -159,7 +159,7 @@
 
 				<b>Author:</b>
 				Niels Keurentjes <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m">&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m</a><br>
-			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.Object.html#16-144" title="Go to source code">DirectAdmin/Objects/Object.php</a>
+			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Objects.BaseObject.html#16-144" title="Go to source code">DirectAdmin/Objects/BaseObject.php</a>
 		<br>
 	</div>
 
@@ -179,7 +179,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Object.html#32-40" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.BaseObject.html#32-40" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span> )</code>
 
 			<div class="description short">
 				
@@ -215,7 +215,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_clearCache">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Object.html#42-48" title="Go to source code">clearCache</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.BaseObject.html#42-48" title="Go to source code">clearCache</a>( )</code>
 
 			<div class="description short">
 				<p>Clear the object's internal cache.</p>
@@ -244,7 +244,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getCache">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Object.html#50-63" title="Go to source code">getCache</a>( <span>string <var>$key</var></span>, <span>callable|mixed <var>$default</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.BaseObject.html#50-63" title="Go to source code">getCache</a>( <span>string <var>$key</var></span>, <span>callable|mixed <var>$default</var></span> )</code>
 
 			<div class="description short">
 				<p>Retrieves an item from the internal cache.</p>
@@ -284,7 +284,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getCacheItem">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Object.html#65-83" title="Go to source code">getCacheItem</a>( <span>string <var>$key</var></span>, <span>string <var>$item</var></span>, <span>callable|mixed <var>$defaultKey</var></span>, <span>mixed|null <var>$defaultItem</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.BaseObject.html#65-83" title="Go to source code">getCacheItem</a>( <span>string <var>$key</var></span>, <span>string <var>$item</var></span>, <span>callable|mixed <var>$defaultKey</var></span>, <span>mixed|null <var>$defaultItem</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Retrieves a keyed item from inside a cache item.</p>
@@ -328,7 +328,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setCache">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Object.html#85-94" title="Go to source code">setCache</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.BaseObject.html#85-94" title="Go to source code">setCache</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 			<div class="description short">
 				<p>Sets a specific cache item, for when a cacheable value was a by-product.</p>
@@ -364,7 +364,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getContext">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Object.html#96-102" title="Go to source code">getContext</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.BaseObject.html#96-102" title="Go to source code">getContext</a>( )</code>
 
 			<div class="description short">
 				
@@ -397,7 +397,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getName">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Object.html#104-112" title="Go to source code">getName</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.BaseObject.html#104-112" title="Go to source code">getName</a>( )</code>
 
 			<div class="description short">
 				<p>Protected as a derived class may want to offer the name under a different name.</p>
@@ -430,7 +430,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_toObjectArray">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Object.html#114-127" title="Go to source code">toObjectArray</a>( <span>array <var>$items</var></span>, <span>string <var>$class</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.BaseObject.html#114-127" title="Go to source code">toObjectArray</a>( <span>array <var>$items</var></span>, <span>string <var>$class</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span> )</code>
 
 			<div class="description short">
 				<p>Converts an array of string items to an associative array of objects of the specified type.</p>
@@ -472,7 +472,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_toRichObjectArray">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Objects.Object.html#129-143" title="Go to source code">toRichObjectArray</a>( <span>array <var>$items</var></span>, <span>string <var>$class</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Objects.BaseObject.html#129-143" title="Go to source code">toRichObjectArray</a>( <span>array <var>$items</var></span>, <span>string <var>$class</var></span>, <span><code><a href="class-Omines.DirectAdmin.Context.UserContext.html">Omines\DirectAdmin\Context\UserContext</a></code> <var>$context</var></span> )</code>
 
 			<div class="description short">
 				<p>Converts an associative array of descriptors to objects of the specified type.</p>
