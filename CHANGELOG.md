@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [0.1.3] - 2016-10-18
 ### Added
  - Add access hosts to database management (#13)
  - Enabled SSL verification (#14)
@@ -31,6 +33,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Retrieving, creating and deleting mailboxes
 - Resetting mailbox passwords
 
-[Unreleased]: https://github.com/omines/directadmin/compare/v0.1.2...master
+[Unreleased]: https://github.com/omines/directadmin/compare/v0.1.3...master
+[0.1.3]: https://github.com/omines/directadmin/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/omines/directadmin/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/omines/directadmin/compare/v0.1.0...v0.1.1
