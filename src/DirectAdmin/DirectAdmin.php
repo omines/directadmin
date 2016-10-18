@@ -101,8 +101,6 @@ class DirectAdmin
         $this->connection = new Client([
             'base_uri' => $this->baseUrl,
             'auth' => [$username, $password],
-            'http_errors' => true,
-            'verify' => false
         ]);
     }
 

@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
  - Add access hosts to database management (#13)
+ - Enabled SSL verification (#14)
 
 ## [0.1.2] - 2016-01-31
 ### Added
