@@ -140,6 +140,30 @@ class Domain extends BaseObject
     }
 
     /**
+     * Creates a pointer or alias.
+     *
+     * @param string $domain
+     * @param bool $alias
+     */
+    public function createPointer($domain, $alias = false)
+    {
+        $parameters = [
+            'domain' => $this->domainName,
+            'from' => $domain,
+            'action' => 'add',
+        ];
+        if ($alias) {
+            $parameters['alias'] = 'yes';
+            $list = &$this->aliases;
+        } else {
+            $list = &$this->pointers;
+        }
+        $this->getContext()->invokePost('DOMAIN_POINTER', $parameters);
+        $list[] = $domain;
+        $list = array_unique($list);
+    }
+
+    /**
      * Creates a new subdomain.
      *
      * @param string $prefix Prefix to add before the domain name
