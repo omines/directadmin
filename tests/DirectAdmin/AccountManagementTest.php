@@ -104,4 +104,20 @@ class AccountManagementTest extends \PHPUnit_Framework_TestCase
         $adminContext->deleteAccount(USER_USERNAME);
         $adminContext->deleteAccounts([RESELLER_USERNAME, ADMIN_USERNAME]);
     }
+
+    public function testSuspendAccounts()
+    {
+        // Have to separately suspend the user as otherwise the order is not determined whether it's containing
+        // reseller is suspended first. Also - it implicitly tests both calls like this
+        $adminContext = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD);
+        $adminContext->suspendAccount(USER_USERNAME);
+        $adminContext->suspendAccounts([RESELLER_USERNAME, ADMIN_USERNAME]);
+    }
+
+    public function testUnsuspendAccounts()
+    {
+        $adminContext = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD);
+        $adminContext->unsuspendAccount(USER_USERNAME);
+        $adminContext->unsuspendAccounts([RESELLER_USERNAME, ADMIN_USERNAME]);
+    }
 }

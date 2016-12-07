@@ -90,6 +90,50 @@ class ResellerContext extends UserContext
     }
 
     /**
+     * Suspends a single account
+     *
+     * @param string $username Account to delete
+     */
+    public function suspendAccount($username)
+    {
+        $this->suspendAccounts([$username]);
+    }
+
+    /**
+     * Unsuspends a single account
+     * @param string $username Account to delete
+     */
+    public function unsuspendAccount($username)
+    {
+        $this->suspendAccounts([$username], false);
+    }
+
+    /**
+     * Suspends (or unsuspends) multiple accounts.
+     *
+     * @param string[] $usernames Accounts to delete
+     * @param bool $suspend (true - suspend, false - unsuspend)
+     */
+    public function suspendAccounts(array $usernames, $suspend = true)
+    {
+        $options = ['suspend' => $suspend ? 'Suspend' : 'Unsuspend'];
+        foreach (array_values($usernames) as $idx => $username) {
+            $options["select{$idx}"] = $username;
+        }
+        $this->invokePost('SELECT_USERS', $options);
+    }
+
+    /**
+     * Unsuspends multiple accounts.
+     *
+     * @param string[] $usernames Accounts to delete
+     */
+    public function unsuspendAccounts(array $usernames)
+    {
+        $this->suspendAccounts($usernames, false);
+    }
+
+    /**
      * Returns all IPs available to this reseller.
      *
      * @return array List of IPs as strings
