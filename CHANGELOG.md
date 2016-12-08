@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
  - Creating domain pointers and aliases
+ - Suspending/unsuspending resellers and users (#19)
 
 ## [0.1.3] - 2016-10-18
 ### Added
