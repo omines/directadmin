@@ -165,7 +165,7 @@
 
 				<b>Author:</b>
 				Niels Keurentjes <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m">&#x6e;i&#101;&#108;&#115;&#x2e;&#x6b;&#x65;&#x75;r&#101;&#110;&#116;&#106;&#x65;&#x73;&#x40;&#x6f;&#109;&#105;&#110;&#101;&#x73;&#x2e;&#x63;&#x6f;m</a><br>
-			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#16-135" title="Go to source code">DirectAdmin/Context/ResellerContext.php</a>
+			<b>Located at</b> <a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#16-179" title="Go to source code">DirectAdmin/Context/ResellerContext.php</a>
 		<br>
 	</div>
 
@@ -342,6 +342,144 @@
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="suspendAccount" id="_suspendAccount">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_suspendAccount">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#92-100" title="Go to source code">suspendAccount</a>( <span>string <var>$username</var></span> )</code>
+
+			<div class="description short">
+				<p>Suspends a single account</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Suspends a single account</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$username</var></dt>
+						<dd>Account to delete</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="unsuspendAccount" id="_unsuspendAccount">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_unsuspendAccount">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#102-109" title="Go to source code">unsuspendAccount</a>( <span>string <var>$username</var></span> )</code>
+
+			<div class="description short">
+				<p>Unsuspends a single account</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Unsuspends a single account</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$username</var></dt>
+						<dd>Account to delete</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="suspendAccounts" id="_suspendAccounts">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_suspendAccounts">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#111-124" title="Go to source code">suspendAccounts</a>( <span>array <var>$usernames</var></span>, <span>boolean <var>$suspend</var> = <span class="php-keyword1">true</span></span> )</code>
+
+			<div class="description short">
+				<p>Suspends (or unsuspends) multiple accounts.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Suspends (or unsuspends) multiple accounts.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$usernames</var></dt>
+						<dd>Accounts to delete</dd>
+						<dt><var>$suspend</var></dt>
+						<dd>(true - suspend, false - unsuspend)</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="unsuspendAccounts" id="_unsuspendAccounts">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_unsuspendAccounts">#</a>
+			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#126-134" title="Go to source code">unsuspendAccounts</a>( <span>array <var>$usernames</var></span> )</code>
+
+			<div class="description short">
+				<p>Unsuspends multiple accounts.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Unsuspends multiple accounts.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$usernames</var></dt>
+						<dd>Accounts to delete</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="getIPs" id="_getIPs">
 
 			<td class="attributes"><code>
@@ -353,7 +491,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getIPs">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#92-100" title="Go to source code">getIPs</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#136-144" title="Go to source code">getIPs</a>( )</code>
 
 			<div class="description short">
 				<p>Returns all IPs available to this reseller.</p>
@@ -386,7 +524,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getUser">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#102-112" title="Go to source code">getUser</a>( <span>string <var>$username</var></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#146-156" title="Go to source code">getUser</a>( <span>string <var>$username</var></span> )</code>
 
 			<div class="description short">
 				<p>Returns a single user by name.</p>
@@ -424,7 +562,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getUsers">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#114-122" title="Go to source code">getUsers</a>( )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#158-166" title="Go to source code">getUsers</a>( )</code>
 
 			<div class="description short">
 				<p>Returns all users for this reseller.</p>
@@ -457,7 +595,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_impersonateUser">#</a>
-			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#124-134" title="Go to source code">impersonateUser</a>( <span>string <var>$username</var></span>, <span>boolean <var>$validate</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-Omines.DirectAdmin.Context.ResellerContext.html#168-178" title="Go to source code">impersonateUser</a>( <span>string <var>$username</var></span>, <span>boolean <var>$validate</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
 				<p>Impersonates a user, allowing the reseller/admin to act on their behalf.</p>
