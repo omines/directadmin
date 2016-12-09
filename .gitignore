@@ -1,5 +1,6 @@
 composer.lock
 composer.phar
+build/
 local/
 phpunit.xml
 vendor/
