@@ -96,6 +96,9 @@ class AccountManagementTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(USER_USERNAME, $userContext->getContextUser()->getUsername());
     }
 
+    /**
+     * @depends testCreateUser
+     */
     public function testDeleteAccounts()
     {
         // Have to separately delete the user as otherwise the order is not determined whether it's containing
@@ -105,6 +108,9 @@ class AccountManagementTest extends \PHPUnit_Framework_TestCase
         $adminContext->deleteAccounts([RESELLER_USERNAME, ADMIN_USERNAME]);
     }
 
+    /**
+     * @depends testCreateUser
+     */
     public function testSuspendAccounts()
     {
         // Have to separately suspend the user as otherwise the order is not determined whether it's containing
@@ -114,6 +120,9 @@ class AccountManagementTest extends \PHPUnit_Framework_TestCase
         $adminContext->suspendAccounts([RESELLER_USERNAME, ADMIN_USERNAME]);
     }
 
+    /**
+     * @depends testCreateUser
+     */
     public function testUnsuspendAccounts()
     {
         $adminContext = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD);

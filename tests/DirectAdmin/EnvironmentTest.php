@@ -47,6 +47,15 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException Omines\DirectAdmin\DirectAdminException
      */
+    public function testInvalidCall()
+    {
+        $admin = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD);
+        $admin->invokeGet('INVALID_COMMAND');
+    }
+
+    /**
+     * @expectedException Omines\DirectAdmin\DirectAdminException
+     */
     public function testInvalidUrl()
     {
         $admin = DirectAdmin::connectAdmin('http://www.google.com/', 'username', 'password');

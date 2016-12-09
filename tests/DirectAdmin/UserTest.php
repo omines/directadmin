@@ -144,6 +144,13 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(3, $databases = $user->getDatabases());
         $this->assertEquals($db1->getOwner()->getUsername(), $user->getUsername());
 
+        // Add access host
+        $db1->createAccessHost('192.168.1.1');
+        $this->assertCount(2, $hosts = $db1->getAccessHosts());
+        $this->assertEquals('192.168.1.1', $hosts[0]->getHost());
+        $hosts[0]->delete();
+        $this->assertCount(1, $db1->getAccessHosts());
+
         // Delete all of them
         $db1->delete();
         $user->clearCache(); // Buggy...
@@ -237,6 +244,19 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(1, $domain->getMailboxes());
         $mail1->delete();
         $this->assertEmpty($domain->getMailboxes());
+    }
+
+    /**
+     * @depends testDefaultDomain
+     */
+    public function testPointers(Domain $domain)
+    {
+        $domain->createPointer('invalid.pointer.org');
+        $domain->createPointer('invalid.alias.org', true);
+        $this->assertCount(1, $aliases = $domain->getAliases());
+        $this->assertCount(1, $pointers = $domain->getPointers());
+        $this->assertEquals('invalid.pointer.org', $pointers[0]);
+        $this->assertEquals('invalid.alias.org', $aliases[0]);
     }
 
     /**

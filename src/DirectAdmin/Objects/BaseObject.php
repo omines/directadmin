@@ -70,6 +70,8 @@ abstract class BaseObject
      * @param callable|mixed $defaultKey
      * @param mixed|null $defaultItem
      * @return mixed Cached value
+     *
+     * @codeCoverageIgnore
      */
     protected function getCacheItem($key, $item, $defaultKey, $defaultItem = null)
     {

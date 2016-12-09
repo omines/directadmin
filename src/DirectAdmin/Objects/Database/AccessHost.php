@@ -13,6 +13,9 @@ namespace Omines\DirectAdmin\Objects\Database;
 use Omines\DirectAdmin\Objects\Database;
 use Omines\DirectAdmin\Objects\BaseObject;
 
+/**
+ * AccessHost
+ */
 class AccessHost extends BaseObject
 {
     /** @var Database $database */
@@ -55,6 +58,7 @@ class AccessHost extends BaseObject
             'db' => $this->database->getDatabaseName(),
             'select0' => $this->getName(),
         ]);
+        $this->database->clearCache();
     }
 
     /**
