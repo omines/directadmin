@@ -14,7 +14,7 @@ use Omines\DirectAdmin\Objects\Database;
 use Omines\DirectAdmin\Objects\BaseObject;
 
 /**
- * AccessHost
+ * AccessHost.
  */
 class AccessHost extends BaseObject
 {

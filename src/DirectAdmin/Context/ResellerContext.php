@@ -90,7 +90,7 @@ class ResellerContext extends UserContext
     }
 
     /**
-     * Suspends a single account
+     * Suspends a single account.
      *
      * @param string $username Account to delete
      */
@@ -100,7 +100,8 @@ class ResellerContext extends UserContext
     }
 
     /**
-     * Unsuspends a single account
+     * Unsuspends a single account.
+     *
      * @param string $username Account to delete
      */
     public function unsuspendAccount($username)

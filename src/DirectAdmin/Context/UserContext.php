@@ -41,9 +41,9 @@ class UserContext extends BaseContext
                 DirectAdmin::ACCOUNT_TYPE_USER => self::class,
             ];
             if ($classMap[$this->getType()] != get_class($this)) {
-                /** @codeCoverageIgnoreStart */
+                /* @codeCoverageIgnoreStart */
                 throw new DirectAdminException('Validation mismatch on context construction');
-                /** @codeCoverageIgnoreEnd */
+                /* @codeCoverageIgnoreEnd */
             }
         }
     }
