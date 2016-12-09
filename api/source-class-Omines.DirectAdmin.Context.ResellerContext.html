@@ -224,7 +224,7 @@
 </span><span id="90" class="l"><a href="#90"> 90 </a>    }
 </span><span id="91" class="l"><a href="#91"> 91 </a>
 </span><span id="92" class="l"><a href="#92"> 92 </a>    <span class="php-comment">/**
-</span></span><span id="93" class="l"><a href="#93"> 93 </a><span class="php-comment">     * Suspends a single account
+</span></span><span id="93" class="l"><a href="#93"> 93 </a><span class="php-comment">     * Suspends a single account.
 </span></span><span id="94" class="l"><a href="#94"> 94 </a><span class="php-comment">     *
 </span></span><span id="95" class="l"><a href="#95"> 95 </a><span class="php-comment">     * @param string $username Account to delete
 </span></span><span id="96" class="l"><a href="#96"> 96 </a><span class="php-comment">     */</span>
@@ -234,84 +234,85 @@
 </span><span id="100" class="l"><a href="#100">100 </a>    }
 </span><span id="101" class="l"><a href="#101">101 </a>
 </span><span id="102" class="l"><a href="#102">102 </a>    <span class="php-comment">/**
-</span></span><span id="103" class="l"><a href="#103">103 </a><span class="php-comment">     * Unsuspends a single account
-</span></span><span id="104" class="l"><a href="#104">104 </a><span class="php-comment">     * @param string $username Account to delete
-</span></span><span id="105" class="l"><a href="#105">105 </a><span class="php-comment">     */</span>
-</span><span id="106" class="l"><a href="#106">106 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> unsuspendAccount(<span class="php-var">$username</span>)
-</span><span id="107" class="l"><a href="#107">107 </a>    {
-</span><span id="108" class="l"><a href="#108">108 </a>        <span class="php-var">$this</span>-&gt;suspendAccounts([<span class="php-var">$username</span>], <span class="php-keyword1">false</span>);
-</span><span id="109" class="l"><a href="#109">109 </a>    }
-</span><span id="110" class="l"><a href="#110">110 </a>
-</span><span id="111" class="l"><a href="#111">111 </a>    <span class="php-comment">/**
-</span></span><span id="112" class="l"><a href="#112">112 </a><span class="php-comment">     * Suspends (or unsuspends) multiple accounts.
-</span></span><span id="113" class="l"><a href="#113">113 </a><span class="php-comment">     *
-</span></span><span id="114" class="l"><a href="#114">114 </a><span class="php-comment">     * @param string[] $usernames Accounts to delete
-</span></span><span id="115" class="l"><a href="#115">115 </a><span class="php-comment">     * @param bool $suspend (true - suspend, false - unsuspend)
-</span></span><span id="116" class="l"><a href="#116">116 </a><span class="php-comment">     */</span>
-</span><span id="117" class="l"><a href="#117">117 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> suspendAccounts(<span class="php-keyword1">array</span> <span class="php-var">$usernames</span>, <span class="php-var">$suspend</span> = <span class="php-keyword1">true</span>)
-</span><span id="118" class="l"><a href="#118">118 </a>    {
-</span><span id="119" class="l"><a href="#119">119 </a>        <span class="php-var">$options</span> = [<span class="php-quote">'suspend'</span> =&gt; <span class="php-var">$suspend</span> ? <span class="php-quote">'Suspend'</span> : <span class="php-quote">'Unsuspend'</span>];
-</span><span id="120" class="l"><a href="#120">120 </a>        <span class="php-keyword1">foreach</span> (<span class="php-keyword2">array_values</span>(<span class="php-var">$usernames</span>) <span class="php-keyword1">as</span> <span class="php-var">$idx</span> =&gt; <span class="php-var">$username</span>) {
-</span><span id="121" class="l"><a href="#121">121 </a>            <span class="php-var">$options</span>[<span class="php-quote">&quot;select</span><span class="php-var">{$idx}</span><span class="php-quote">&quot;</span>] = <span class="php-var">$username</span>;
-</span><span id="122" class="l"><a href="#122">122 </a>        }
-</span><span id="123" class="l"><a href="#123">123 </a>        <span class="php-var">$this</span>-&gt;invokePost(<span class="php-quote">'SELECT_USERS'</span>, <span class="php-var">$options</span>);
-</span><span id="124" class="l"><a href="#124">124 </a>    }
-</span><span id="125" class="l"><a href="#125">125 </a>
-</span><span id="126" class="l"><a href="#126">126 </a>    <span class="php-comment">/**
-</span></span><span id="127" class="l"><a href="#127">127 </a><span class="php-comment">     * Unsuspends multiple accounts.
-</span></span><span id="128" class="l"><a href="#128">128 </a><span class="php-comment">     *
-</span></span><span id="129" class="l"><a href="#129">129 </a><span class="php-comment">     * @param string[] $usernames Accounts to delete
-</span></span><span id="130" class="l"><a href="#130">130 </a><span class="php-comment">     */</span>
-</span><span id="131" class="l"><a href="#131">131 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> unsuspendAccounts(<span class="php-keyword1">array</span> <span class="php-var">$usernames</span>)
-</span><span id="132" class="l"><a href="#132">132 </a>    {
-</span><span id="133" class="l"><a href="#133">133 </a>        <span class="php-var">$this</span>-&gt;suspendAccounts(<span class="php-var">$usernames</span>, <span class="php-keyword1">false</span>);
-</span><span id="134" class="l"><a href="#134">134 </a>    }
-</span><span id="135" class="l"><a href="#135">135 </a>
-</span><span id="136" class="l"><a href="#136">136 </a>    <span class="php-comment">/**
-</span></span><span id="137" class="l"><a href="#137">137 </a><span class="php-comment">     * Returns all IPs available to this reseller.
-</span></span><span id="138" class="l"><a href="#138">138 </a><span class="php-comment">     *
-</span></span><span id="139" class="l"><a href="#139">139 </a><span class="php-comment">     * @return array List of IPs as strings
-</span></span><span id="140" class="l"><a href="#140">140 </a><span class="php-comment">     */</span>
-</span><span id="141" class="l"><a href="#141">141 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getIPs()
-</span><span id="142" class="l"><a href="#142">142 </a>    {
-</span><span id="143" class="l"><a href="#143">143 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;invokeGet(<span class="php-quote">'SHOW_RESELLER_IPS'</span>);
-</span><span id="144" class="l"><a href="#144">144 </a>    }
-</span><span id="145" class="l"><a href="#145">145 </a>
-</span><span id="146" class="l"><a href="#146">146 </a>    <span class="php-comment">/**
-</span></span><span id="147" class="l"><a href="#147">147 </a><span class="php-comment">     * Returns a single user by name.
-</span></span><span id="148" class="l"><a href="#148">148 </a><span class="php-comment">     *
-</span></span><span id="149" class="l"><a href="#149">149 </a><span class="php-comment">     * @param string $username
-</span></span><span id="150" class="l"><a href="#150">150 </a><span class="php-comment">     * @return User|null
-</span></span><span id="151" class="l"><a href="#151">151 </a><span class="php-comment">     */</span>
-</span><span id="152" class="l"><a href="#152">152 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getUser(<span class="php-var">$username</span>)
-</span><span id="153" class="l"><a href="#153">153 </a>    {
-</span><span id="154" class="l"><a href="#154">154 </a>        <span class="php-var">$resellers</span> = <span class="php-var">$this</span>-&gt;getUsers();
-</span><span id="155" class="l"><a href="#155">155 </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">isset</span>(<span class="php-var">$resellers</span>[<span class="php-var">$username</span>]) ? <span class="php-var">$resellers</span>[<span class="php-var">$username</span>] : <span class="php-keyword1">null</span>;
-</span><span id="156" class="l"><a href="#156">156 </a>    }
-</span><span id="157" class="l"><a href="#157">157 </a>
-</span><span id="158" class="l"><a href="#158">158 </a>    <span class="php-comment">/**
-</span></span><span id="159" class="l"><a href="#159">159 </a><span class="php-comment">     * Returns all users for this reseller.
-</span></span><span id="160" class="l"><a href="#160">160 </a><span class="php-comment">     *
-</span></span><span id="161" class="l"><a href="#161">161 </a><span class="php-comment">     * @return User[] Associative array of users
-</span></span><span id="162" class="l"><a href="#162">162 </a><span class="php-comment">     */</span>
-</span><span id="163" class="l"><a href="#163">163 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getUsers()
-</span><span id="164" class="l"><a href="#164">164 </a>    {
-</span><span id="165" class="l"><a href="#165">165 </a>        <span class="php-keyword1">return</span> BaseObject::toObjectArray(<span class="php-var">$this</span>-&gt;invokeGet(<span class="php-quote">'SHOW_USERS'</span>), User::<span class="php-keyword1">class</span>, <span class="php-var">$this</span>);
-</span><span id="166" class="l"><a href="#166">166 </a>    }
-</span><span id="167" class="l"><a href="#167">167 </a>
-</span><span id="168" class="l"><a href="#168">168 </a>    <span class="php-comment">/**
-</span></span><span id="169" class="l"><a href="#169">169 </a><span class="php-comment">     * Impersonates a user, allowing the reseller/admin to act on their behalf.
-</span></span><span id="170" class="l"><a href="#170">170 </a><span class="php-comment">     *
-</span></span><span id="171" class="l"><a href="#171">171 </a><span class="php-comment">     * @param string $username Login of the account to impersonate
-</span></span><span id="172" class="l"><a href="#172">172 </a><span class="php-comment">     * @param bool $validate Whether to check the user exists and is a user
-</span></span><span id="173" class="l"><a href="#173">173 </a><span class="php-comment">     * @return UserContext
-</span></span><span id="174" class="l"><a href="#174">174 </a><span class="php-comment">     */</span>
-</span><span id="175" class="l"><a href="#175">175 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> impersonateUser(<span class="php-var">$username</span>, <span class="php-var">$validate</span> = <span class="php-keyword1">false</span>)
-</span><span id="176" class="l"><a href="#176">176 </a>    {
-</span><span id="177" class="l"><a href="#177">177 </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">new</span> UserContext(<span class="php-var">$this</span>-&gt;getConnection()-&gt;loginAs(<span class="php-var">$username</span>), <span class="php-var">$validate</span>);
-</span><span id="178" class="l"><a href="#178">178 </a>    }
-</span><span id="179" class="l"><a href="#179">179 </a>}
-</span><span id="180" class="l"><a href="#180">180 </a></span></code></pre>
+</span></span><span id="103" class="l"><a href="#103">103 </a><span class="php-comment">     * Unsuspends a single account.
+</span></span><span id="104" class="l"><a href="#104">104 </a><span class="php-comment">     *
+</span></span><span id="105" class="l"><a href="#105">105 </a><span class="php-comment">     * @param string $username Account to delete
+</span></span><span id="106" class="l"><a href="#106">106 </a><span class="php-comment">     */</span>
+</span><span id="107" class="l"><a href="#107">107 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> unsuspendAccount(<span class="php-var">$username</span>)
+</span><span id="108" class="l"><a href="#108">108 </a>    {
+</span><span id="109" class="l"><a href="#109">109 </a>        <span class="php-var">$this</span>-&gt;suspendAccounts([<span class="php-var">$username</span>], <span class="php-keyword1">false</span>);
+</span><span id="110" class="l"><a href="#110">110 </a>    }
+</span><span id="111" class="l"><a href="#111">111 </a>
+</span><span id="112" class="l"><a href="#112">112 </a>    <span class="php-comment">/**
+</span></span><span id="113" class="l"><a href="#113">113 </a><span class="php-comment">     * Suspends (or unsuspends) multiple accounts.
+</span></span><span id="114" class="l"><a href="#114">114 </a><span class="php-comment">     *
+</span></span><span id="115" class="l"><a href="#115">115 </a><span class="php-comment">     * @param string[] $usernames Accounts to delete
+</span></span><span id="116" class="l"><a href="#116">116 </a><span class="php-comment">     * @param bool $suspend (true - suspend, false - unsuspend)
+</span></span><span id="117" class="l"><a href="#117">117 </a><span class="php-comment">     */</span>
+</span><span id="118" class="l"><a href="#118">118 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> suspendAccounts(<span class="php-keyword1">array</span> <span class="php-var">$usernames</span>, <span class="php-var">$suspend</span> = <span class="php-keyword1">true</span>)
+</span><span id="119" class="l"><a href="#119">119 </a>    {
+</span><span id="120" class="l"><a href="#120">120 </a>        <span class="php-var">$options</span> = [<span class="php-quote">'suspend'</span> =&gt; <span class="php-var">$suspend</span> ? <span class="php-quote">'Suspend'</span> : <span class="php-quote">'Unsuspend'</span>];
+</span><span id="121" class="l"><a href="#121">121 </a>        <span class="php-keyword1">foreach</span> (<span class="php-keyword2">array_values</span>(<span class="php-var">$usernames</span>) <span class="php-keyword1">as</span> <span class="php-var">$idx</span> =&gt; <span class="php-var">$username</span>) {
+</span><span id="122" class="l"><a href="#122">122 </a>            <span class="php-var">$options</span>[<span class="php-quote">&quot;select</span><span class="php-var">{$idx}</span><span class="php-quote">&quot;</span>] = <span class="php-var">$username</span>;
+</span><span id="123" class="l"><a href="#123">123 </a>        }
+</span><span id="124" class="l"><a href="#124">124 </a>        <span class="php-var">$this</span>-&gt;invokePost(<span class="php-quote">'SELECT_USERS'</span>, <span class="php-var">$options</span>);
+</span><span id="125" class="l"><a href="#125">125 </a>    }
+</span><span id="126" class="l"><a href="#126">126 </a>
+</span><span id="127" class="l"><a href="#127">127 </a>    <span class="php-comment">/**
+</span></span><span id="128" class="l"><a href="#128">128 </a><span class="php-comment">     * Unsuspends multiple accounts.
+</span></span><span id="129" class="l"><a href="#129">129 </a><span class="php-comment">     *
+</span></span><span id="130" class="l"><a href="#130">130 </a><span class="php-comment">     * @param string[] $usernames Accounts to delete
+</span></span><span id="131" class="l"><a href="#131">131 </a><span class="php-comment">     */</span>
+</span><span id="132" class="l"><a href="#132">132 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> unsuspendAccounts(<span class="php-keyword1">array</span> <span class="php-var">$usernames</span>)
+</span><span id="133" class="l"><a href="#133">133 </a>    {
+</span><span id="134" class="l"><a href="#134">134 </a>        <span class="php-var">$this</span>-&gt;suspendAccounts(<span class="php-var">$usernames</span>, <span class="php-keyword1">false</span>);
+</span><span id="135" class="l"><a href="#135">135 </a>    }
+</span><span id="136" class="l"><a href="#136">136 </a>
+</span><span id="137" class="l"><a href="#137">137 </a>    <span class="php-comment">/**
+</span></span><span id="138" class="l"><a href="#138">138 </a><span class="php-comment">     * Returns all IPs available to this reseller.
+</span></span><span id="139" class="l"><a href="#139">139 </a><span class="php-comment">     *
+</span></span><span id="140" class="l"><a href="#140">140 </a><span class="php-comment">     * @return array List of IPs as strings
+</span></span><span id="141" class="l"><a href="#141">141 </a><span class="php-comment">     */</span>
+</span><span id="142" class="l"><a href="#142">142 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getIPs()
+</span><span id="143" class="l"><a href="#143">143 </a>    {
+</span><span id="144" class="l"><a href="#144">144 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;invokeGet(<span class="php-quote">'SHOW_RESELLER_IPS'</span>);
+</span><span id="145" class="l"><a href="#145">145 </a>    }
+</span><span id="146" class="l"><a href="#146">146 </a>
+</span><span id="147" class="l"><a href="#147">147 </a>    <span class="php-comment">/**
+</span></span><span id="148" class="l"><a href="#148">148 </a><span class="php-comment">     * Returns a single user by name.
+</span></span><span id="149" class="l"><a href="#149">149 </a><span class="php-comment">     *
+</span></span><span id="150" class="l"><a href="#150">150 </a><span class="php-comment">     * @param string $username
+</span></span><span id="151" class="l"><a href="#151">151 </a><span class="php-comment">     * @return User|null
+</span></span><span id="152" class="l"><a href="#152">152 </a><span class="php-comment">     */</span>
+</span><span id="153" class="l"><a href="#153">153 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getUser(<span class="php-var">$username</span>)
+</span><span id="154" class="l"><a href="#154">154 </a>    {
+</span><span id="155" class="l"><a href="#155">155 </a>        <span class="php-var">$resellers</span> = <span class="php-var">$this</span>-&gt;getUsers();
+</span><span id="156" class="l"><a href="#156">156 </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">isset</span>(<span class="php-var">$resellers</span>[<span class="php-var">$username</span>]) ? <span class="php-var">$resellers</span>[<span class="php-var">$username</span>] : <span class="php-keyword1">null</span>;
+</span><span id="157" class="l"><a href="#157">157 </a>    }
+</span><span id="158" class="l"><a href="#158">158 </a>
+</span><span id="159" class="l"><a href="#159">159 </a>    <span class="php-comment">/**
+</span></span><span id="160" class="l"><a href="#160">160 </a><span class="php-comment">     * Returns all users for this reseller.
+</span></span><span id="161" class="l"><a href="#161">161 </a><span class="php-comment">     *
+</span></span><span id="162" class="l"><a href="#162">162 </a><span class="php-comment">     * @return User[] Associative array of users
+</span></span><span id="163" class="l"><a href="#163">163 </a><span class="php-comment">     */</span>
+</span><span id="164" class="l"><a href="#164">164 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getUsers()
+</span><span id="165" class="l"><a href="#165">165 </a>    {
+</span><span id="166" class="l"><a href="#166">166 </a>        <span class="php-keyword1">return</span> BaseObject::toObjectArray(<span class="php-var">$this</span>-&gt;invokeGet(<span class="php-quote">'SHOW_USERS'</span>), User::<span class="php-keyword1">class</span>, <span class="php-var">$this</span>);
+</span><span id="167" class="l"><a href="#167">167 </a>    }
+</span><span id="168" class="l"><a href="#168">168 </a>
+</span><span id="169" class="l"><a href="#169">169 </a>    <span class="php-comment">/**
+</span></span><span id="170" class="l"><a href="#170">170 </a><span class="php-comment">     * Impersonates a user, allowing the reseller/admin to act on their behalf.
+</span></span><span id="171" class="l"><a href="#171">171 </a><span class="php-comment">     *
+</span></span><span id="172" class="l"><a href="#172">172 </a><span class="php-comment">     * @param string $username Login of the account to impersonate
+</span></span><span id="173" class="l"><a href="#173">173 </a><span class="php-comment">     * @param bool $validate Whether to check the user exists and is a user
+</span></span><span id="174" class="l"><a href="#174">174 </a><span class="php-comment">     * @return UserContext
+</span></span><span id="175" class="l"><a href="#175">175 </a><span class="php-comment">     */</span>
+</span><span id="176" class="l"><a href="#176">176 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> impersonateUser(<span class="php-var">$username</span>, <span class="php-var">$validate</span> = <span class="php-keyword1">false</span>)
+</span><span id="177" class="l"><a href="#177">177 </a>    {
+</span><span id="178" class="l"><a href="#178">178 </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">new</span> UserContext(<span class="php-var">$this</span>-&gt;getConnection()-&gt;loginAs(<span class="php-var">$username</span>), <span class="php-var">$validate</span>);
+</span><span id="179" class="l"><a href="#179">179 </a>    }
+</span><span id="180" class="l"><a href="#180">180 </a>}
+</span><span id="181" class="l"><a href="#181">181 </a></span></code></pre>
 	</div>
 
 	<div id="footer">
