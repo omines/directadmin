@@ -1,3 +1,8 @@
+#!/bin/sh
+set -e
+cd $(dirname $0)/..
+
+# Create required folders
 mkdir -p _docs
 cd _docs
 git clone https://${GH_TOKEN}@github.com/omines/directadmin.git . > /dev/null

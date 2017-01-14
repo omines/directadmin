@@ -22,4 +22,4 @@ after_script:
   - php vendor/bin/coveralls -v
 
 after_success:
-  - if  [ $TRAVIS_PHP_VERSION = '7.1' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ]; then sh bin/generate-api.sh; fi
+  - if  [ $TRAVIS_PHP_VERSION = '7.1' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ]; then sh bin/generate-api; fi
