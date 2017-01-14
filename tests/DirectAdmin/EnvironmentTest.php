@@ -18,7 +18,7 @@ use Omines\DirectAdmin\DirectAdmin;
 class EnvironmentTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @expectedException Omines\DirectAdmin\DirectAdminException
+     * @expectedException \Omines\DirectAdmin\DirectAdminException
      */
     public function testCorruptedUrl()
     {
@@ -27,7 +27,7 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Omines\DirectAdmin\DirectAdminException
+     * @expectedException \Omines\DirectAdmin\DirectAdminException
      */
     public function testInvalidUsername()
     {
@@ -36,7 +36,7 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Omines\DirectAdmin\DirectAdminException
+     * @expectedException \Omines\DirectAdmin\DirectAdminException
      */
     public function testInvalidPassword()
     {
@@ -45,7 +45,7 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Omines\DirectAdmin\DirectAdminException
+     * @expectedException \Omines\DirectAdmin\DirectAdminException
      */
     public function testInvalidCall()
     {
@@ -54,7 +54,7 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Omines\DirectAdmin\DirectAdminException
+     * @expectedException \Omines\DirectAdmin\DirectAdminException
      */
     public function testInvalidUrl()
     {

@@ -1,6 +1,7 @@
-composer.lock
-composer.phar
-build/
-local/
-phpunit.xml
-vendor/
+/.php_cs.cache
+/build/
+/composer.lock
+/composer.phar
+/local/
+/phpunit.xml
+/vendor/
