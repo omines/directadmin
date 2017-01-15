@@ -63,26 +63,7 @@ class Domain extends BaseObject
     public function __construct($name, UserContext $context, $config)
     {
         parent::__construct($name, $context);
-
-        // Unpack domain config
-        $data = is_array($config) ? $config : \GuzzleHttp\Psr7\parse_query($config);
-        $this->domainName = $data['domain'];
-
-        // Determine owner
-        if ($data['username'] === $context->getUsername()) {
-            $this->owner = $context->getContextUser();
-        } else {
-            throw new DirectAdminException('Could not determine relationship between context user and domain');
-        }
-
-        // Parse plain options
-        $bandwidths = array_map('trim', explode('/', $data['bandwidth']));
-        $this->bandwidthUsed = floatval($bandwidths[0]);
-        $this->bandwidthLimit = ctype_alpha($bandwidths[1]) ? null : floatval($bandwidths[1]);
-        $this->diskUsage = floatval($data['quota']);
-
-        $this->aliases = array_filter(explode('|', $data['alias_pointers']));
-        $this->pointers = array_filter(explode('|', $data['pointers']));
+        $this->setConfig($context, is_array($config) ? $config : \GuzzleHttp\Psr7\parse_query($config));
     }
 
     /**
@@ -344,5 +325,32 @@ class Domain extends BaseObject
     public function __toString()
     {
         return $this->getDomainName();
+    }
+
+    /**
+     * Sets configuration options from raw DirectAdmin data.
+     *
+     * @param UserContext $context Owning user context
+     * @param array $config An array of settings
+     */
+    private function setConfig(UserContext $context, array $config)
+    {
+        $this->domainName = $config['domain'];
+
+        // Determine owner
+        if ($config['username'] === $context->getUsername()) {
+            $this->owner = $context->getContextUser();
+        } else {
+            throw new DirectAdminException('Could not determine relationship between context user and domain');
+        }
+
+        // Parse plain options
+        $bandwidths = array_map('trim', explode('/', $config['bandwidth']));
+        $this->bandwidthUsed = floatval($bandwidths[0]);
+        $this->bandwidthLimit = ctype_alpha($bandwidths[1]) ? null : floatval($bandwidths[1]);
+        $this->diskUsage = floatval($config['quota']);
+
+        $this->aliases = array_filter(explode('|', $config['alias_pointers']));
+        $this->pointers = array_filter(explode('|', $config['pointers']));
     }
 }

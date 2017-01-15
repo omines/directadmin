@@ -119,7 +119,7 @@ class ResellerContext extends UserContext
     {
         $options = ['suspend' => $suspend ? 'Suspend' : 'Unsuspend'];
         foreach (array_values($usernames) as $idx => $username) {
-            $options["select{$idx}"] = $username;
+            $options['select' . $idx] = $username;
         }
         $this->invokePost('SELECT_USERS', $options);
     }
