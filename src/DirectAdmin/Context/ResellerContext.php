@@ -54,7 +54,7 @@ class ResellerContext extends UserContext
      */
     protected function createAccount($username, $password, $email, $options, $endpoint, $returnType)
     {
-        $this->invokePost($endpoint, array_merge($options, [
+        $this->invokeApiPost($endpoint, array_merge($options, [
             'action' => 'create',
             'add' => 'Submit',
             'email' => $email,
@@ -86,7 +86,7 @@ class ResellerContext extends UserContext
         foreach (array_values($usernames) as $idx => $username) {
             $options["select{$idx}"] = $username;
         }
-        $this->invokePost('SELECT_USERS', $options);
+        $this->invokeApiPost('SELECT_USERS', $options);
     }
 
     /**
@@ -121,7 +121,7 @@ class ResellerContext extends UserContext
         foreach (array_values($usernames) as $idx => $username) {
             $options['select' . $idx] = $username;
         }
-        $this->invokePost('SELECT_USERS', $options);
+        $this->invokeApiPost('SELECT_USERS', $options);
     }
 
     /**
@@ -141,7 +141,7 @@ class ResellerContext extends UserContext
      */
     public function getIPs()
     {
-        return $this->invokeGet('SHOW_RESELLER_IPS');
+        return $this->invokeApiGet('SHOW_RESELLER_IPS');
     }
 
     /**
@@ -163,7 +163,7 @@ class ResellerContext extends UserContext
      */
     public function getUsers()
     {
-        return BaseObject::toObjectArray($this->invokeGet('SHOW_USERS'), User::class, $this);
+        return BaseObject::toObjectArray($this->invokeApiGet('SHOW_USERS'), User::class, $this);
     }
 
     /**

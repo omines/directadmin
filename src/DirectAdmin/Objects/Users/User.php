@@ -206,7 +206,7 @@ class User extends BaseObject
     {
         return $this->getCache(self::CACHE_DATABASES, function () {
             $databases = [];
-            foreach ($this->getSelfManagedContext()->invokeGet('DATABASES') as $fullName) {
+            foreach ($this->getSelfManagedContext()->invokeApiGet('DATABASES') as $fullName) {
                 list($user, $db) = explode('_', $fullName, 2);
                 if ($this->getUsername() != $user) {
                     throw new DirectAdminException('Username incorrect on database ' . $fullName);
@@ -238,7 +238,7 @@ class User extends BaseObject
             if (!$this->isSelfManaged()) {
                 $this->domains = $this->impersonate()->getDomains();
             } else {
-                $this->domains = BaseObject::toRichObjectArray($this->getContext()->invokeGet('ADDITIONAL_DOMAINS'), Domain::class, $this->getContext());
+                $this->domains = BaseObject::toRichObjectArray($this->getContext()->invokeApiGet('ADDITIONAL_DOMAINS'), Domain::class, $this->getContext());
             }
         }
         return $this->domains;
@@ -297,7 +297,7 @@ class User extends BaseObject
      */
     public function modifyConfig(array $newConfig)
     {
-        $this->getContext()->invokePost('MODIFY_USER', array_merge(
+        $this->getContext()->invokeApiPost('MODIFY_USER', array_merge(
                 $this->loadConfig(),
                 Conversion::processUnlimitedOptions($newConfig),
                 ['action' => 'customize', 'user' => $this->getUsername()]
@@ -382,7 +382,7 @@ class User extends BaseObject
     private function getUsage($item)
     {
         return $this->getCacheItem(self::CACHE_USAGE, $item, function () {
-            return $this->getContext()->invokeGet('SHOW_USER_USAGE', ['user' => $this->getUsername()]);
+            return $this->getContext()->invokeApiGet('SHOW_USER_USAGE', ['user' => $this->getUsername()]);
         });
     }
 
@@ -417,6 +417,6 @@ class User extends BaseObject
      */
     private function loadConfig()
     {
-        return $this->getContext()->invokeGet('SHOW_USER_CONFIG', ['user' => $this->getUsername()]);
+        return $this->getContext()->invokeApiGet('SHOW_USER_CONFIG', ['user' => $this->getUsername()]);
     }
 }

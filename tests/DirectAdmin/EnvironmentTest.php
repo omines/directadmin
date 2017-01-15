@@ -50,7 +50,7 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
     public function testInvalidCall()
     {
         $admin = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD);
-        $admin->invokeGet('INVALID_COMMAND');
+        $admin->invokeApiGet('INVALID_COMMAND');
     }
 
     /**

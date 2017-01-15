@@ -66,7 +66,7 @@ class UserContext extends BaseContext
     public function getContextUser()
     {
         if (!isset($this->user)) {
-            $this->user = User::fromConfig($this->invokeGet('SHOW_USER_CONFIG'), $this);
+            $this->user = User::fromConfig($this->invokeApiGet('SHOW_USER_CONFIG'), $this);
         }
         return $this->user;
     }

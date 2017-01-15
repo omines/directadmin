@@ -38,7 +38,7 @@ class AccessHost extends BaseObject
      */
     public static function create(Database $database, $host)
     {
-        $database->getContext()->invokePost('DATABASES', [
+        $database->getContext()->invokeApiPost('DATABASES', [
             'action' => 'accesshosts',
             'create' => 'yes',
             'db' => $database->getDatabaseName(),
@@ -52,7 +52,7 @@ class AccessHost extends BaseObject
      */
     public function delete()
     {
-        $this->getContext()->invokePost('DATABASES', [
+        $this->getContext()->invokeApiPost('DATABASES', [
             'action' => 'accesshosts',
             'delete' => 'yes',
             'db' => $this->database->getDatabaseName(),

@@ -62,7 +62,7 @@ class Database extends BaseObject
         } else {
             $options += ['userlist' => $username];
         }
-        $user->getContext()->invokePost('DATABASES', $options);
+        $user->getContext()->invokeApiPost('DATABASES', $options);
         return new self($name, $user, $user->getContext());
     }
 
@@ -71,7 +71,7 @@ class Database extends BaseObject
      */
     public function delete()
     {
-        $this->getContext()->invokePost('DATABASES', [
+        $this->getContext()->invokeApiPost('DATABASES', [
             'action' => 'delete',
             'select0' => $this->getDatabaseName(),
         ]);
@@ -84,7 +84,7 @@ class Database extends BaseObject
     public function getAccessHosts()
     {
         return $this->getCache(self::CACHE_ACCESS_HOSTS, function () {
-            $accessHosts = $this->getContext()->invokeGet('DATABASES', [
+            $accessHosts = $this->getContext()->invokeApiGet('DATABASES', [
                 'action' => 'accesshosts',
                 'db' => $this->getDatabaseName(),
             ]);

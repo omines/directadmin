@@ -63,7 +63,7 @@ class AdminContext extends ResellerContext
      */
     public function getAdmins()
     {
-        return BaseObject::toObjectArray($this->invokeGet('SHOW_ADMINS'), Admin::class, $this);
+        return BaseObject::toObjectArray($this->invokeApiGet('SHOW_ADMINS'), Admin::class, $this);
     }
 
     /**
@@ -85,7 +85,7 @@ class AdminContext extends ResellerContext
      */
     public function getAllUsers()
     {
-        return BaseObject::toObjectArray($this->invokeGet('SHOW_ALL_USERS'), User::class, $this);
+        return BaseObject::toObjectArray($this->invokeApiGet('SHOW_ALL_USERS'), User::class, $this);
     }
 
     /**
@@ -107,7 +107,7 @@ class AdminContext extends ResellerContext
      */
     public function getResellers()
     {
-        return BaseObject::toObjectArray($this->invokeGet('SHOW_RESELLERS'), Reseller::class, $this);
+        return BaseObject::toObjectArray($this->invokeApiGet('SHOW_RESELLERS'), Reseller::class, $this);
     }
 
     /**

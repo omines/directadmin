@@ -49,9 +49,9 @@ abstract class BaseContext
      * @param array $query Optional query parameters
      * @return array The parsed and validated response
      */
-    public function invokeGet($command, $query = [])
+    public function invokeApiGet($command, $query = [])
     {
-        return $this->connection->invoke('GET', $command, ['query' => $query]);
+        return $this->connection->invokeApi('GET', $command, ['query' => $query]);
     }
 
     /**
@@ -61,8 +61,8 @@ abstract class BaseContext
      * @param array $postParameters Optional form parameters
      * @return array The parsed and validated response
      */
-    public function invokePost($command, $postParameters = [])
+    public function invokeApiPost($command, $postParameters = [])
     {
-        return $this->connection->invoke('POST', $command, ['form_params' => $postParameters]);
+        return $this->connection->invokeApi('POST', $command, ['form_params' => $postParameters]);
     }
 }

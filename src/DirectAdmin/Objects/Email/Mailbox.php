@@ -119,7 +119,7 @@ class Mailbox extends MailObject
     protected function getData($key)
     {
         return $this->getCacheItem(self::CACHE_DATA, $key, function () {
-            $result = $this->getContext()->invokeGet('POP', [
+            $result = $this->getContext()->invokeApiGet('POP', [
                 'domain' => $this->getDomainName(),
                 'action' => 'full_list',
             ]);

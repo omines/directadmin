@@ -124,7 +124,7 @@ class DirectAdmin
      * @return array The unvalidated response
      * @throws DirectAdminException If anything went wrong on the network level
      */
-    public function invoke($method, $command, $options = [])
+    public function invokeApi($method, $command, $options = [])
     {
         $result = $this->rawRequest($method, '/CMD_API_' . $command, $options);
         if (!empty($result['error'])) {

@@ -46,7 +46,7 @@ class Reseller extends User
      */
     public function getUsers()
     {
-        return BaseObject::toObjectArray($this->getContext()->invokeGet('SHOW_USERS', ['reseller' => $this->getUsername()]),
+        return BaseObject::toObjectArray($this->getContext()->invokeApiGet('SHOW_USERS', ['reseller' => $this->getUsername()]),
                                      User::class, $this->getContext());
     }
 
