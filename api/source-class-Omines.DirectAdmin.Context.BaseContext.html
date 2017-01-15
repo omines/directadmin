@@ -183,9 +183,9 @@
 </span></span><span id="49" class="l"><a href="#49">49 </a><span class="php-comment">     * @param array $query Optional query parameters
 </span></span><span id="50" class="l"><a href="#50">50 </a><span class="php-comment">     * @return array The parsed and validated response
 </span></span><span id="51" class="l"><a href="#51">51 </a><span class="php-comment">     */</span>
-</span><span id="52" class="l"><a href="#52">52 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> invokeGet(<span class="php-var">$command</span>, <span class="php-var">$query</span> = [])
+</span><span id="52" class="l"><a href="#52">52 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> invokeApiGet(<span class="php-var">$command</span>, <span class="php-var">$query</span> = [])
 </span><span id="53" class="l"><a href="#53">53 </a>    {
-</span><span id="54" class="l"><a href="#54">54 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;connection-&gt;invoke(<span class="php-quote">'GET'</span>, <span class="php-var">$command</span>, [<span class="php-quote">'query'</span> =&gt; <span class="php-var">$query</span>]);
+</span><span id="54" class="l"><a href="#54">54 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;connection-&gt;invokeApi(<span class="php-quote">'GET'</span>, <span class="php-var">$command</span>, [<span class="php-quote">'query'</span> =&gt; <span class="php-var">$query</span>]);
 </span><span id="55" class="l"><a href="#55">55 </a>    }
 </span><span id="56" class="l"><a href="#56">56 </a>
 </span><span id="57" class="l"><a href="#57">57 </a>    <span class="php-comment">/**
@@ -195,9 +195,9 @@
 </span></span><span id="61" class="l"><a href="#61">61 </a><span class="php-comment">     * @param array $postParameters Optional form parameters
 </span></span><span id="62" class="l"><a href="#62">62 </a><span class="php-comment">     * @return array The parsed and validated response
 </span></span><span id="63" class="l"><a href="#63">63 </a><span class="php-comment">     */</span>
-</span><span id="64" class="l"><a href="#64">64 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> invokePost(<span class="php-var">$command</span>, <span class="php-var">$postParameters</span> = [])
+</span><span id="64" class="l"><a href="#64">64 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> invokeApiPost(<span class="php-var">$command</span>, <span class="php-var">$postParameters</span> = [])
 </span><span id="65" class="l"><a href="#65">65 </a>    {
-</span><span id="66" class="l"><a href="#66">66 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;connection-&gt;invoke(<span class="php-quote">'POST'</span>, <span class="php-var">$command</span>, [<span class="php-quote">'form_params'</span> =&gt; <span class="php-var">$postParameters</span>]);
+</span><span id="66" class="l"><a href="#66">66 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;connection-&gt;invokeApi(<span class="php-quote">'POST'</span>, <span class="php-var">$command</span>, [<span class="php-quote">'form_params'</span> =&gt; <span class="php-var">$postParameters</span>]);
 </span><span id="67" class="l"><a href="#67">67 </a>    }
 </span><span id="68" class="l"><a href="#68">68 </a>}
 </span><span id="69" class="l"><a href="#69">69 </a></span></code></pre>

@@ -200,7 +200,7 @@
 </span><span id="66" class="l"><a href="#66"> 66 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getContextUser()
 </span><span id="67" class="l"><a href="#67"> 67 </a>    {
 </span><span id="68" class="l"><a href="#68"> 68 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;user)) {
-</span><span id="69" class="l"><a href="#69"> 69 </a>            <span class="php-var">$this</span>-&gt;user = User::fromConfig(<span class="php-var">$this</span>-&gt;invokeGet(<span class="php-quote">'SHOW_USER_CONFIG'</span>), <span class="php-var">$this</span>);
+</span><span id="69" class="l"><a href="#69"> 69 </a>            <span class="php-var">$this</span>-&gt;user = User::fromConfig(<span class="php-var">$this</span>-&gt;invokeApiGet(<span class="php-quote">'SHOW_USER_CONFIG'</span>), <span class="php-var">$this</span>);
 </span><span id="70" class="l"><a href="#70"> 70 </a>        }
 </span><span id="71" class="l"><a href="#71"> 71 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;user;
 </span><span id="72" class="l"><a href="#72"> 72 </a>    }
