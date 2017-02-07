@@ -19,7 +19,7 @@ use Omines\DirectAdmin\Objects\Users\User;
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
-class UserTest extends \PHPUnit_Framework_TestCase
+class UserTest extends \PHPUnit\Framework\TestCase
 {
     /** @var AdminContext */
     private static $master;

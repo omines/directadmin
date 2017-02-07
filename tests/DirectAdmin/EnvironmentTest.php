@@ -15,7 +15,7 @@ use Omines\DirectAdmin\DirectAdmin;
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
-class EnvironmentTest extends \PHPUnit_Framework_TestCase
+class EnvironmentTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @expectedException \Omines\DirectAdmin\DirectAdminException

@@ -18,7 +18,7 @@ use Omines\DirectAdmin\Objects\Users\Reseller;
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
-class ResellerTest extends \PHPUnit_Framework_TestCase
+class ResellerTest extends \PHPUnit\Framework\TestCase
 {
     /** @var AdminContext */
     private static $master;

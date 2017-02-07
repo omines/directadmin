@@ -29,7 +29,7 @@ If you're not familiar with `composer` follow the installation instructions for
 ## Dependencies
 
 The library uses [Guzzle 6](https://github.com/guzzle/guzzle) as its HTTP communication layer. PHP versions supported
-are 5.5, 5.6, 7.0, 7.1 and hhvm.
+are 5.6, 7.0, 7.1 and hhvm.
 
 ## Basic usage
 

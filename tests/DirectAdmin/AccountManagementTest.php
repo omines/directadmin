@@ -15,7 +15,7 @@ use Omines\DirectAdmin\DirectAdmin;
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
-class AccountManagementTest extends \PHPUnit_Framework_TestCase
+class AccountManagementTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * This function is explicitly implemented as setup, not teardown, so in case of failed tests you may investigate
