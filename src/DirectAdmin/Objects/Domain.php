@@ -347,7 +347,7 @@ class Domain extends BaseObject
         // Parse plain options
         $bandwidths = array_map('trim', explode('/', $config['bandwidth']));
         $this->bandwidthUsed = floatval($bandwidths[0]);
-        $this->bandwidthLimit = ctype_alpha($bandwidths[1]) ? null : floatval($bandwidths[1]);
+        $this->bandwidthLimit = !isset($bandwidths[1]) || ctype_alpha($bandwidths[1]) ? null : floatval($bandwidths[1]);
         $this->diskUsage = floatval($config['quota']);
 
         $this->aliases = array_filter(explode('|', $config['alias_pointers']));
