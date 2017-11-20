@@ -196,7 +196,7 @@ class User extends BaseObject
      */
     public function isSuspended()
     {
-        return $this->getConfig('suspended') === 'ON';
+        return Conversion::toBool($this->getConfig('suspended'));
     }
 
     /**
