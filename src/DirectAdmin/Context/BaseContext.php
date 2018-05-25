@@ -73,6 +73,6 @@ abstract class BaseContext
      */
     public function rawRequest($method, $uri, $options)
     {
-        $this->connection->rawRequest($method, $uri, $options);
+        return $this->connection->rawRequest($method, $uri, $options);
     }
 }
