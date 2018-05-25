@@ -65,4 +65,14 @@ abstract class BaseContext
     {
         return $this->connection->invokeApi('POST', $command, ['form_params' => $postParameters]);
     }
+
+    /**
+     * @param $method
+     * @param $uri
+     * @param $options
+     */
+    public function rawRequest($method, $uri, $options)
+    {
+        $this->connection->rawRequest($method, $uri, $options);
+    }
 }
