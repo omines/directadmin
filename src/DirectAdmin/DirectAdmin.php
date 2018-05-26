@@ -153,7 +153,7 @@ class DirectAdmin
      * @param array $options
      * @return array
      */
-    private function rawRequest($method, $uri, $options)
+    public function rawRequest($method, $uri, $options)
     {
         try {
             $response = $this->connection->request($method, $uri, $options);
