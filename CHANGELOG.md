@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ## Changed
  - Switch to PHP-CS-Fixer 2
+ - Switch to new Coveralls packages
 
 ## [0.1.4] - 2016-12-09
 ### Added
