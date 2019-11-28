@@ -27,6 +27,7 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
             // Ensure all test accounts are gone
             $adminContext = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD);
             $adminContext->deleteAccounts([USER_USERNAME, RESELLER_USERNAME, ADMIN_USERNAME]);
+
         } catch (\Exception $e) {
             // Silently fail as this is expected behaviour
         }
@@ -99,18 +100,6 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
     /**
      * @depends testCreateUser
      */
-    public function testDeleteAccounts()
-    {
-        // Have to separately delete the user as otherwise the order is not determined whether it's containing
-        // reseller is removed first. Also - it implicitly tests both calls like this
-        $adminContext = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD);
-        $adminContext->deleteAccount(USER_USERNAME);
-        $adminContext->deleteAccounts([RESELLER_USERNAME, ADMIN_USERNAME]);
-    }
-
-    /**
-     * @depends testCreateUser
-     */
     public function testSuspendAccounts()
     {
         // Have to separately suspend the user as otherwise the order is not determined whether it's containing
@@ -118,6 +107,15 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
         $adminContext = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD);
         $adminContext->suspendAccount(USER_USERNAME);
         $adminContext->suspendAccounts([RESELLER_USERNAME, ADMIN_USERNAME]);
+
+        $user = $adminContext->impersonateUser( USER_USERNAME, true );
+        $this->assertEquals( $user->getContextUser()->isSuspended(), true );
+
+        $reseller = $adminContext->impersonateReseller( RESELLER_USERNAME, true );
+        $this->assertEquals( $reseller->getContextUser()->isSuspended(), true );
+
+        $admin = $adminContext->impersonateAdmin( ADMIN_USERNAME, true );
+        $this->assertEquals( $admin->getContextUser()->isSuspended(), true );
     }
 
     /**
@@ -128,5 +126,32 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
         $adminContext = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD);
         $adminContext->unsuspendAccount(USER_USERNAME);
         $adminContext->unsuspendAccounts([RESELLER_USERNAME, ADMIN_USERNAME]);
+
+        $user = $adminContext->impersonateUser(USER_USERNAME, true);
+        $this->assertEquals($user->getContextUser()->isSuspended(), false);
+
+        $reseller = $adminContext->impersonateReseller(RESELLER_USERNAME, true);
+        $this->assertEquals($reseller->getContextUser()->isSuspended(), false);
+
+        $admin = $adminContext->impersonateAdmin(ADMIN_USERNAME, true);
+        $this->assertEquals($admin->getContextUser()->isSuspended(), false);
+    }
+
+    /**
+     * @depends testCreateUser
+     */
+    public function testDeleteAccounts()
+    {
+        // Have to separately delete the user as otherwise the order is not determined whether it's containing
+        // reseller is removed first. Also - it implicitly tests both calls like this
+        $adminContext = DirectAdmin::connectAdmin(DIRECTADMIN_URL, MASTER_ADMIN_USERNAME, MASTER_ADMIN_PASSWORD);
+        $adminContext->deleteAccount(USER_USERNAME);
+        $adminContext->deleteAccounts([RESELLER_USERNAME, ADMIN_USERNAME]);
+
+        $this->assertNull( $adminContext->getUser( USER_USERNAME ) );
+        $this->assertNull( $adminContext->getReseller( RESELLER_USERNAME ) );
+
+        $admins = $adminContext->getAdmins();
+        $this->assertFalse( in_array( ADMIN_USERNAME, $admins ) );
     }
 }

@@ -111,6 +111,27 @@ class Mailbox extends MailObject
     }
 
     /**
+     * Return the maximum number of mails that can be send each day
+     *
+     * @return int
+     */
+    public function getMailLimit()
+    {
+        return intval($this->getData('limit'));
+    }
+
+    /**
+     * Returns if the mailbox is suspended or not
+     *
+     * @return bool
+     */
+    public function getMailSuspended()
+    {
+        return( strcasecmp($this->getData('suspended'),"yes" ) == 0 );
+    }
+
+
+    /**
      * Cache wrapper to keep mailbox stats up to date.
      *
      * @param string $key
@@ -123,6 +144,7 @@ class Mailbox extends MailObject
                 'domain' => $this->getDomainName(),
                 'action' => 'full_list',
             ]);
+
             return \GuzzleHttp\Psr7\parse_query($result[$this->getPrefix()]);
         });
     }

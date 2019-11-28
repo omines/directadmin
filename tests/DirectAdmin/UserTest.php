@@ -226,15 +226,17 @@ class UserTest extends \PHPUnit\Framework\TestCase
         // Create 2 forwarders after asserting they are the first
         $this->assertEmpty($domain->getMailboxes());
         $mail1 = $domain->createMailbox('mail1', generateTemporaryPassword());
-        $mail2 = $domain->createMailbox('mail2', generateTemporaryPassword(), 500, 500);
+        $mail2 = $domain->createMailbox('mail2', generateTemporaryPassword(), 500, 50);
         $this->assertCount(2, $boxes = $domain->getMailboxes());
 
         // Check mailbox statistics
         $this->assertEquals('mail1@' . TEST_USER_DOMAIN, $boxes['mail1']->getEmailAddress());
-        $this->assertNull($mail1->getDiskLimit());
+        $this->assertNull( $mail1->getDiskLimit() );
         $this->assertEquals(500, $mail2->getDiskLimit());
         $this->assertEquals(0, $mail1->getDiskUsage(), 'Disk usage should be near empty', 0.1);
         $this->assertEquals(0, $mail2->getMailsSent());
+        $this->assertEquals(50, $mail2->getMailLimit());
+        $this->assertFalse( $mail2->getMailSuspended() );
 
         // Changing password should not throw any errors
         $mail1->setPassword(generateTemporaryPassword());
