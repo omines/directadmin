@@ -6,6 +6,8 @@
 [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/47a71204-f274-4416-9db1-9773d65845ca.svg)](https://insight.sensiolabs.com/projects/47a71204-f274-4416-9db1-9773d65845ca)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/omines/directadmin/master/LICENSE)
 
+**This package is no longer supported by the original authors as we no longer use DirectAdmin. The library still worked fine when we left it, use at your own risk. If you want to take over just push your fork to Packagist, it's MIT all the way.**
+
 This is a PHP client library to manage DirectAdmin control panel servers. We simply decided to develop this as we needed
 automation of our own DirectAdmin servers, and the existing implementations were unsupported and incomplete.
 
